@@ -1,3 +1,5 @@
 nbproject
 .vagrant
 servioticy/*
+broker/bridge/node_modules
+
