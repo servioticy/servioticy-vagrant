@@ -4,11 +4,6 @@ file { '/home/vagrant/downloads/':
 
 include nodejs, wget
 
-exec { 'apt-get update':
-  path => '/usr/bin',
-  require => 'install-deps'
-}
-
 exec { "couchbase-server-source": 
   command => "/usr/bin/wget http://packages.couchbase.com/releases/2.2.0/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb",
   cwd => "/home/vagrant/downloads",
