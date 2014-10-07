@@ -2,7 +2,7 @@ file { '/home/vagrant/downloads/':
   ensure => 'directory',
 }
 
-include nodejs, wget
+include nodejs, wget, git
 
 exec { "couchbase-server-source": 
   command => "/usr/bin/wget http://packages.couchbase.com/releases/2.2.0/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb",
@@ -50,4 +50,30 @@ class { 'jetty':
   home    => "/opt",
   user    => "jetty",
   group   => "jetty",
+}
+
+
+git::repo{'servioticy':
+ path   => '/usr/src/servioticy',
+ source => 'https://github.com/servioticy/servioticy.git',
+ branch => 'master'
+}
+
+
+ # Install Maven
+class { "maven::maven":
+  version => "3.0.5", # version to install
+} ->
+ # Setup a .mavenrc file for the specified user
+maven::environment { 'maven-env' : 
+    user => 'vagrant',
+    # anything to add to MAVEN_OPTS in ~/.mavenrc
+    maven_opts => '-Xmx1384m',       # anything to add to MAVEN_OPTS in ~/.mavenrc
+    maven_path_additions => "",      # anything to add to the PATH in ~/.mavenrc
+} -> 
+exec { "build_servioticy":
+   cwd     => "/usr/src/servioticy",
+   command => "mvn -Dmaven.test.skip=true package",
+   path    => "/usr/local/bin/:/usr/bin:/bin/",
+   user    => 'vagrant'
 }
