@@ -30,18 +30,34 @@ exec {
 }
 
 
-package { ['libssl0.9.8', 'oracle-java7-installer']:
+package { ['libssl0.9.8', 'oracle-java7-installer', 'curl']:
   ensure => present,
   require => Exec['apt-get update', 'set-licence-selected', 'set-licence-seen']
 }
 
 
-exec { "couchbase-server-source": 
-  command => "/usr/bin/wget http://packages.couchbase.com/releases/2.2.0/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb",
-  cwd => "/home/vagrant/downloads",
-  creates => "/home/vagrant/downloads/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb",
-  before => Package['couchbase-server']
+wget::fetch { "download storm":
+  source      => 'http://ftp.cixug.es/apache/incubator/storm/apache-storm-0.9.1-incubating/apache-storm-0.9.1-incubating.tar.gz',
+  destination => '/home/vagrant/downloads/apache-storm-0.9.1-incubating.tar.gz',
+  timeout     => 0,
+  verbose     => false,
 }
+
+wget::fetch { "download kestrel":
+  source      => 'http://twitter.github.io/kestrel/download/kestrel-2.4.1.zip',
+  destination => '/home/vagrant/downloads/kestrel-2.4.1.zip',
+  timeout     => 0,
+  verbose     => false,
+}
+
+
+wget::fetch { "couchbase-server-source":
+  source      => 'http://packages.couchbase.com/releases/2.2.0/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb',
+  destination => '/home/vagrant/downloads/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb',
+  timeout     => 0,
+  verbose     => false,
+}
+
 
 package { "couchbase-server":
   provider => dpkg,
@@ -54,8 +70,6 @@ exec { "create_buckets":
     path    => "/bin:/opt/couchbase/bin/",
     require => Package['couchbase-server']
 }
-
-
 
 $init_hash = {
   'ES_USER' => 'elasticsearch',
@@ -75,13 +89,26 @@ $config_hash = {
   'couchbase.password' => 'password',
   'couchbase.username' => 'admin',
   'bootstrap.mlockall' => 'true',
-  'node.name' => 'servinode'
+  'node.name' => 'servinode',
+  'network.publish_host' => '127.0.0.1'
 }
 
 elasticsearch::instance { 'serviolastic':
   config => $config_hash,
   datadir => '/data/elasticsearch'
+} ->
+exec {
+    'create-indices':
+      command => '/bin/sh /home/vagrant/servioticy-indices/create_soupdates.sh; /bin/sh /home/vagrant/servioticy-indices/create_subscriptions.sh',
+      path =>  "/usr/local/bin/:/bin/:/usr/bin/"    
+} ->
+exec {
+    'create-xdcr':
+      command => '/bin/sh /vagrant/puppet/files/create_xdcr.sh',
+      path =>  "/usr/local/bin/:/bin/:/usr/bin/",
+      require => Exec['create_buckets']    
 }
+
 
 elasticsearch::plugin{ 'transport-couchbase':
   module_dir => 'transport-couchbase',
@@ -94,6 +121,29 @@ elasticsearch::plugin{ 'mobz/elasticsearch-head':
   instances  => 'serviolastic'
 }
 
+
+
+
+vcsrepo { "/home/vagrant/servioticy-indices":
+  ensure   => latest,
+  provider => git,
+  owner    => 'vagrant',
+  group    => 'vagrant',
+  require  => [ Package["git"] ],
+  source   => "https://github.com/servioticy/servioticy-elasticsearch-indices.git",
+  revision => 'master',
+}
+
+
+vcsrepo { "/home/vagrant/servioticy-broker":
+  ensure   => latest,
+  provider => git,
+  owner    => 'vagrant',
+  group    => 'vagrant',
+  require  => [ Package["git"] ],
+  source   => "https://github.com/servioticy/servioticy-brokers.git",
+  revision => 'master',
+}
 
 vcsrepo { "/usr/src/servioticy":
   ensure   => latest,

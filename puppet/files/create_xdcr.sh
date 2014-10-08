@@ -11,11 +11,17 @@ echo "Create Links"
 echo "--------------------------------------------------------"
 
 curl -v -X POST -u admin:password http://localhost:8091/controller/createReplication \
--d uuid=9eee38236f3bf28406920213d93981a3 \
--d fromBucket=beer-sample \
--d toCluster=remote1 \
--d toBucket=remote_beer \
+-d fromBucket=soupdates \
+-d toCluster=serviolastic \
+-d toBucket=soupdates \
 -d replicationType=continuous
+
+curl -v -X POST -u admin:password http://localhost:8091/controller/createReplication \
+-d fromBucket=subscriptions \
+-d toCluster=serviolastic \
+-d toBucket=subscriptions \
+-d replicationType=continuous
+
 
 
 exit 0
