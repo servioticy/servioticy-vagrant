@@ -1,0 +1,1 @@
+{"views":{"byUser":{"map":"function (doc, meta) {\n    emit(doc.userId, meta.id);\n  } "}}}
