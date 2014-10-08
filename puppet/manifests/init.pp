@@ -60,7 +60,7 @@ exec { "create_buckets":
 $init_hash = {
   'ES_USER' => 'elasticsearch',
   'ES_GROUP' => 'elasticsearch',
-  'ES_HEAP_SIZE' => '2gb',
+  'ES_HEAP_SIZE' => '2g',
   'DATA_DIR' => '/data/elasticsearch',
 }
 
