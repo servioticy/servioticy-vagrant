@@ -1,4 +1,4 @@
-include nodejs, wget, git
+include nodejs, wget, git, apt
 
 
 file { '/home/vagrant/downloads/':
@@ -15,18 +15,24 @@ file { '/data/couchbase':
   group => "couchbase",
 }
 
+
+apt::ppa { 'ppa:webupd8team/java': } ->
 exec { 'apt-get update':
   path => '/usr/bin'
 }
 
-exec { "install-deps":
-  command => "/usr/bin/apt-get install libssl0.9.8",
-  before => Package['couchbase-server'],
-  require => Exec['apt-get update']
+exec {
+    'set-licence-selected':
+      command => '/bin/echo debconf shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections';
+ 
+    'set-licence-seen':
+      command => '/bin/echo debconf shared/accepted-oracle-license-v1-1 seen true | /usr/bin/debconf-set-selections';
 }
 
-class { 'java':
-  distribution => 'jdk',
+
+package { ['libssl0.9.8', 'oracle-java7-installer']:
+  ensure => present,
+  require => Exec['apt-get update', 'set-licence-selected', 'set-licence-seen']
 }
 
 
@@ -58,15 +64,9 @@ $init_hash = {
   'DATA_DIR' => '/data/elasticsearch',
 }
 
-#class { 'elasticsearch':
-#  package_url => 'https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.1.deb',
-#  require => Class["java"],
-#  init_defaults => $init_hash 
-#}
-
 class { 'elasticsearch':
   version => '1.0.1',
-  require => Class["java"],
+  #require => Class["java"],
   init_defaults => $init_hash 
 }
 
@@ -106,7 +106,7 @@ vcsrepo { "/usr/src/servioticy":
 } ->
 class { "maven::maven":
   version => "3.0.5", # version to install
-  require => Class["java"]
+#  require => Class["java"]
 } ->
  # Setup a .mavenrc file for the specified user
 maven::environment { 'maven-env' : 
