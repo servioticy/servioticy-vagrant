@@ -5,13 +5,15 @@ couchbase-cli node-init \
     -c localhost \
     --node-init-data-path=/data/couchbase
 
+sleep 5
 echo "Instance initialization"
 echo "--------------------------------------------------------"
 couchbase-cli cluster-init \
     -c localhost \
     --cluster-init-username=admin \
     --cluster-init-password=password \
-    --cluster-init-ramsize=600
+    --cluster-init-ramsize=1000
+sleep 5
 
 echo "Create buckets"
 echo "--------------------------------------------------------"
@@ -52,8 +54,8 @@ couchbase-cli bucket-create \
      
      
 #create views for service objects
-curl -X PUT -H "Content-Type: application/json" http://admin:password@localhost:8092/serviceobjects/_design/user -d @../files/byUser.ddoc &> /dev/null
-curl -X PUT -H "Content-Type: application/json" http://admin:password@localhost:8092/serviceobjects/_design/index -d @../files/byIndex.ddoc &> /dev/null
+curl -X PUT -H "Content-Type: application/json" http://admin:password@localhost:8092/serviceobjects/_design/user -d @byUser.ddoc &> /dev/null
+curl -X PUT -H "Content-Type: application/json" http://admin:password@localhost:8092/serviceobjects/_design/index -d @byIndex.ddoc &> /dev/null
  
 
 exit 0

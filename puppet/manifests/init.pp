@@ -13,6 +13,7 @@ file { '/data/couchbase':
   ensure => 'directory',
   owner => "couchbase",
   group => "couchbase",
+  require => Package['couchbase-server']
 }
 
 
@@ -48,6 +49,7 @@ wget::fetch { "download kestrel":
   destination => '/home/vagrant/downloads/kestrel-2.4.1.zip',
   timeout     => 0,
   verbose     => false,
+  require     => File['/home/vagrant/downloads/']
 }
 
 
@@ -56,17 +58,15 @@ wget::fetch { "couchbase-server-source":
   destination => '/home/vagrant/downloads/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb',
   timeout     => 0,
   verbose     => false,
-}
-
-
+  require     => File['/home/vagrant/downloads/']
+} ->
 package { "couchbase-server":
   provider => dpkg,
   ensure => installed,
   source => "/home/vagrant/downloads/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb"
-} 
-
+} ->
 exec { "create_buckets":
-    command => "sh /vagrant/puppet/files/create_buckets.sh",
+    command => "sleep 10 && cd /vagrant/puppet/files; sh create_buckets.sh",
     path    => "/bin:/opt/couchbase/bin/",
     require => Package['couchbase-server']
 }
@@ -79,7 +79,7 @@ $init_hash = {
 }
 
 class { 'elasticsearch':
-  version => '1.0.1',
+  package_url => 'https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.1.deb',
   #require => Class["java"],
   init_defaults => $init_hash 
 }
@@ -97,9 +97,18 @@ elasticsearch::instance { 'serviolastic':
   config => $config_hash,
   datadir => '/data/elasticsearch'
 } ->
+vcsrepo { "/home/vagrant/servioticy-indices":
+  ensure   => latest,
+  provider => git,
+  owner    => 'vagrant',
+  group    => 'vagrant',
+  require  => [ Package["git"] ],
+  source   => "https://github.com/servioticy/servioticy-elasticsearch-indices.git",
+  revision => 'master',
+} ->
 exec {
     'create-indices':
-      command => '/bin/sh /home/vagrant/servioticy-indices/create_soupdates.sh; /bin/sh /home/vagrant/servioticy-indices/create_subscriptions.sh',
+      command => 'sleep 10 && /bin/sh /home/vagrant/servioticy-indices/create_soupdates.sh; /bin/sh /home/vagrant/servioticy-indices/create_subscriptions.sh',
       path =>  "/usr/local/bin/:/bin/:/usr/bin/"    
 } ->
 exec {
@@ -119,30 +128,6 @@ elasticsearch::plugin{ 'transport-couchbase':
 elasticsearch::plugin{ 'mobz/elasticsearch-head':
   module_dir => 'head',
   instances  => 'serviolastic'
-}
-
-
-
-
-vcsrepo { "/home/vagrant/servioticy-indices":
-  ensure   => latest,
-  provider => git,
-  owner    => 'vagrant',
-  group    => 'vagrant',
-  require  => [ Package["git"] ],
-  source   => "https://github.com/servioticy/servioticy-elasticsearch-indices.git",
-  revision => 'master',
-}
-
-
-vcsrepo { "/home/vagrant/servioticy-broker":
-  ensure   => latest,
-  provider => git,
-  owner    => 'vagrant',
-  group    => 'vagrant',
-  require  => [ Package["git"] ],
-  source   => "https://github.com/servioticy/servioticy-brokers.git",
-  revision => 'master',
 }
 
 vcsrepo { "/usr/src/servioticy":
@@ -170,6 +155,20 @@ exec { "build_servioticy":
    command => "mvn -Dmaven.test.skip=true package",
    path    => "/usr/local/bin/:/usr/bin:/bin/",
    user    => 'vagrant'
+} 
+
+file { '/opt/jetty/webapps/private.war':
+          ensure => present,
+          source => "/usr/src/servioticy/servioticy-api-private/target/api-private.war",
+          notify  => Service["jetty"],
+          require => Exec['build_servioticy']
+}
+
+file { '/opt/jetty/webapps/root.war':
+          ensure => present,
+          source => "/usr/src/servioticy/servioticy-api-public/target/api-public.war",
+          notify  => Service["jetty"],
+          require => Exec['build_servioticy']
 }
 
 
@@ -182,13 +181,17 @@ class { 'jetty':
 }
 
 
-file { '/opt/jetty/webapps/private.war':
-          ensure => present,
-          source => "/usr/src/servioticy/servioticy-api-private/target/api-private.war",
-          notify  => Service["jetty"],
-} ->
-file { '/opt/jetty/webapps/root.war':
-          ensure => present,
-          source => "/usr/src/servioticy/servioticy-api-public/target/api-public.war",
-          notify  => Service["jetty"],
+
+
+
+vcsrepo { "/home/vagrant/servioticy-broker":
+  ensure   => latest,
+  provider => git,
+  owner    => 'vagrant',
+  group    => 'vagrant',
+  require  => [ Package["git"] ],
+  source   => "https://github.com/servioticy/servioticy-brokers.git",
+  revision => 'master',
 }
+
+
