@@ -6,10 +6,6 @@ file { '/home/vagrant/downloads/':
   ensure => 'directory',
 }
 
-file { '/opt/servioticy-dispatcher/':
-  ensure => 'directory',
-}
-
 file { '/data':
   ensure => 'directory',
 }
@@ -47,6 +43,12 @@ package { 'forever':
   require => [Package['nodejs']]
 }
 
+package { 'stompjs':
+  ensure   => present,
+  provider => 'npm',
+  require => [Package['nodejs']]
+}
+
 package { ['libssl0.9.8', 'oracle-java7-installer', 'curl', 'nodejs', 'unzip']:
   ensure => present,
   require => Exec['apt-get update', 'set-licence-selected', 'set-licence-seen']
@@ -62,10 +64,16 @@ archive { 'apache-storm-0.9.1':
   src_target => '/home/vagrant/downloads',
   require  => [ Package["curl"], File['/home/vagrant/downloads/'] ],
 } ->
+file { '/opt/servioticy-dispatcher':
+          owner => 'vagrant',
+          group => 'vagrant'
+} ->
 file { '/opt/servioticy-dispatcher/dispatcher-0.2.1-jar-with-dependencies.jar':
           ensure => present,
           source => "/usr/src/servioticy/servioticy-dispatcher/target/dispatcher-0.2.1-jar-with-dependencies.jar",
-          require => [Exec['build_servioticy'],File['/opt/servioticy-dispatcher']]
+          require => [Exec['build_servioticy'],File['/opt/servioticy-dispatcher']],
+          owner => 'vagrant',
+          group => 'vagrant'
 }
 
 archive { 'kestrel-2.4.1':
@@ -78,14 +86,23 @@ archive { 'kestrel-2.4.1':
   src_target => '/home/vagrant/downloads',
   require  => [ Package["curl"], Package["unzip"], File['/home/vagrant/downloads/'] ],
 } ->
+file { '/opt/kestrel-2.4.1':
+  owner    => 'vagrant',
+  group    => 'vagrant'
+} ->
 file { '/opt/kestrel-2.4.1/config/servioticy_queues.scala':
           ensure => present,
-          source => "/vagrant/puppet/files/servioticy_queues.scala"
+          source => "/vagrant/puppet/files/servioticy_queues.scala",
+          owner    => 'vagrant',
+          group    => 'vagrant',
 } ->
 exec { "run_kestrel":
     command => "java -server -Xmx1024m -Dstage=servioticy_queues -jar /opt/kestrel-2.4.1/kestrel_2.9.2-2.4.1.jar &",
     cwd     => "/opt/kestrel-2.4.1",
-    require => Package['oracle-java7-installer'] 
+    require => Package['oracle-java7-installer'] ,
+    user    => 'vagrant',
+    group    => 'vagrant',
+    unless => "ps -fA | grep kestrel | grep -v grep",
 }
 
 wget::fetch { "couchbase-server-source":
@@ -101,7 +118,7 @@ package { "couchbase-server":
   source => "/home/vagrant/downloads/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb"
 } ->
 exec { "create_buckets":
-    command => "/bin/sh create_buckets.sh 2> /tmp/create_buckets.txt",
+    command => "/bin/sh create_buckets.sh",
     cwd     => "/vagrant/puppet/files",
     path    => "/bin:/usr/bin/:/opt/couchbase/bin/",
     #logoutput => true,
@@ -233,8 +250,10 @@ vcsrepo { "/opt/servioticy-bridge":
   revision => 'master'
 } ->
 exec { "run_bridge":
-    command => "forever start -a --sourceDir /opt/servioticy-bridge -l /tmp/forever_bridge.log -o /tmp/bridge.js.out.log -e /tmp/bridge.js.err.log mqtt-and-stomp-bridge.js",
-    path    => "/bin:/usr/local/bin/:/usr/bin/"
+  command => "forever start -a --sourceDir /opt/servioticy-bridge -l /tmp/forever_bridge.log -o /tmp/bridge.js.out.log -e /tmp/bridge.js.err.log mqtt-and-stomp-bridge.js",
+  path    => "/bin:/usr/local/bin/:/usr/bin/",
+  require => [Package['forever'], Package['stompjs']],
+  unless  => "forever list | grep bridge"
 }
 
 
@@ -248,7 +267,71 @@ vcsrepo { "/opt/servioticy-composer":
   revision => 'master',
 } ->
 exec { "run_composer":
-    command => "forever start -a --sourceDir /opt/servioticy-composer -l /tmp/forever_red.log -o /tmp/nodered.js.out.log -e /tmp/nodered.js.err.log red.js",
-    path    => "/bin:/usr/local/bin/:/usr/bin/"
+  command => "forever start -a --sourceDir /opt/servioticy-composer -l /tmp/forever_red.log -o /tmp/nodered.js.out.log -e /tmp/nodered.js.err.log red.js",
+  path    => "/bin:/usr/local/bin/:/usr/bin/",
+  require => [Package['forever']],
+  unless  => "forever list | grep composer"
 }
 
+
+
+archive { 'apache-apollo-1.7':
+  ensure => present,
+  follow_redirects => true,
+  checksum => false,
+  url    => 'http://ftp.cixug.es/apache/activemq/activemq-apollo/1.7/apache-apollo-1.7-unix-distro.tar.gz',
+  target => '/opt',
+  src_target => '/home/vagrant/downloads',
+  require  => [ Package["curl"], File['/home/vagrant/downloads/'] ],      
+} ->
+file { '/opt/apache-apollo-1.7':
+  owner    => 'vagrant',
+  group    => 'vagrant',          
+  
+} ->
+exec { 'create_broker':
+  require => [ Package['oracle-java7-installer'] ],
+  creates => '/opt/servibroker',
+  cwd => "/opt/apache-apollo-1.7/bin/",
+  user    => 'vagrant',
+  group    => 'vagrant',    
+  path => "/bin:/usr/bin/:/opt/apache-apollo-1.7/bin/",
+  command => "apollo create /opt/servibroker"
+}
+
+file { '/opt/servibroker/etc/apollo.xml':
+          ensure => present,
+          replace => true,
+          owner    => 'vagrant',
+          group    => 'vagrant',          
+          source => "/vagrant/puppet/files/apollo.xml",
+          require => Exec['create_broker']
+}
+
+file { '/opt/servibroker/etc/users.properties':
+          ensure => present,
+          replace => true,
+          owner    => 'vagrant',
+          group    => 'vagrant',          
+          source => "/vagrant/puppet/files/users.properties",
+          require => Exec['create_broker']
+}
+
+file { '/opt/servibroker/etc/groups.properties':
+          ensure => present,
+          replace => true,
+          owner    => 'vagrant',
+          group    => 'vagrant',          
+          source => "/vagrant/puppet/files/groups.properties",
+          require => Exec['create_broker']
+}
+
+exec { 'run_broker':
+    require => [ Package['oracle-java7-installer'], File['/opt/servibroker/etc/apollo.xml'], File['/opt/servibroker/etc/users.properties'], File['/opt/servibroker/etc/groups.properties']],
+    user    => 'vagrant',
+    group    => 'vagrant',
+    unless => "ps -fA | grep apollo | grep -v grep",          
+    cwd => "/opt/servibroker/bin/",
+    path => "/bin:/usr/bin/:/opt/servibroker/bin/",
+    command => "apollo-broker run &"
+}
