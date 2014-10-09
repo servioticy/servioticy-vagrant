@@ -1,7 +1,12 @@
-include nodejs, wget, git, apt
+include wget, git, apt
 
+Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin/" ] }
 
 file { '/home/vagrant/downloads/':
+  ensure => 'directory',
+}
+
+file { '/opt/servioticy-dispatcher/':
   ensure => 'directory',
 }
 
@@ -17,7 +22,13 @@ file { '/data/couchbase':
 }
 
 
-apt::ppa { 'ppa:webupd8team/java': } ->
+apt::ppa { 'ppa:webupd8team/java': 
+            before => Exec['apt-get update']
+}
+apt::ppa { 'ppa:chris-lea/node.js': 
+            before => Exec['apt-get update']
+}
+
 exec { 'apt-get update':
   path => '/usr/bin'
 }
@@ -30,28 +41,52 @@ exec {
       command => '/bin/echo debconf shared/accepted-oracle-license-v1-1 seen true | /usr/bin/debconf-set-selections';
 }
 
+package { 'forever':
+  ensure   => present,
+  provider => 'npm',
+  require => [Package['nodejs']]
+}
 
-package { ['libssl0.9.8', 'oracle-java7-installer', 'curl']:
+package { ['libssl0.9.8', 'oracle-java7-installer', 'curl', 'nodejs', 'unzip']:
   ensure => present,
   require => Exec['apt-get update', 'set-licence-selected', 'set-licence-seen']
 }
 
 
-wget::fetch { "download storm":
-  source      => 'http://ftp.cixug.es/apache/incubator/storm/apache-storm-0.9.1-incubating/apache-storm-0.9.1-incubating.tar.gz',
-  destination => '/home/vagrant/downloads/apache-storm-0.9.1-incubating.tar.gz',
-  timeout     => 0,
-  verbose     => false,
+archive { 'apache-storm-0.9.1':
+  ensure => present,
+  follow_redirects => true,
+  checksum => false,
+  url    => 'http://ftp.cixug.es/apache/incubator/storm/apache-storm-0.9.1-incubating/apache-storm-0.9.1-incubating.tar.gz',
+  target => '/opt',
+  src_target => '/home/vagrant/downloads',
+  require  => [ Package["curl"], File['/home/vagrant/downloads/'] ],
+} ->
+file { '/opt/servioticy-dispatcher/dispatcher-0.2.1-jar-with-dependencies.jar':
+          ensure => present,
+          source => "/usr/src/servioticy/servioticy-dispatcher/target/dispatcher-0.2.1-jar-with-dependencies.jar",
+          require => [Exec['build_servioticy'],File['/opt/servioticy-dispatcher']]
 }
 
-wget::fetch { "download kestrel":
-  source      => 'http://twitter.github.io/kestrel/download/kestrel-2.4.1.zip',
-  destination => '/home/vagrant/downloads/kestrel-2.4.1.zip',
-  timeout     => 0,
-  verbose     => false,
-  require     => File['/home/vagrant/downloads/']
+archive { 'kestrel-2.4.1':
+  ensure => present,
+  follow_redirects => true,
+  extension => "zip",
+  checksum => false,
+  url    => 'http://twitter.github.io/kestrel/download/kestrel-2.4.1.zip',
+  target => '/opt',
+  src_target => '/home/vagrant/downloads',
+  require  => [ Package["curl"], Package["unzip"], File['/home/vagrant/downloads/'] ],
+} ->
+file { '/opt/kestrel-2.4.1/config/servioticy_queues.scala':
+          ensure => present,
+          source => "/vagrant/puppet/files/servioticy_queues.scala"
+} ->
+exec { "run_kestrel":
+    command => "java -server -Xmx1024m -Dstage=servioticy_queues -jar /opt/kestrel-2.4.1/kestrel_2.9.2-2.4.1.jar &",
+    cwd     => "/opt/kestrel-2.4.1",
+    require => Package['oracle-java7-installer'] 
 }
-
 
 wget::fetch { "couchbase-server-source":
   source      => 'http://packages.couchbase.com/releases/2.2.0/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb',
@@ -66,7 +101,8 @@ package { "couchbase-server":
   source => "/home/vagrant/downloads/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb"
 } ->
 exec { "create_buckets":
-    command => "sleep 10 && cd /vagrant/puppet/files; sh create_buckets.sh",
+    command => "/bin/sh create_buckets.sh > /tmp/create_buckets.txt",
+    cwd     => "/vagrant/puppet/files",
     path    => "/bin:/opt/couchbase/bin/",
     require => Package['couchbase-server']
 }
@@ -80,7 +116,6 @@ $init_hash = {
 
 class { 'elasticsearch':
   package_url => 'https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.1.deb',
-  #require => Class["java"],
   init_defaults => $init_hash 
 }
 
@@ -108,12 +143,14 @@ vcsrepo { "/home/vagrant/servioticy-indices":
 } ->
 exec {
     'create-indices':
-      command => 'sleep 10 && /bin/sh /home/vagrant/servioticy-indices/create_soupdates.sh; /bin/sh /home/vagrant/servioticy-indices/create_subscriptions.sh',
+      command => 'sleep 10 && /bin/sh create_soupdates.sh; /bin/sh create_subscriptions.sh',
+      cwd => "/home/vagrant/servioticy-indices",
       path =>  "/usr/local/bin/:/bin/:/usr/bin/"    
 } ->
 exec {
     'create-xdcr':
-      command => '/bin/sh /vagrant/puppet/files/create_xdcr.sh',
+      command => '/bin/sh create_xdcr.sh',
+      cwd => "/vagrant/puppet/files",
       path =>  "/usr/local/bin/:/bin/:/usr/bin/",
       require => Exec['create_buckets']    
 }
@@ -130,6 +167,9 @@ elasticsearch::plugin{ 'mobz/elasticsearch-head':
   instances  => 'serviolastic'
 }
 
+
+
+
 vcsrepo { "/usr/src/servioticy":
   ensure   => latest,
   provider => git,
@@ -140,8 +180,7 @@ vcsrepo { "/usr/src/servioticy":
   revision => 'master',
 } ->
 class { "maven::maven":
-  version => "3.0.5", # version to install
-#  require => Class["java"]
+  version => "3.2.2", # version to install
 } ->
  # Setup a .mavenrc file for the specified user
 maven::environment { 'maven-env' : 
@@ -157,6 +196,8 @@ exec { "build_servioticy":
    user    => 'vagrant'
 } 
 
+
+
 file { '/opt/jetty/webapps/private.war':
           ensure => present,
           source => "/usr/src/servioticy/servioticy-api-private/target/api-private.war",
@@ -171,7 +212,6 @@ file { '/opt/jetty/webapps/root.war':
           require => Exec['build_servioticy']
 }
 
-
 class { 'jetty':
   version => "9.2.3.v20140905",
   home    => "/opt",
@@ -180,18 +220,32 @@ class { 'jetty':
   require => Package["couchbase-server"]
 }
 
-
-
-
-
-vcsrepo { "/home/vagrant/servioticy-broker":
+vcsrepo { "/opt/servioticy-broker":
   ensure   => latest,
   provider => git,
   owner    => 'vagrant',
   group    => 'vagrant',
-  require  => [ Package["git"] ],
+  require  => [ Package["git"], Package['forever'] ],
   source   => "https://github.com/servioticy/servioticy-brokers.git",
-  revision => 'master',
+  revision => 'master'
+} ->
+exec { "run_broker":
+    command => "forever start -a --sourceDir /opt/servioticy-broker -l /tmp/forever_bridge.log -o /tmp/bridge.js.out.log -e /tmp/bridge.js.err.log mqtt-and-stomp-bridge.js",
+    path    => "/bin:/usr/local/bin/:/usr/bin/"
 }
 
+
+vcsrepo { "/opt/servioticy-composer":
+  ensure   => latest,
+  provider => git,
+  owner    => 'vagrant',
+  group    => 'vagrant',
+  require  => [ Package["git"], Package['forever'] ],
+  source   => "https://github.com/servioticy/servioticy-composer.git",
+  revision => 'master',
+} ->
+exec { "run_composer":
+    command => "forever start -a --sourceDir /opt/servioticy-composer -l /tmp/forever_red.log -o /tmp/nodered.js.out.log -e /tmp/nodered.js.err.log red.js",
+    path    => "/bin:/usr/local/bin/:/usr/bin/"
+}
 

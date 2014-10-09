@@ -1,51 +1,52 @@
 echo "Node initialization"
+sleep 10
 echo "--------------------------------------------------------"
 
-couchbase-cli node-init \
+/opt/couchbase/bin/couchbase-cli node-init \
     -c localhost \
     --node-init-data-path=/data/couchbase
 
 sleep 5
 echo "Instance initialization"
 echo "--------------------------------------------------------"
-couchbase-cli cluster-init \
+/opt/couchbase/bin/couchbase-cli cluster-init \
     -c localhost \
     --cluster-init-username=admin \
     --cluster-init-password=password \
-    --cluster-init-ramsize=1000
+    --cluster-init-ramsize=1200
 sleep 5
 
 echo "Create buckets"
 echo "--------------------------------------------------------"
-couchbase-cli bucket-create \
+/opt/couchbase/bin/couchbase-cli bucket-create \
     --bucket-type=couchbase \
     --bucket-ramsize=200 \
     --bucket-replica=1 \
     --bucket=serviceobjects \
     -c localhost --user=admin --password=password 
 
-couchbase-cli bucket-create \
+/opt/couchbase/bin/couchbase-cli bucket-create \
     --bucket-type=couchbase \
     --bucket-ramsize=200 \
     --bucket-replica=1 \
     --bucket=privatebucket \
      -c localhost --user=admin --password=password 
 
-couchbase-cli bucket-create \
+/opt/couchbase/bin/couchbase-cli bucket-create \
     --bucket-type=couchbase \
     --bucket-ramsize=200 \
     --bucket-replica=1 \
     --bucket=actuations \
      -c localhost --user=admin --password=password 
 
-couchbase-cli bucket-create \
+/opt/couchbase/bin/couchbase-cli bucket-create \
     --bucket-type=couchbase \
     --bucket-ramsize=200 \
     --bucket-replica=1 \
     --bucket=soupdates \
      -c localhost --user=admin --password=password 
      
-couchbase-cli bucket-create \
+/opt/couchbase/bin/couchbase-cli bucket-create \
     --bucket-type=couchbase \
     --bucket-ramsize=200 \
     --bucket-replica=1 \
