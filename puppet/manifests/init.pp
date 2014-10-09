@@ -101,16 +101,17 @@ package { "couchbase-server":
   source => "/home/vagrant/downloads/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb"
 } ->
 exec { "create_buckets":
-    command => "/bin/sh create_buckets.sh > /tmp/create_buckets.txt",
+    command => "/bin/sh create_buckets.sh 2> /tmp/create_buckets.txt",
     cwd     => "/vagrant/puppet/files",
-    path    => "/bin:/opt/couchbase/bin/",
+    path    => "/bin:/usr/bin/:/opt/couchbase/bin/",
+    #logoutput => true,
     require => Package['couchbase-server']
 }
 
 $init_hash = {
   'ES_USER' => 'elasticsearch',
   'ES_GROUP' => 'elasticsearch',
-  'ES_HEAP_SIZE' => '2g',
+  'ES_HEAP_SIZE' => '1g',
   'DATA_DIR' => '/data/elasticsearch',
 }
 
@@ -132,26 +133,26 @@ elasticsearch::instance { 'serviolastic':
   config => $config_hash,
   datadir => '/data/elasticsearch'
 } ->
-vcsrepo { "/home/vagrant/servioticy-indices":
+vcsrepo { "/opt/servioticy-indices":
   ensure   => latest,
   provider => git,
   owner    => 'vagrant',
   group    => 'vagrant',
   require  => [ Package["git"] ],
   source   => "https://github.com/servioticy/servioticy-elasticsearch-indices.git",
-  revision => 'master',
+  revision => 'master'
 } ->
 exec {
     'create-indices':
       command => 'sleep 10 && /bin/sh create_soupdates.sh; /bin/sh create_subscriptions.sh',
-      cwd => "/home/vagrant/servioticy-indices",
+      cwd => "/opt/servioticy-indices",
       path =>  "/usr/local/bin/:/bin/:/usr/bin/"    
 } ->
 exec {
     'create-xdcr':
       command => '/bin/sh create_xdcr.sh',
       cwd => "/vagrant/puppet/files",
-      path =>  "/usr/local/bin/:/bin/:/usr/bin/",
+      path =>  "/usr/local/bin/:/bin/:/usr/bin/",      
       require => Exec['create_buckets']    
 }
 
@@ -159,12 +160,14 @@ exec {
 elasticsearch::plugin{ 'transport-couchbase':
   module_dir => 'transport-couchbase',
   url        => 'http://packages.couchbase.com.s3.amazonaws.com/releases/elastic-search-adapter/1.3.0/elasticsearch-transport-couchbase-1.3.0.zip',
-  instances  => 'serviolastic'
+  instances  => 'serviolastic',
+  require  => [ Package["git"] ],
 }
 
 elasticsearch::plugin{ 'mobz/elasticsearch-head':
   module_dir => 'head',
-  instances  => 'serviolastic'
+  instances  => 'serviolastic',
+  require  => [ Package["git"] ],
 }
 
 
@@ -220,7 +223,7 @@ class { 'jetty':
   require => Package["couchbase-server"]
 }
 
-vcsrepo { "/opt/servioticy-broker":
+vcsrepo { "/opt/servioticy-bridge":
   ensure   => latest,
   provider => git,
   owner    => 'vagrant',
@@ -229,8 +232,8 @@ vcsrepo { "/opt/servioticy-broker":
   source   => "https://github.com/servioticy/servioticy-brokers.git",
   revision => 'master'
 } ->
-exec { "run_broker":
-    command => "forever start -a --sourceDir /opt/servioticy-broker -l /tmp/forever_bridge.log -o /tmp/bridge.js.out.log -e /tmp/bridge.js.err.log mqtt-and-stomp-bridge.js",
+exec { "run_bridge":
+    command => "forever start -a --sourceDir /opt/servioticy-bridge -l /tmp/forever_bridge.log -o /tmp/bridge.js.out.log -e /tmp/bridge.js.err.log mqtt-and-stomp-bridge.js",
     path    => "/bin:/usr/local/bin/:/usr/bin/"
 }
 
