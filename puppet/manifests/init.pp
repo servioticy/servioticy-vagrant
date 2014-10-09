@@ -65,6 +65,7 @@ archive { 'apache-storm-0.9.1':
   require  => [ Package["curl"], File['/home/vagrant/downloads/'] ],
 } ->
 file { '/opt/servioticy-dispatcher':
+          ensure => 'directory',
           owner => 'vagrant',
           group => 'vagrant'
 } ->
@@ -270,7 +271,7 @@ exec { "run_composer":
   command => "forever start -a --sourceDir /opt/servioticy-composer -l /tmp/forever_red.log -o /tmp/nodered.js.out.log -e /tmp/nodered.js.err.log red.js",
   path    => "/bin:/usr/local/bin/:/usr/bin/",
   require => [Package['forever']],
-  unless  => "forever list | grep composer"
+  unless  => "forever list | grep forever_red"
 }
 
 
@@ -293,11 +294,15 @@ exec { 'create_broker':
   require => [ Package['oracle-java7-installer'] ],
   creates => '/opt/servibroker',
   cwd => "/opt/apache-apollo-1.7/bin/",
-  user    => 'vagrant',
-  group    => 'vagrant',    
   path => "/bin:/usr/bin/:/opt/apache-apollo-1.7/bin/",
-  command => "apollo create /opt/servibroker"
-}
+  command => "apollo create /opt/servibroker",
+  #logoutput => true,
+} ->
+file { '/opt/servibroker':
+  owner    => 'vagrant',
+  group    => 'vagrant',  
+  before   => [File['/opt/servibroker/etc/apollo.xml'], File['/opt/servibroker/etc/users.properties'], File['/opt/servibroker/etc/groups.properties']]  
+} 
 
 file { '/opt/servibroker/etc/apollo.xml':
           ensure => present,

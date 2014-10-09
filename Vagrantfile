@@ -15,15 +15,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "hashicorp/precise64"
   config.puppet_install.puppet_version = :latest
   
-  config.vm.synced_folder "setup", "/vagrant/scripts"
-  
   # required by maven
   config.ssh.shell = "export JAVA_HOME=/usr/lib/jvm/default-java/"
 
   # required by couchbase-cli
   config.ssh.shell = "export LC_ALL=\"en_US.UTF-8\""
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-  config.vm.provision "shell", path: "provision.sh"
+  #config.vm.provision "shell", path: "provision.sh"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
