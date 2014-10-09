@@ -8,7 +8,9 @@ Puppet is used to setup and launch all the needed components to run the servioti
 
 ##Requirements
 You need to install the following vagrant plugin: vagrant-puppet-install
+
 The procedure is:
+
 `vagrant plugin install vagrant-puppet-install`
 
 ##Running  the instance
@@ -19,6 +21,7 @@ Now we are ready to run
 
 
 You can then login into the instance running:
+
 `vagrant ssh`
 
 ##Notes
