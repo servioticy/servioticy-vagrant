@@ -28,7 +28,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :private_network, ip: "192.168.33.10"
 
   config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "4096"]
+    vb.customize ["modifyvm", :id, "--memory", "4096"]        
+    vb.customize ['createhd', '--filename', './datadisk.vdi', '--size', 2 * 1024]
+    vb.customize ['storageattach', :id, '--storagectl', "SATA Controller", '--port', 1, '--device', 0, '--type', 'hdd', '--medium', './datadisk.vdi' ]
   end
   
   #config.vm.provision :shell, :inline => "sudo apt-get update && sudo apt-get install puppet -y"
@@ -42,7 +44,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
   
   # jetty
-  config.vm.network :forwarded_port, guest: 8082, host: 8080
+  config.vm.network :forwarded_port, guest: 8080, host: 8080
+  config.vm.network :forwarded_port, guest: 8443, host: 8443
 
   # couchbase
   config.vm.network :forwarded_port, guest: 8092, host: 8092
