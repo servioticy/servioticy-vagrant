@@ -1,0 +1,23 @@
+{
+    "name": "Servioticy Mobile Temperature Sensor",
+    "description": "Provides temperature and coordinate readings",
+    "streams": {
+        "location": {
+            "channels": {
+                "location": {
+                    "type": "text",
+                    "unit": "degrees"
+                },
+                "temperature": {
+                    "type": "numeric",
+                    "unit": "degrees"
+                }
+            },
+            "description": "Temperature and location",
+            "type": "sensor"
+        }
+    },
+    "customFields": {},
+    "actions": [],
+    "properties": []
+}

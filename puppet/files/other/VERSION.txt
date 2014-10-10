@@ -1,0 +1,2 @@
+Version: 0.6.1
+Released: July 17th, 2014

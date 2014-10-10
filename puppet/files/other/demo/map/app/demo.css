@@ -1,0 +1,15 @@
+#map { height: 600px; }
+
+.leaflet-map-pane {
+    z-index: 2 !important;
+}
+
+.leaflet-google-layer {
+    z-index: 1 !important;
+}
+
+.maplayer{
+	color: #444444;
+        font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+        font-size: 12px;
+}

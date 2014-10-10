@@ -1,0 +1,22 @@
+diff -uNr vanilla/bench-rest/node_modules/measured/lib/metrics/Meter.js modified/bench-rest/node_modules/measured/lib/metrics/Meter.js
+--- vanilla/bench-rest/node_modules/measured/lib/metrics/Meter.js	2014-03-20 10:33:58.000000000 +0100
++++ modified/bench-rest/node_modules/measured/lib/metrics/Meter.js	2014-04-09 09:29:42.000000000 +0200
+@@ -97,6 +97,7 @@
+ };
+ 
+ Meter.prototype._getTime = function() {
++  return Date.now();
+   if (!process.hrtime) return Date.now();
+ 
+   var hrtime = process.hrtime();
+diff -uNr vanilla/bench-rest/node_modules/measured/lib/util/Stopwatch.js modified/bench-rest/node_modules/measured/lib/util/Stopwatch.js
+--- vanilla/bench-rest/node_modules/measured/lib/util/Stopwatch.js	2014-03-20 10:33:58.000000000 +0100
++++ modified/bench-rest/node_modules/measured/lib/util/Stopwatch.js	2014-04-09 09:29:23.000000000 +0200
+@@ -23,8 +23,9 @@
+ };
+ 
+ Stopwatch.prototype._getTime = function() {
++  return Date.now();
+   if (!process.hrtime) return Date.now();
+ 
+   var hrtime = process.hrtime();

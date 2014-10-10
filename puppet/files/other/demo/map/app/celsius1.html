@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>USER 1 data</title>
+
+<link rel="stylesheet" href="leaflet-0.7.2/leaflet.css"></link>
+<link rel="stylesheet" href="demo.css"></link>
+<script src="leaflet-0.7.2/leaflet.js"></script>
+<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
+<script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
+<script src="jquery/jquery-1.11.0.min.js"></script>	
+<script src="others/underscore-min.js"></script>
+<script src="others/lodash.min.js"></script>
+<script type="text/javascript" src="heatcanvas/heatcanvas.js"></script>
+<script type="text/javascript" src="heatcanvas/heatcanvas-leaflet.js"></script>
+
+<script src="others/QuadTree.js"></script>
+
+
+</head>
+
+<body>
+<input id="allsensors" type="checkbox" name="allsensors" class="maplayer" onclick="showall();" checked> 
+<label for="allsensors" class="maplayer">Show all data points available</label>
+<input id="autorefresh" type="checkbox" name="autorefresh" class="maplayer" onclick="refresh();"> 
+<label for="autorefresh" class="maplayer">Auto-refresh every 5 seconds</label>
+
+<div id="map"></div>
+</div>
+
+
+<script>
+var radiusInitial = 200;
+var currentRadius = radiusInitial;
+var currentPosition;
+var map = L.map('map').setView([40.4378271,-3.6795366], 6);
+var googleLayer = new L.Google('ROADMAP');
+map.addLayer(googleLayer);
+var markers = L.layerGroup();
+map.addLayer(markers);
+var heatmap = new
+L.TileLayer.HeatCanvas({},{'step':0.5,
+		15:HeatCanvas.QUAD, 'opacity':0.3});
+
+map.addLayer(heatmap);
+map.removeLayer(heatmap);
+L.control.layers({},{"heatmap":heatmap}, {"collapsed": false, "position": "topleft"}).addTo(map);
+
+var info = L.control({position: 'bottomleft'});
+
+info.onAdd = function (map) {
+	this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+	this.update();
+	return this._div;
+};
+
+// method that we will use to update the control based on feature           properties passed
+info.update = function (props) {
+	this._div.innerHTML = '<h4>Click on the map to see data points<br> within a 200km radius</h4>' +  ' Currently visible: '+ props + ' data points<br><br>' +
+		'More information: <br><b><a href="http://www.servioticy.com" target="_blank">servioticy.com</a><br><a href="http://www.compose-project.eu" target="_blank">www.compose-project.eu</a></b><br><br><br>';
+};
+
+info.addTo(map);
+info.update(0);
+
+
+var resultsCallBack = function(results) {
+
+	heatmap.clear();
+
+	if(results == undefined) {
+		info.update(0);
+		return;
+	}
+
+	info.update(results.data.length);
+	for (key in results.data) {
+		item = results.data[key];
+		var temp = item.channels.temperature["current-value"];
+		var loc = item.channels.location["current-value"];
+		var lat = loc.split(",")[0]; 
+		var lon = loc.split(",")[1]; 
+		heatmap.pushData(lat,lon,temp);
+		var marker = L.marker([lat,lon], {"opacity": 0.6});
+		marker.bindPopup("Coordinates: "+ loc+"<br><br><b>Temperature: "+temp+"&deg;C</b>");
+		markers.addLayer(marker);
+	}
+	heatmap.redraw();
+};
+
+var updateData = function(position, radius) {
+
+	currentRadius = radius;
+	currentPosition = position;
+
+
+	(radius > 0) ?
+		$.ajax({
+		url: 'http://'+window.location.hostname+':8080/1396461657731411aa73c28444ecf9a8c803e62312fd1/streams/data/search',
+		type: 'POST',
+		headers: {'Authorization': 'M2JhMmRkMDEtZTAwZi00ODM5LThmYTktOGU4NjNjYmJmMjc5N2UzNzYwNWItNTc2ZS00MGVlLTgyNTMtNTgzMmJhZjA0ZmIy'},
+		data: '{"geodistance": true,"geodistancevalue":'+currentRadius+',"pointlat":'+position.lat+',"pointlon":'+position.lng+',"geodistanceunit": "km"}',
+		success: function(json) { resultsCallBack(json); }
+		})
+
+	: 
+		$.ajax({
+                url: 'http://'+window.location.hostname+':8080/1396461657731411aa73c28444ecf9a8c803e62312fd1/streams/data',
+                type: 'GET',
+                headers: {'Authorization': 'M2JhMmRkMDEtZTAwZi00ODM5LThmYTktOGU4NjNjYmJmMjc5N2UzNzYwNWItNTc2ZS00MGVlLTgyNTMtNTgzMmJhZjA0ZmIy'},
+                success: function(json) { resultsCallBack(json); } 
+		});
+
+
+	markers.clearLayers();
+	if (radius > 0) {
+		var circle = L.circle([position.lat,position.lng], radius*1000, {
+			color: 'red',
+			fillColor: '#f03',
+			weight: 2,
+			fillOpacity: 0.1
+			});
+		markers.addLayer(circle);
+	}
+}
+
+
+var showall = function() {
+	if(document.getElementById('allsensors').checked)
+		updateData(map.getCenter(),0);	
+	else {
+		markers.clearLayers();
+		info.update(0);
+	}
+};
+
+function onMapClick(e) {
+	document.getElementById('allsensors').checked = false;
+	updateData(e.latlng, radiusInitial);
+}
+
+map.on('click', onMapClick);
+showall();
+
+
+function refresh() {
+	if(document.getElementById('autorefresh').checked) {
+		updateData(currentPosition,currentRadius);	
+		setTimeout(refresh, 5000);
+	}
+}
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "name": "AlexCline-fstab",
+  "version": "0.5.4",
+  "source": "UNKNOWN",
+  "author": "Alex Cline <alex.cline@gmail.com>",
+  "license": "Apache License, Version 2.0",
+  "summary": "The fstab module helps puppet manage entries in fstab.",
+  "description": "The fstab module helps puppet manage entries in fstab.",
+  "project_page": "https://github.com/AlexCline/fstab",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.1.0"
+    }
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "Modulefile": "ce5f0580eac9e6c9c4ca0eae7a3229ac",
+    "README.md": "d5fd394361dcb5587ab8f1d1aec431d3",
+    "Rakefile": "2e5dea091308aea0dc822af4a81f991c",
+    "lib/puppet/parser/functions/fstab_augeas_opts.rb": "51e1915bd71b3aa635959c3ca2e60a32",
+    "manifests/augeas/new.pp": "afb3dfc66528b74a87683e07393de818",
+    "manifests/augeas/update.pp": "32527f46cd44a33c5e0b21e55dc625d6",
+    "manifests/augeas.pp": "e51fb9920800c4849737a30347449ae9",
+    "manifests/init.pp": "640fd0ec422ff857e0910686104cfb35",
+    "manifests/variables.pp": "fe6885b2e8f37ce02ebc4c7b5a61debc",
+    "spec/spec.opts": "841ff248f09ff26ea499e7621d3fef33",
+    "spec/spec_helper.rb": "805ba10cef6fd502a39dcd75966d8904",
+    "spec/unit/puppet/parser/functions/fstab_augeas_opts_spec.rb": "815b0e67e1c32242dcea1de099f47f8b",
+    "tests/init.pp": "793e1abd6dcca424d00ed42299b58ce1"
+  }
+}

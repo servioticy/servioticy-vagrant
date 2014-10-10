@@ -1,0 +1,43 @@
+{
+    "id": "1398788346015aa59fe5f854b4bda89647b969c51d8a4",
+    "userId": "87a69aedb0d5410496167826b4ca2492",
+    "public": "false",
+    "createdAt": 1398788346015,
+    "updatedAt": 1398788346015,
+    "groups": {
+        "group1": {
+            "soIds": [
+                "1396461657731411aa73c28444ecf9a8c803e62312fd1",
+		"139879170177572ad72be6e67450c9d4d85176e02aeb1"
+            ],
+            "stream": "data"
+        }
+    },
+    "streams": {
+        "fahrenheit": {
+            "channels": {
+                "temperature": {
+                    "current-value": "{$group1.channels.temperature.current-value} * 1.8 + 32",
+                    "type": "number"
+                },
+                "location": {
+                    "current-value": "{$group1.channels.location.current-value}",
+                    "type": "string"
+                }
+            }
+        },
+        "aboveSeventy": {
+            "channels": {
+                "temperature": {
+                    "current-value": "{$fahrenheit.channels.temperature.current-value}",
+                    "type": "number"
+                },
+                "location": {
+                    "current-value": "{$fahrenheit.channels.location.current-value}",
+                    "type": "string"
+                }
+            },
+            "post-filter": "{$result.channels.temperature.current-value} > 70"
+        }
+    }
+}

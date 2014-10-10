@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<context>
+	<servioticyAPI>http://127.0.0.1:8080/</servioticyAPI>
+	<kestrels>
+		<kestrel>
+                        <addr>127.0.0.1</addr>
+                </kestrel>
+		<port>2229</port>
+		<queue>services</queue>
+	</kestrels>
+	<pubsub>
+		<mqtt>
+			<name>servioticy</name>
+			<uri>tcp://localhost:1883</uri>
+			<username>compose</username>
+			<password>shines</password>
+		</mqtt>
+	</pubsub>
+        <benchmark>true</benchmark>
+        <benchResultsDir>/home/servioticy/topology_generator/logs</benchResultsDir>
+</context>
