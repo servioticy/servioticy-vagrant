@@ -1,5 +1,7 @@
 nbproject
+.project
 .vagrant
+*.vdi
 servioticy/*
 broker/bridge/node_modules
 
