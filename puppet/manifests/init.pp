@@ -31,6 +31,39 @@ file { '/data/couchbase':
   require => Package['couchbase-server']
 }
 
+file { '/home/vagrant/LICENSE.txt':
+          ensure => present,
+          replace => true,
+          owner    => 'vagrant',
+          group    => 'vagrant',          
+          source => "/vagrant/puppet/files/other/LICENSE.txt",
+}
+
+file { '/home/vagrant/README.txt':
+          ensure => present,
+          replace => true,
+          owner    => 'vagrant',
+          group    => 'vagrant',          
+          source => "/vagrant/puppet/files/other/README.txt",
+}
+
+file { '/home/vagrant/README.demos.txt':
+          ensure => present,
+          replace => true,
+          owner    => 'vagrant',
+          group    => 'vagrant',          
+          source => "/vagrant/puppet/files/other/README.demos.txt",
+}
+
+file { '/home/vagrant/VERSION.txt':
+          ensure => present,
+          replace => true,
+          owner    => 'vagrant',
+          group    => 'vagrant',          
+          source => "/vagrant/puppet/files/other/VERSION.txt",
+}
+
+
 
 apt::ppa { 'ppa:webupd8team/java': 
             before => Exec['apt-get update']
