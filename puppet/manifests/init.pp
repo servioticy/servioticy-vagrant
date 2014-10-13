@@ -258,6 +258,12 @@ class { 'jetty':
   require => Package["couchbase-server"]
 }
 
+file_line { 'cross_origin':
+   path => '/opt/jetty/start.ini',
+   line => '--module=servlets',
+   notify  => Service["jetty"],
+}
+
 vcsrepo { "/opt/servioticy-bridge":
   ensure   => latest,
   provider => git,
@@ -356,4 +362,38 @@ exec { 'run_broker':
     cwd => "/opt/servibroker/bin/",
     path => "/bin:/usr/bin/:/opt/servibroker/bin/",
     command => "apollo-broker run &"
+}
+
+
+class { 'python' :
+    version    => 'system',
+    pip        => true,
+    dev        => false,
+    virtualenv => true,
+    gunicorn   => false,
+    before     => Exec['run_userDB']
+}
+
+python::pip { 'Flask' :
+    pkgname       => 'Flask',
+}
+
+file { '/data/userDB':
+          ensure => directory,
+          replace => true,
+          owner    => 'vagrant',
+          group    => 'vagrant',          
+          source => "/vagrant/puppet/files/userDB",
+          recurse => remote,
+          before     => Exec['run_userDB']
+}
+
+exec { 'run_userDB':
+    require => [ Package['python-pip'], File['/data/userDB']],
+    user    => 'vagrant',
+    group    => 'vagrant',
+    unless => "ps -fA | grep userDB | grep -v grep",          
+    cwd => "/data/userDB/",
+    path => "/bin:/usr/bin/",
+    command => "python userDB.py &"
 }

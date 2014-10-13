@@ -54,6 +54,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # elastic search
   config.vm.network :forwarded_port, guest: 9200, host: 9200
 
+  # sqlite DB
+  config.vm.network :forwarded_port, guest: 5010, host: 5010
+  
   #apollo
   #tcp://0.0.0.0:1883
   config.vm.network :forwarded_port, guest: 1883, host: 1883
