@@ -1,0 +1,28 @@
+{
+  "id": "139879170177572ad72be6e67450c9d4d85176e02aeb1",
+  "userId": "87a69aedb0d5410496167826b4ca2492",
+  "public": "false",
+  "createdAt": 1398791701775,
+  "updatedAt": 1398791701775,
+  "name": "Servioticy Mobile Temperature Sensor",
+  "actions": [],
+  "streams": {
+    "data": {
+      "channels": {
+        "location": {
+          "type": "text",
+          "unit": "degrees"
+        },
+        "temperature": {
+          "type": "numeric",
+          "unit": "degrees"
+        }
+      },
+      "type": "sensor",
+      "description": "Temperature and location"
+    }
+  },
+  "customFields": {},
+  "properties": [],
+  "description": "Provides temperature and coordinate readings"
+}
