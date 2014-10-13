@@ -96,7 +96,7 @@ package { 'stompjs':
   require => [Package['nodejs']]
 }
 
-package { ['libssl0.9.8', 'oracle-java7-installer', 'curl', 'nodejs', 'unzip'. 'vim']:
+package { ['libssl0.9.8', 'oracle-java7-installer', 'curl', 'nodejs', 'unzip', 'vim']:
   ensure => present,
   require => Exec['apt-get update', 'set-licence-selected', 'set-licence-seen']
 }
