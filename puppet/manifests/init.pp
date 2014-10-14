@@ -457,7 +457,7 @@ exec{ 'prepare_map_demo':
     unless => "ps -fA | grep nginx | grep -v grep",          
     cwd => "/data/demo/map/utils",
     path => "/bin:/usr/bin/",
-    command => "sh create_so.sh; sh create_so.sh; python generate_fake_data.py",
+    command => "sh create_so.sh; sh create_so.sh; sh create_subscriptions.sh; python generate_fake_data.py",
     before => Class['nginx']
 }
 

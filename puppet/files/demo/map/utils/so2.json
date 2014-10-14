@@ -10,7 +10,7 @@
     "data": {
       "channels": {
         "location": {
-          "type": "text",
+          "type": "geo_point",
           "unit": "degrees"
         },
         "temperature": {

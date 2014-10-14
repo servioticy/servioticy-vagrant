@@ -1,0 +1,12 @@
+{
+  "id": "5cd1cac7bf7d4f80a24c2fda5bd05487",
+  "createdAt": 1413303366382,
+  "updatedAt": 1413303366382,
+  "callback": "internal",
+  "source": "139879170177572ad72be6e67450c9d4d85176e02aeb1",
+  "destination": "1398788346015aa59fe5f854b4bda89647b969c51d8a4",
+  "stream": "data",
+  "customFields": {
+    "groupId": "group1"
+  }
+}

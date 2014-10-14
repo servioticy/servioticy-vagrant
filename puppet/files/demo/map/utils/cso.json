@@ -22,7 +22,7 @@
                 },
                 "location": {
                     "current-value": "{$group1.channels.location.current-value}",
-                    "type": "string"
+                    "type": "geo_point"
                 }
             }
         },
@@ -34,7 +34,7 @@
                 },
                 "location": {
                     "current-value": "{$fahrenheit.channels.location.current-value}",
-                    "type": "string"
+                    "type": "geo_point"
                 }
             },
             "post-filter": "{$result.channels.temperature.current-value} > 70"

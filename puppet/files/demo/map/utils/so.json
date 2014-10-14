@@ -11,7 +11,7 @@
         "data": {
             "channels": {
                 "location": {
-                    "type": "geopositon",
+                    "type": "geo_point",
                     "unit": "degrees"
                 },
                 "temperature": {

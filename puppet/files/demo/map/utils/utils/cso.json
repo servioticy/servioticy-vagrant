@@ -1,9 +1,14 @@
 {
+  "id": "1413303366328a62efd60502b485e86bd7d6ea043f68c",
+  "userId": "87a69aedb0d5410496167826b4ca2492",
+  "public": "true",
+  "createdAt": 1413303366328,
+  "updatedAt": 1413303366328,
   "groups": {
     "group1": {
       "soIds": [
-        "1396461657731411aa73c28444ecf9a8c803e62312fd1", 
-	"139879170177572ad72be6e67450c9d4d85176e02aeb1"
+        "1396461657731411aa73c28444ecf9a8c803e62312fd1",
+        "139879170177572ad72be6e67450c9d4d85176e02aeb1"
       ],
       "stream": "data"
     }
@@ -17,7 +22,7 @@
         },
         "location": {
           "current-value": "{$group1.channels.location.current-value}",
-          "type": "string"
+          "type": "geo_point"
         }
       }
     },
@@ -29,7 +34,7 @@
         },
         "location": {
           "current-value": "{$fahrenheit.channels.location.current-value}",
-          "type": "string"
+          "type": "geo_point"
         }
       },
       "post-filter": "{$result.channels.temperature.current-value} > 70"

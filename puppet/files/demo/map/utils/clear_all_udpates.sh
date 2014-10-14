@@ -18,8 +18,4 @@ curl -i -X DELETE -H "Content-Type: application/json" \
 	-H "Authorization: $API_TOKEN" \
 	http://localhost:8080/$CSO_ID/streams/aboveSeventy
 
-curl -i -X DELETE -H "Content-Type: application/json" \
-	-H "Authorization: $API_TOKEN" \
-	http://localhost:8080/1398796685239f84ad15471da48b4b8a9f33478783a90/streams/stream0
-
 echo
