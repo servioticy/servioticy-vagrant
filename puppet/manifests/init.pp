@@ -110,19 +110,41 @@ archive { 'apache-storm-0.9.1':
   target => '/opt',
   src_target => '/home/vagrant/downloads',
   require  => [ Package["curl"], File['/home/vagrant/downloads/'] ],
-} ->
+}
+
+
 file { '/opt/servioticy-dispatcher':
           ensure => 'directory',
           owner => 'vagrant',
           group => 'vagrant'
-} ->
+} 
+
 file { '/opt/servioticy-dispatcher/dispatcher-0.2.1-jar-with-dependencies.jar':
           ensure => present,
           source => "/usr/src/servioticy/servioticy-dispatcher/target/dispatcher-0.2.1-jar-with-dependencies.jar",
-          require => [Exec['build_servioticy'],File['/opt/servioticy-dispatcher']],
+          require => [File['/opt/servioticy-dispatcher'],Exec['build_servioticy'],File['/opt/servioticy-dispatcher']],
           owner => 'vagrant',
           group => 'vagrant'
 }
+
+file { '/opt/servioticy-dispatcher/dispatcher.xml':
+          ensure => present,
+          source => "/vagrant/puppet/files/dispatcher.xml",
+          require => [File['/opt/servioticy-dispatcher'], Exec['build_servioticy'],File['/opt/servioticy-dispatcher']],
+          owner => 'vagrant',
+          group => 'vagrant'
+}
+
+exec { "run_storm":
+    command => "storm jar /opt/servioticy-dispatcher/dispatcher-0.2.1-jar-with-dependencies.jar com.servioticy.dispatcher.DispatcherTopology -f $DISPATCHER_HOME/dispatcher.xml &",
+    cwd     => "/opt/apache-storm-0.9.1-incubating",
+    require => [Exec['run_kestrel'], File['/opt/servioticy-dispatcher/dispatcher-0.2.1-jar-with-dependencies.jar'], File['/opt/servioticy-dispatcher/dispatcher.xml']],
+    user    => 'vagrant',
+    group    => 'vagrant',
+    path    => "/bin:/usr/bin/:/opt/apache-storm-0.9.1-incubating/bin",
+    unless => "ps -fA | grep storm | grep -v grep",
+}
+
 
 archive { 'kestrel-2.4.1':
   ensure => present,
@@ -152,6 +174,9 @@ exec { "run_kestrel":
     group    => 'vagrant',
     unless => "ps -fA | grep kestrel | grep -v grep",
 }
+
+
+
 
 wget::fetch { "couchbase-server-source":
   source      => 'http://packages.couchbase.com/releases/2.2.0/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb',
