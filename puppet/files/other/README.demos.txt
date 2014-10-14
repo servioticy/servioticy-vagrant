@@ -29,10 +29,10 @@ filtered by a minimum and transformed to Fahrenheit by using composite streams.
 
 A demo video can be found at: http://youtu.be/rjnO9Tt5KQI
 
-- Scripts and files:
-	- start.sh: starts the NGINX used to serve the contents of each map
-	- stop.sh: stops the NGINX used to serve the contents of each map
+- Availability:
+    - The service is available at port 8090 of the VM
 
+- Scripts and files:
 	- utils/api_token.txt: API token for the data generator and consumer
 	- utils/SO.id: ID of the first SO to which data will be sent
 	- utils/SO2.id: ID of the second SO to which data will be sent
