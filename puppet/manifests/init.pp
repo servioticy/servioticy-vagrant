@@ -291,6 +291,10 @@ class { 'jetty':
   require => Package["couchbase-server"]
 }
 
+file { '/opt/jetty/start.ini':
+  ensure => 'present',
+  audit  => 'all',
+} -> 
 file_line { 'cross_origin':
    path => '/opt/jetty/start.ini',
    line => '--module=servlets',
@@ -403,16 +407,17 @@ class { 'python' :
     pip        => true,
     dev        => false,
     virtualenv => true,
-    gunicorn   => false,
-    before     => Exec['run_userDB']
+    gunicorn   => false    
 }
 
 python::pip { 'Flask' :
     pkgname       => 'Flask',
+    before     => Exec['run_userDB']
 }
 
 python::pip { 'simplejson' :
     pkgname       => 'simplejson',
+    before     => Exec['prepare_map_demo']
 }
 
 file { '/data/userDB':
@@ -434,3 +439,36 @@ exec { 'run_userDB':
     path => "/bin:/usr/bin/",
     command => "python userDB.py &"
 }
+
+
+file { '/data/demo':
+          ensure => directory,
+          replace => true,
+          owner    => 'vagrant',
+          group    => 'vagrant',          
+          source => "/vagrant/puppet/files/demo",
+          recurse => remote
+}
+
+exec{ 'prepare_map_demo':
+    require => [ Package['python-pip'], File['/data/demo'], Package['couchbase-server']],
+    user    => 'vagrant',
+    group    => 'vagrant',
+    unless => "ps -fA | grep nginx | grep -v grep",          
+    cwd => "/data/demo/map/utils",
+    path => "/bin:/usr/bin/",
+    command => "sh create_so.sh; sh create_so.sh; python generate_fake_data.py",
+    before => Class['nginx']
+}
+
+
+class { 'nginx': }
+
+nginx::resource::vhost { 'localhost':
+  www_root    => '/data/demo/map/app',
+  listen_port => 8090,
+  ssl         => false,
+  require     => Exec['prepare_map_demo']
+}
+
+
