@@ -1,16 +1,15 @@
 echo "Node initialization"
 sleep 10
 echo "--------------------------------------------------------"
-
 /opt/couchbase/bin/couchbase-cli node-init \
-    -c localhost \
+    -c localhost --user=admin --password=password \
     --node-init-data-path=/data/couchbase
 
 sleep 5
 echo "Instance initialization"
 echo "--------------------------------------------------------"
 /opt/couchbase/bin/couchbase-cli cluster-init \
-    -c localhost \
+    -c localhost --user=admin --password=password \
     --cluster-init-username=admin \
     --cluster-init-password=password \
     --cluster-init-ramsize=1200
