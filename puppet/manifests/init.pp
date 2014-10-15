@@ -96,7 +96,7 @@ package { 'stompjs':
   require => [Package['nodejs']]
 }
 
-package { ['libssl0.9.8', 'oracle-java7-installer', 'curl', 'nodejs', 'unzip', 'vim']:
+package { ['oracle-java7-installer', 'curl', 'nodejs', 'unzip', 'vim']:
   ensure => present,
   require => Exec['apt-get update', 'set-licence-selected', 'set-licence-seen']
 }
@@ -177,10 +177,9 @@ exec { "run_kestrel":
 
 
 
-
 wget::fetch { "couchbase-server-source":
-  source      => 'http://packages.couchbase.com/releases/2.2.0/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb',
-  destination => '/home/vagrant/downloads/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb',
+  source      => 'http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise_3.0.0-ubuntu12.04_amd64.deb',
+  destination => '/home/vagrant/downloads/couchbase-server-enterprise_3.0.0-ubuntu12.04_amd64.deb',
   timeout     => 0,
   verbose     => false,
   require     => File['/home/vagrant/downloads/']
@@ -188,15 +187,41 @@ wget::fetch { "couchbase-server-source":
 package { "couchbase-server":
   provider => dpkg,
   ensure => installed,
-  source => "/home/vagrant/downloads/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb"
-} ->
+  source => "/home/vagrant/downloads/couchbase-server-enterprise_3.0.0-ubuntu12.04_amd64.deb"
+}
+
+exec {"wait for couchbase":
+  require => Package['couchbase-server'],
+  command => "/usr/bin/wget --spider --tries 10 --retry-connrefused --no-check-certificate http://localhost:8091/pools/default/buckets ",
+}
+
 exec { "create_buckets":
     command => "/bin/sh create_buckets.sh",
     cwd     => "/vagrant/puppet/files",
     path    => "/bin:/usr/bin/:/opt/couchbase/bin/",
-    #logoutput => true,
-    require => Package['couchbase-server']
+    logoutput => true,
+    require => Exec['wait for couchbase']
 }
+
+#wget::fetch { "couchbase-server-source":
+#  source      => 'http://packages.couchbase.com/releases/2.2.0/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb',
+#  destination => '/home/vagrant/downloads/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb',
+#  timeout     => 0,
+#  verbose     => false,
+#  require     => File['/home/vagrant/downloads/']
+#} ->
+#package { "couchbase-server":
+#  provider => dpkg,
+#  ensure => installed,
+#  source => "/home/vagrant/downloads/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb"
+#} ->
+#exec { "create_buckets":
+#    command => "/bin/sh create_buckets.sh",
+#    cwd     => "/vagrant/puppet/files",
+#    path    => "/bin:/usr/bin/:/opt/couchbase/bin/",
+#    #logoutput => true,
+#    require => Package['couchbase-server']
+#}
 
 $init_hash = {
   'ES_USER' => 'elasticsearch',
@@ -205,9 +230,15 @@ $init_hash = {
   'DATA_DIR' => '/data/elasticsearch',
 }
 
+#class { 'elasticsearch':
+#  package_url => 'https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.1.deb',
+#  init_defaults => $init_hash 
+#}
+
 class { 'elasticsearch':
-  package_url => 'https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.1.deb',
-  init_defaults => $init_hash 
+  package_url => 'https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.3.4.deb',
+  init_defaults => $init_hash,
+  require => Package['oracle-java7-installer'] ,
 }
 
 $config_hash = {
@@ -250,17 +281,57 @@ exec {
 }
 
 
+#elasticsearch::plugin{ 'transport-couchbase':
+#  module_dir => 'transport-couchbase',
+#  url        => 'http://packages.couchbase.com.s3.amazonaws.com/releases/elastic-search-adapter/1.3.0/elasticsearch-transport-couchbase-1.3.0.zip',
+#  instances  => 'serviolastic',
+#  require  => [ Package["git"],  Exec['build_elasticsearch-transport-couchbase']],
+#}
 elasticsearch::plugin{ 'transport-couchbase':
   module_dir => 'transport-couchbase',
-  url        => 'http://packages.couchbase.com.s3.amazonaws.com/releases/elastic-search-adapter/1.3.0/elasticsearch-transport-couchbase-1.3.0.zip',
+  url        => 'file:////usr/src/elasticsearch-transport-couchbase/target/releases/elasticsearch-transport-couchbase-2.0.0.zip',
   instances  => 'serviolastic',
-  require  => [ Package["git"] ],
+  require  => [ Package["git"], Package['oracle-java7-installer'], Exec['build_elasticsearch-transport-couchbase']],
 }
+ 
 
 elasticsearch::plugin{ 'mobz/elasticsearch-head':
   module_dir => 'head',
   instances  => 'serviolastic',
-  require  => [ Package["git"] ],
+  require  => [ Package["git"], Package['oracle-java7-installer']],
+}
+
+
+
+vcsrepo { "/usr/src/couchbase-capi-server":
+  ensure   => latest,
+  provider => git,
+  owner    => 'vagrant',
+  group    => 'vagrant',
+  require  => [ Package["git"], Class['maven::maven'], Package['oracle-java7-installer'] ],
+  source   => "https://github.com/couchbaselabs/couchbase-capi-server.git",
+  revision => 'master',
+} ->
+exec { "build_couchbase_capi":
+   cwd     => "/usr/src/couchbase-capi-server",
+   command => "mvn install",
+   path    => "/usr/local/bin/:/usr/bin:/bin/",
+   user    => 'vagrant'
+} ->
+vcsrepo { "/usr/src/elasticsearch-transport-couchbase":
+  ensure   => latest,
+  provider => git,
+  owner    => 'vagrant',
+  group    => 'vagrant',
+  require  => [ Package["git"], Class['maven::maven'], Package['oracle-java7-installer'] ],
+  source   => "https://github.com/couchbaselabs/elasticsearch-transport-couchbase.git",
+  revision => 'master',
+} ->
+exec { "build_elasticsearch-transport-couchbase":
+   cwd     => "/usr/src/elasticsearch-transport-couchbase",
+   command => "mvn install",
+   path    => "/usr/local/bin/:/usr/bin:/bin/",
+   user    => 'vagrant'
 }
 
 
