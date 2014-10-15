@@ -27,6 +27,9 @@ You can then login into the instance running:
 - The provision script handles either the startup of the services, so use
 `vagrant up --provision` when starting the VM.
 
+- If you use Windows as your host system, note that you may encounter issues with the End-of-Line codification (CRLF in Windows vs LF in Unix/OSX). To avoid problems, use the following command in your git configuration (assuming you are not a developer committing code) before cloning this repository
+`git config --global core.autocrlf false`
+
 
 ##Credits
 
