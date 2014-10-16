@@ -1,5 +1,5 @@
 exec {"wait for elasticsearch":
-  require => [Class["elasticsearch"], File['/opt/servioticy_scripts']],
+  require => [elasticsearch::instance['serviolastic'], File['/opt/servioticy_scripts']],
   command => "/bin/sh /opt/servioticy_scripts/wait_for_elasticsearch.sh",
   timeout => 0
 }
@@ -32,7 +32,8 @@ $config_hash = {
 elasticsearch::instance { 'serviolastic':
   config => $config_hash,
   datadir => '/data/elasticsearch'
-} ->
+} 
+
 vcsrepo { "/opt/servioticy-indices":
   ensure   => latest,
   provider => git,
@@ -52,18 +53,6 @@ exec {
       require => Exec['wait for elasticsearch']
           
 } 
-
-
-
-
-
-elasticsearch::plugin{ 'transport-couchbase':
-  module_dir => 'transport-couchbase',
-  url        => 'file:////usr/src/elasticsearch-transport-couchbase/target/releases/elasticsearch-transport-couchbase-2.0.0.zip',
-  instances  => 'serviolastic',
-  require  => [ Package["git"], Package['oracle-java7-installer'], Exec['build_elasticsearch-transport-couchbase']],
-}
- 
 
 elasticsearch::plugin{ 'mobz/elasticsearch-head':
   module_dir => 'head',

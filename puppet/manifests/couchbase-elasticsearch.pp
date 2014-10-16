@@ -29,6 +29,13 @@ exec { "build_elasticsearch-transport-couchbase":
    user    => 'vagrant'
 }
 
+elasticsearch::plugin{ 'transport-couchbase':
+  module_dir => 'transport-couchbase',
+  url        => 'file:////usr/src/elasticsearch-transport-couchbase/target/releases/elasticsearch-transport-couchbase-2.0.0.zip',
+  instances  => 'serviolastic',
+  require  => [ Package["git"], Package['oracle-java7-installer'], Exec['build_elasticsearch-transport-couchbase']],
+}
+
 exec {
     'create-xdcr':
       command => '/bin/sh create_xdcr.sh',

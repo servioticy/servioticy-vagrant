@@ -1,4 +1,4 @@
-ELASTICSEARCH_LOG_FILE=/var/log/elasticsearch/serviolastic/serviolastic.log2
+ELASTICSEARCH_LOG_FILE=/var/log/elasticsearch/serviolastic/serviolastic.log
 status=`grep -s started $ELASTICSEARCH_LOG_FILE | tail -1 | sed 's/ //g'`
 while [ -z $status ]
 do
