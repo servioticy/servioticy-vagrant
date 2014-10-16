@@ -39,7 +39,7 @@ package { 'stompjs':
 
 package { ['nodejs']:
   ensure => present,
-  require => Exec['apt-get update'], Package['g++']]
+  require => [Exec['apt-get update'], Package['g++']]
 }
 
 

@@ -12,7 +12,7 @@ package { "couchbase-server":
 }
 
 exec {"wait for couchbase":
-  require => [Package['couchbase-server'],File['/opt/servioticy_scripts]]
+  require => [Package['couchbase-server'],File['/opt/servioticy_scripts']],
   command => "/bin/sh /opt/servioticy_scripts/wait_for_couchbase.sh",
 }
 
@@ -20,6 +20,6 @@ exec { "create_buckets":
     command => "/bin/sh create_buckets.sh",
     cwd     => "/vagrant/puppet/files",
     path    => "/bin:/usr/bin/:/opt/couchbase/bin/",
+    require => [ Package['curl'], Exec['wait for couchbase']],
     #logoutput => true,
-    require => [Exec['wait for couchbase'], Package['curl']]
 }
