@@ -1,5 +1,5 @@
 exec {"wait for elasticsearch":
-  require => [elasticsearch::instance['serviolastic'], File['/opt/servioticy_scripts']],
+  require => [Elasticsearch::Instance['serviolastic'], File['/opt/servioticy_scripts']],
   command => "/bin/sh /opt/servioticy_scripts/wait_for_elasticsearch.sh",
   timeout => 0
 }
@@ -32,7 +32,6 @@ $config_hash = {
 elasticsearch::instance { 'serviolastic':
   config => $config_hash,
   datadir => '/data/elasticsearch',
-  before => Service["jetty"]
 } 
 
 vcsrepo { "/opt/servioticy-indices":
@@ -50,9 +49,7 @@ exec {
     'create-indices':
       command => 'sleep 10 && /bin/sh create_soupdates.sh; /bin/sh create_subscriptions.sh',
       cwd => "/opt/servioticy-indices",
-      path =>  "/usr/local/bin/:/bin/:/usr/bin/",
-      require => Exec['wait for elasticsearch']
-          
+      path =>  "/usr/local/bin/:/bin/:/usr/bin/",          
 } 
 
 elasticsearch::plugin{ 'mobz/elasticsearch-head':

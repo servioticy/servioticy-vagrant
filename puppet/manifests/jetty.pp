@@ -3,7 +3,7 @@ class { 'jetty':
   home    => "/opt",
   user    => "vagrant",
   group   => "vagrant",
-  require => Package["couchbase-server"]
+  require => [Package["couchbase-server"]]
 }
 
 file { '/opt/jetty/start.ini':
