@@ -12,7 +12,7 @@ package { "couchbase-server":
 }
 
 exec {"wait for couchbase":
-  require => Package['couchbase-server'],
+  require => [Package['couchbase-server'],File['/opt/servioticy_scripts]]
   command => "/bin/sh /opt/servioticy_scripts/wait_for_couchbase.sh",
 }
 
