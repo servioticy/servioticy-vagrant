@@ -1,6 +1,6 @@
 include wget, git, apt
 
-Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin/" ] }
+Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin/", "" ] }
 
 lvm::volume { 'data':
   ensure => present,
@@ -90,13 +90,20 @@ package { 'forever':
   require => [Package['nodejs']]
 }
 
+package { 'couchbase':
+  ensure   => present,
+  provider => 'npm',
+  require => [Package['nodejs'], Package['make'], Package['g++']]
+}
+
+
 package { 'stompjs':
   ensure   => present,
   provider => 'npm',
   require => [Package['nodejs']]
 }
 
-package { ['oracle-java7-installer', 'curl', 'nodejs', 'unzip', 'vim']:
+package { ['oracle-java7-installer', 'curl', 'nodejs', 'unzip', 'vim', 'make', 'g++']:
   ensure => present,
   require => Exec['apt-get update', 'set-licence-selected', 'set-licence-seen']
 }
@@ -136,7 +143,7 @@ file { '/opt/servioticy-dispatcher/dispatcher.xml':
 }
 
 exec { "run_storm":
-    command => "storm jar /opt/servioticy-dispatcher/dispatcher-0.2.1-jar-with-dependencies.jar com.servioticy.dispatcher.DispatcherTopology -f $DISPATCHER_HOME/dispatcher.xml &",
+    command => "storm jar /opt/servioticy-dispatcher/dispatcher-0.2.1-jar-with-dependencies.jar com.servioticy.dispatcher.DispatcherTopology -f /opt/servioticy-dispatcher/dispatcher.xml &",
     cwd     => "/opt/apache-storm-0.9.1-incubating",
     require => [Exec['run_kestrel'], File['/opt/servioticy-dispatcher/dispatcher-0.2.1-jar-with-dependencies.jar'], File['/opt/servioticy-dispatcher/dispatcher.xml']],
     user    => 'vagrant',
@@ -199,29 +206,11 @@ exec { "create_buckets":
     command => "/bin/sh create_buckets.sh",
     cwd     => "/vagrant/puppet/files",
     path    => "/bin:/usr/bin/:/opt/couchbase/bin/",
-    logoutput => true,
-    require => Exec['wait for couchbase']
+    #logoutput => true,
+    require => [Exec['wait for couchbase'], Package['curl']]
 }
 
-#wget::fetch { "couchbase-server-source":
-#  source      => 'http://packages.couchbase.com/releases/2.2.0/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb',
-#  destination => '/home/vagrant/downloads/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb',
-#  timeout     => 0,
-#  verbose     => false,
-#  require     => File['/home/vagrant/downloads/']
-#} ->
-#package { "couchbase-server":
-#  provider => dpkg,
-#  ensure => installed,
-#  source => "/home/vagrant/downloads/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb"
-#} ->
-#exec { "create_buckets":
-#    command => "/bin/sh create_buckets.sh",
-#    cwd     => "/vagrant/puppet/files",
-#    path    => "/bin:/usr/bin/:/opt/couchbase/bin/",
-#    #logoutput => true,
-#    require => Package['couchbase-server']
-#}
+
 
 $init_hash = {
   'ES_USER' => 'elasticsearch',
@@ -229,11 +218,6 @@ $init_hash = {
   'ES_HEAP_SIZE' => '1g',
   'DATA_DIR' => '/data/elasticsearch',
 }
-
-#class { 'elasticsearch':
-#  package_url => 'https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.1.deb',
-#  init_defaults => $init_hash 
-#}
 
 class { 'elasticsearch':
   package_url => 'https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.3.4.deb',
@@ -281,12 +265,6 @@ exec {
 }
 
 
-#elasticsearch::plugin{ 'transport-couchbase':
-#  module_dir => 'transport-couchbase',
-#  url        => 'http://packages.couchbase.com.s3.amazonaws.com/releases/elastic-search-adapter/1.3.0/elasticsearch-transport-couchbase-1.3.0.zip',
-#  instances  => 'serviolastic',
-#  require  => [ Package["git"],  Exec['build_elasticsearch-transport-couchbase']],
-#}
 elasticsearch::plugin{ 'transport-couchbase':
   module_dir => 'transport-couchbase',
   url        => 'file:////usr/src/elasticsearch-transport-couchbase/target/releases/elasticsearch-transport-couchbase-2.0.0.zip',
@@ -546,15 +524,20 @@ file { '/data/demo':
           recurse => remote
 }
 
+exec {"wait for api":
+  require => Package['couchbase-server'],
+  command => "/usr/bin/wget --spider --tries 10 --retry-connrefused --no-check-certificate http://localhost:8080",
+}
+
+
+
 exec{ 'prepare_map_demo':
-    require => [ Package['python-pip'], File['/data/demo'], Package['couchbase-server']],
     user    => 'vagrant',
     group    => 'vagrant',
-    unless => "ps -fA | grep nginx | grep -v grep",          
     cwd => "/data/demo/map/utils",
     path => "/bin:/usr/bin/",
-    command => "sh create_so.sh; sh create_so.sh; sh create_subscriptions.sh; python generate_fake_data.py",
-    before => Class['nginx']
+    command => "sh create_all.sh; python generate_fake_data.py",
+    require => [ Package['python-pip'], File['/data/demo'], Package['couchbase-server'],  Package['couchbase'], Exec['create-xdcr'], Exec['wait for api'] ],
 }
 
 
