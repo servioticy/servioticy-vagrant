@@ -1,4 +1,4 @@
-echo Starting CouchBase service...
+CB_STATUS_FILE=/tmp/cb_status.txt
 rm -f $CB_STATUS_FILE
 status=`grep -s healthy $CB_STATUS_FILE | sed 's/ //g' | tail -1`
 while [ -z $status ]
@@ -8,4 +8,3 @@ do
 	status=`grep -s healthy $CB_STATUS_FILE | sed 's/ //g' | tail -1`
 done
 rm -f $CB_STATUS_FILE
-echo CouchBase service running

@@ -13,7 +13,7 @@ package { "couchbase-server":
 
 exec {"wait for couchbase":
   require => Package['couchbase-server'],
-  command => "/usr/bin/wget --spider --tries 10 --retry-connrefused --no-check-certificate http://localhost:8091/pools/default/buckets ",
+  command => "/bin/sh /opt/servioticy_scripts/wait_for_couchbase.sh",
 }
 
 exec { "create_buckets":
