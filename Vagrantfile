@@ -16,7 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.puppet_install.puppet_version = :latest
   
   # required by maven
-  config.ssh.shell = "export JAVA_HOME=/usr/lib/jvm/default-java/"
+  config.ssh.shell = "export JAVA_HOME=/usr/lib/jvm/java-7-oracle"
 
   # required by couchbase-cli
   config.ssh.shell = "export LC_ALL=\"en_US.UTF-8\""
@@ -39,8 +39,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "puppet" do |puppet|
     puppet.module_path = "puppet/modules"
     puppet.manifests_path = "puppet/manifests"
-    puppet.manifest_file = "init.pp"
-    puppet.options = "--environment dev"
+    puppet.manifest_file = "."
+    puppet.options = "--environment dev --graph --graphdir /vagrant/puppet/dependency_graph"
   end
   
   # jetty

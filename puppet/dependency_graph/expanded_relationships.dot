@@ -1,0 +1,4947 @@
+digraph Expanded_relationships {
+    label = "Expanded_relationships"
+    "Class[Elasticsearch::Config]" [
+        fontsize = 8,
+        label = "Class[Elasticsearch::Config]"
+    ]
+
+    "Stage[main]" [
+        fontsize = 8,
+        label = "Stage[main]"
+    ]
+
+    "Exec[apache-apollo-1.7 unpack]" [
+        fontsize = 8,
+        label = "Exec[apache-apollo-1.7 unpack]"
+    ]
+
+    "Exec[run_storm]" [
+        fontsize = 8,
+        label = "Exec[run_storm]"
+    ]
+
+    "File[/tmp/nginx.d]" [
+        fontsize = 8,
+        label = "File[/tmp/nginx.d]"
+    ]
+
+    "Exec[create_package_dir_elasticsearch]" [
+        fontsize = 8,
+        label = "Exec[create_package_dir_elasticsearch]"
+    ]
+
+    "Concat[/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8,
+        label = "Concat[/etc/nginx/sites-available/localhost.conf]"
+    ]
+
+    "Lvm::Volume[data]" [
+        fontsize = 8,
+        label = "Lvm::Volume[data]"
+    ]
+
+    "Class[Wget]" [
+        fontsize = 8,
+        label = "Class[Wget]"
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf]" [
+        fontsize = 8,
+        label = "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf]"
+    ]
+
+    "Exec[download archive apache-storm-0.9.1.tar.gz and check sum]" [
+        fontsize = 8,
+        label = "Exec[download archive apache-storm-0.9.1.tar.gz and check sum]"
+    ]
+
+    "Class[Apt::Update]" [
+        fontsize = 8,
+        label = "Class[Apt::Update]"
+    ]
+
+    "Class[Wget]" [
+        fontsize = 8,
+        label = "Class[Wget]"
+    ]
+
+    "File[/data]" [
+        fontsize = 8,
+        label = "File[/data]"
+    ]
+
+    "Exec[wget-fetch-maven]" [
+        fontsize = 8,
+        label = "Exec[wget-fetch-maven]"
+    ]
+
+    "Exec[wget-jetty_download]" [
+        fontsize = 8,
+        label = "Exec[wget-jetty_download]"
+    ]
+
+    "Exec[build_elasticsearch-transport-couchbase]" [
+        fontsize = 8,
+        label = "Exec[build_elasticsearch-transport-couchbase]"
+    ]
+
+    "Class[Fstab::Variables]" [
+        fontsize = 8,
+        label = "Class[Fstab::Variables]"
+    ]
+
+    "Apt::Source[nginx]" [
+        fontsize = 8,
+        label = "Apt::Source[nginx]"
+    ]
+
+    "Stage[runtime]" [
+        fontsize = 8,
+        label = "Stage[runtime]"
+    ]
+
+    "Class[Nginx]" [
+        fontsize = 8,
+        label = "Class[Nginx]"
+    ]
+
+    "Exec[set-licence-selected]" [
+        fontsize = 8,
+        label = "Exec[set-licence-selected]"
+    ]
+
+    "File[/home/vagrant/README.demos.txt]" [
+        fontsize = 8,
+        label = "File[/home/vagrant/README.demos.txt]"
+    ]
+
+    "File[/etc/elasticsearch/serviolastic/logging.yml]" [
+        fontsize = 8,
+        label = "File[/etc/elasticsearch/serviolastic/logging.yml]"
+    ]
+
+    "Elasticsearch::Service::Init[serviolastic]" [
+        fontsize = 8,
+        label = "Elasticsearch::Service::Init[serviolastic]"
+    ]
+
+    "Concat::Fragment[localhost-header]" [
+        fontsize = 8,
+        label = "Concat::Fragment[localhost-header]"
+    ]
+
+    "Package[unzip]" [
+        fontsize = 8,
+        label = "Package[unzip]"
+    ]
+
+    "Anchor[apt_key 7BD9BF62 present]" [
+        fontsize = 8,
+        label = "Anchor[apt_key 7BD9BF62 present]"
+    ]
+
+    "File[/etc/nginx/conf.d/proxy.conf]" [
+        fontsize = 8,
+        label = "File[/etc/nginx/conf.d/proxy.conf]"
+    ]
+
+    "Package[g++]" [
+        fontsize = 8,
+        label = "Package[g++]"
+    ]
+
+    "Exec[pip_install_simplejson]" [
+        fontsize = 8,
+        label = "Exec[pip_install_simplejson]"
+    ]
+
+    "Class[Stdlib::Stages]" [
+        fontsize = 8,
+        label = "Class[Stdlib::Stages]"
+    ]
+
+    "Wget::Fetch[couchbase-server-source]" [
+        fontsize = 8,
+        label = "Wget::Fetch[couchbase-server-source]"
+    ]
+
+    "File[/var/lib/puppet/concat]" [
+        fontsize = 8,
+        label = "File[/var/lib/puppet/concat]"
+    ]
+
+    "Exec[jetty_untar]" [
+        fontsize = 8,
+        label = "Exec[jetty_untar]"
+    ]
+
+    "Anchor[python::end]" [
+        fontsize = 8,
+        label = "Anchor[python::end]"
+    ]
+
+    "Logical_volume[data]" [
+        fontsize = 8,
+        label = "Logical_volume[data]"
+    ]
+
+    "File[/home/vagrant/.mavenrc]" [
+        fontsize = 8,
+        label = "File[/home/vagrant/.mavenrc]"
+    ]
+
+    "Volume_group[data]" [
+        fontsize = 8,
+        label = "Volume_group[data]"
+    ]
+
+    "Class[Maven::Maven]" [
+        fontsize = 8,
+        label = "Class[Maven::Maven]"
+    ]
+
+    "Anchor[apt::ppa::ppa:chris-lea/node.js]" [
+        fontsize = 8,
+        label = "Anchor[apt::ppa::ppa:chris-lea/node.js]"
+    ]
+
+    "File[/home/vagrant/downloads/]" [
+        fontsize = 8,
+        label = "File[/home/vagrant/downloads/]"
+    ]
+
+    "Class[Nginx::Package]" [
+        fontsize = 8,
+        label = "Class[Nginx::Package]"
+    ]
+
+    "Stage[deploy_app]" [
+        fontsize = 8,
+        label = "Stage[deploy_app]"
+    ]
+
+    "Maven::Environment[maven-env]" [
+        fontsize = 8,
+        label = "Maven::Environment[maven-env]"
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments.concat.out]" [
+        fontsize = 8,
+        label = "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments.concat.out]"
+    ]
+
+    "Exec[run_userDB]" [
+        fontsize = 8,
+        label = "Exec[run_userDB]"
+    ]
+
+    "Exec[maven-untar]" [
+        fontsize = 8,
+        label = "Exec[maven-untar]"
+    ]
+
+    "File[/etc/nginx]" [
+        fontsize = 8,
+        label = "File[/etc/nginx]"
+    ]
+
+    "File[/opt/kestrel-2.4.1/config/servioticy_queues.scala]" [
+        fontsize = 8,
+        label = "File[/opt/kestrel-2.4.1/config/servioticy_queues.scala]"
+    ]
+
+    "Stage[setup_app]" [
+        fontsize = 8,
+        label = "Stage[setup_app]"
+    ]
+
+    "File[/opt/servibroker/etc/groups.properties]" [
+        fontsize = 8,
+        label = "File[/opt/servibroker/etc/groups.properties]"
+    ]
+
+    "File[/usr/bin/mvn]" [
+        fontsize = 8,
+        label = "File[/usr/bin/mvn]"
+    ]
+
+    "File[/opt/kestrel-2.4.1]" [
+        fontsize = 8,
+        label = "File[/opt/kestrel-2.4.1]"
+    ]
+
+    "File[/opt/elasticsearch/swdl]" [
+        fontsize = 8,
+        label = "File[/opt/elasticsearch/swdl]"
+    ]
+
+    "File[nginx.list]" [
+        fontsize = 8,
+        label = "File[nginx.list]"
+    ]
+
+    "Class[Nginx::Config]" [
+        fontsize = 8,
+        label = "Class[Nginx::Config]"
+    ]
+
+    "Stage[setup_infra]" [
+        fontsize = 8,
+        label = "Stage[setup_infra]"
+    ]
+
+    "Elasticsearch::Instance[serviolastic]" [
+        fontsize = 8,
+        label = "Elasticsearch::Instance[serviolastic]"
+    ]
+
+    "File[/opt/servioticy-dispatcher/dispatcher-0.2.1-jar-with-dependencies.jar]" [
+        fontsize = 8,
+        label = "File[/opt/servioticy-dispatcher/dispatcher-0.2.1-jar-with-dependencies.jar]"
+    ]
+
+    "File[sources.list.d]" [
+        fontsize = 8,
+        label = "File[sources.list.d]"
+    ]
+
+    "Class[Nginx::Service]" [
+        fontsize = 8,
+        label = "Class[Nginx::Service]"
+    ]
+
+    "Class[Settings]" [
+        fontsize = 8,
+        label = "Class[Settings]"
+    ]
+
+    "Vcsrepo[/usr/src/elasticsearch-transport-couchbase]" [
+        fontsize = 8,
+        label = "Vcsrepo[/usr/src/elasticsearch-transport-couchbase]"
+    ]
+
+    "Class[Apt]" [
+        fontsize = 8,
+        label = "Class[Apt]"
+    ]
+
+    "Exec[wait for api]" [
+        fontsize = 8,
+        label = "Exec[wait for api]"
+    ]
+
+    "Class[Concat::Setup]" [
+        fontsize = 8,
+        label = "Class[Concat::Setup]"
+    ]
+
+    "Archive::Extract[apache-storm-0.9.1]" [
+        fontsize = 8,
+        label = "Archive::Extract[apache-storm-0.9.1]"
+    ]
+
+    "Stage[deploy]" [
+        fontsize = 8,
+        label = "Stage[deploy]"
+    ]
+
+    "Class[Nginx]" [
+        fontsize = 8,
+        label = "Class[Nginx]"
+    ]
+
+    "Class[Nginx::Params]" [
+        fontsize = 8,
+        label = "Class[Nginx::Params]"
+    ]
+
+    "Wget::Fetch[fetch-maven]" [
+        fontsize = 8,
+        label = "Wget::Fetch[fetch-maven]"
+    ]
+
+    "Class[Maven::Maven]" [
+        fontsize = 8,
+        label = "Class[Maven::Maven]"
+    ]
+
+    "File[/etc/init.d/elasticsearch-serviolastic]" [
+        fontsize = 8,
+        label = "File[/etc/init.d/elasticsearch-serviolastic]"
+    ]
+
+    "Exec[rm-on-error-apache-apollo-1.7.tar.gz]" [
+        fontsize = 8,
+        label = "Exec[rm-on-error-apache-apollo-1.7.tar.gz]"
+    ]
+
+    "File[/etc/default/jetty]" [
+        fontsize = 8,
+        label = "File[/etc/default/jetty]"
+    ]
+
+    "Wget::Fetch[jetty_download]" [
+        fontsize = 8,
+        label = "Wget::Fetch[jetty_download]"
+    ]
+
+    "Apt_key[Add key: 7BD9BF62 from Apt::Source nginx]" [
+        fontsize = 8,
+        label = "Apt_key[Add key: 7BD9BF62 from Apt::Source nginx]"
+    ]
+
+    "Package[git]" [
+        fontsize = 8,
+        label = "Package[git]"
+    ]
+
+    "Archive::Extract[kestrel-2.4.1]" [
+        fontsize = 8,
+        label = "Archive::Extract[kestrel-2.4.1]"
+    ]
+
+    "Archive::Download[kestrel-2.4.1.zip]" [
+        fontsize = 8,
+        label = "Archive::Download[kestrel-2.4.1.zip]"
+    ]
+
+    "Fstab::Augeas[A test fstab entry]" [
+        fontsize = 8,
+        label = "Fstab::Augeas[A test fstab entry]"
+    ]
+
+    "Package[nodejs]" [
+        fontsize = 8,
+        label = "Package[nodejs]"
+    ]
+
+    "Package[stompjs]" [
+        fontsize = 8,
+        label = "Package[stompjs]"
+    ]
+
+    "File[/etc/nginx/sites-enabled/default]" [
+        fontsize = 8,
+        label = "File[/etc/nginx/sites-enabled/default]"
+    ]
+
+    "Class[Nginx::Config]" [
+        fontsize = 8,
+        label = "Class[Nginx::Config]"
+    ]
+
+    "Archive[apache-apollo-1.7]" [
+        fontsize = 8,
+        label = "Archive[apache-apollo-1.7]"
+    ]
+
+    "Exec[create-xdcr]" [
+        fontsize = 8,
+        label = "Exec[create-xdcr]"
+    ]
+
+    "Exec[build_couchbase_capi]" [
+        fontsize = 8,
+        label = "Exec[build_couchbase_capi]"
+    ]
+
+    "File[/etc/nginx/conf.d/vhost_autogen.conf]" [
+        fontsize = 8,
+        label = "File[/etc/nginx/conf.d/vhost_autogen.conf]"
+    ]
+
+    "File[/data/elasticsearch]" [
+        fontsize = 8,
+        label = "File[/data/elasticsearch]"
+    ]
+
+    "Stage[setup_infra]" [
+        fontsize = 8,
+        label = "Stage[setup_infra]"
+    ]
+
+    "Stage[setup]" [
+        fontsize = 8,
+        label = "Stage[setup]"
+    ]
+
+    "Class[Elasticsearch]" [
+        fontsize = 8,
+        label = "Class[Elasticsearch]"
+    ]
+
+    "File[/etc/elasticsearch]" [
+        fontsize = 8,
+        label = "File[/etc/elasticsearch]"
+    ]
+
+    "Class[Main]" [
+        fontsize = 8,
+        label = "Class[Main]"
+    ]
+
+    "Stage[main]" [
+        fontsize = 8,
+        label = "Stage[main]"
+    ]
+
+    "Filebucket[puppet]" [
+        fontsize = 8,
+        label = "Filebucket[puppet]"
+    ]
+
+    "Anchor[python::begin]" [
+        fontsize = 8,
+        label = "Anchor[python::begin]"
+    ]
+
+    "Exec[pip_install_Flask]" [
+        fontsize = 8,
+        label = "Exec[pip_install_Flask]"
+    ]
+
+    "File[old-proxy-file]" [
+        fontsize = 8,
+        label = "File[old-proxy-file]"
+    ]
+
+    "File[/etc/nginx/conf.d]" [
+        fontsize = 8,
+        label = "File[/etc/nginx/conf.d]"
+    ]
+
+    "Vcsrepo[/opt/servioticy-indices]" [
+        fontsize = 8,
+        label = "Vcsrepo[/opt/servioticy-indices]"
+    ]
+
+    "Service[serviolastic]" [
+        fontsize = 8,
+        label = "Service[serviolastic]"
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments.concat]" [
+        fontsize = 8,
+        label = "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments.concat]"
+    ]
+
+    "Exec[kestrel-2.4.1 unpack]" [
+        fontsize = 8,
+        label = "Exec[kestrel-2.4.1 unpack]"
+    ]
+
+    "File[/etc/nginx/conf.mail.d/vhost_autogen.conf]" [
+        fontsize = 8,
+        label = "File[/etc/nginx/conf.mail.d/vhost_autogen.conf]"
+    ]
+
+    "File[/opt/servioticy_scripts]" [
+        fontsize = 8,
+        label = "File[/opt/servioticy_scripts]"
+    ]
+
+    "Apt::Ppa[ppa:chris-lea/node.js]" [
+        fontsize = 8,
+        label = "Apt::Ppa[ppa:chris-lea/node.js]"
+    ]
+
+    "Vcsrepo[/usr/src/couchbase-capi-server]" [
+        fontsize = 8,
+        label = "Vcsrepo[/usr/src/couchbase-capi-server]"
+    ]
+
+    "File[/opt/jetty/start.ini]" [
+        fontsize = 8,
+        label = "File[/opt/jetty/start.ini]"
+    ]
+
+    "File[/etc/nginx/conf.mail.d]" [
+        fontsize = 8,
+        label = "File[/etc/nginx/conf.mail.d]"
+    ]
+
+    "Class[Python]" [
+        fontsize = 8,
+        label = "Class[Python]"
+    ]
+
+    "Class[Jetty]" [
+        fontsize = 8,
+        label = "Class[Jetty]"
+    ]
+
+    "Class[Elasticsearch]" [
+        fontsize = 8,
+        label = "Class[Elasticsearch]"
+    ]
+
+    "Lvm::Volume[data]" [
+        fontsize = 8,
+        label = "Lvm::Volume[data]"
+    ]
+
+    "File[preferences.d]" [
+        fontsize = 8,
+        label = "File[preferences.d]"
+    ]
+
+    "Exec[install_plugin_mobz/elasticsearch-head]" [
+        fontsize = 8,
+        label = "Exec[install_plugin_mobz/elasticsearch-head]"
+    ]
+
+    "File[/opt/jetty]" [
+        fontsize = 8,
+        label = "File[/opt/jetty]"
+    ]
+
+    "Exec[run_composer]" [
+        fontsize = 8,
+        label = "Exec[run_composer]"
+    ]
+
+    "Elasticsearch::Service[serviolastic]" [
+        fontsize = 8,
+        label = "Elasticsearch::Service[serviolastic]"
+    ]
+
+    "Archive::Extract[kestrel-2.4.1]" [
+        fontsize = 8,
+        label = "Archive::Extract[kestrel-2.4.1]"
+    ]
+
+    "Apt::Source[nginx]" [
+        fontsize = 8,
+        label = "Apt::Source[nginx]"
+    ]
+
+    "Python::Pip[simplejson]" [
+        fontsize = 8,
+        label = "Python::Pip[simplejson]"
+    ]
+
+    "File[/etc/init.d/jetty]" [
+        fontsize = 8,
+        label = "File[/etc/init.d/jetty]"
+    ]
+
+    "File[/usr/local/bin/mvn]" [
+        fontsize = 8,
+        label = "File[/usr/local/bin/mvn]"
+    ]
+
+    "File[localhost.conf symlink]" [
+        fontsize = 8,
+        label = "File[localhost.conf symlink]"
+    ]
+
+    "Exec[add-apt-repository-ppa:webupd8team/java]" [
+        fontsize = 8,
+        label = "Exec[add-apt-repository-ppa:webupd8team/java]"
+    ]
+
+    "Fstab::Augeas::New[A test fstab entry]" [
+        fontsize = 8,
+        label = "Fstab::Augeas::New[A test fstab entry]"
+    ]
+
+    "Archive::Extract[apache-apollo-1.7]" [
+        fontsize = 8,
+        label = "Archive::Extract[apache-apollo-1.7]"
+    ]
+
+    "Class[Python::Config]" [
+        fontsize = 8,
+        label = "Class[Python::Config]"
+    ]
+
+    "Exec[concat_/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8,
+        label = "Exec[concat_/etc/nginx/sites-available/localhost.conf]"
+    ]
+
+    "File[/home/vagrant/README.txt]" [
+        fontsize = 8,
+        label = "File[/home/vagrant/README.txt]"
+    ]
+
+    "Concat::Fragment[localhost-footer]" [
+        fontsize = 8,
+        label = "Concat::Fragment[localhost-footer]"
+    ]
+
+    "Stage[deploy_infra]" [
+        fontsize = 8,
+        label = "Stage[deploy_infra]"
+    ]
+
+    "Class[Stdlib]" [
+        fontsize = 8,
+        label = "Class[Stdlib]"
+    ]
+
+    "Fstab[A test fstab entry]" [
+        fontsize = 8,
+        label = "Fstab[A test fstab entry]"
+    ]
+
+    "File[/var/lib/puppet/concat/bin/concatfragments.sh]" [
+        fontsize = 8,
+        label = "File[/var/lib/puppet/concat/bin/concatfragments.sh]"
+    ]
+
+    "Apt::Key[Add key: 7BD9BF62 from Apt::Source nginx]" [
+        fontsize = 8,
+        label = "Apt::Key[Add key: 7BD9BF62 from Apt::Source nginx]"
+    ]
+
+    "Maven::Environment[maven-env]" [
+        fontsize = 8,
+        label = "Maven::Environment[maven-env]"
+    ]
+
+    "Exec[create_broker]" [
+        fontsize = 8,
+        label = "Exec[create_broker]"
+    ]
+
+    "Class[Nginx::Package]" [
+        fontsize = 8,
+        label = "Class[Nginx::Package]"
+    ]
+
+    "Class[Stdlib]" [
+        fontsize = 8,
+        label = "Class[Stdlib]"
+    ]
+
+    "Archive[apache-storm-0.9.1]" [
+        fontsize = 8,
+        label = "Archive[apache-storm-0.9.1]"
+    ]
+
+    "Class[Git]" [
+        fontsize = 8,
+        label = "Class[Git]"
+    ]
+
+    "Schedule[hourly]" [
+        fontsize = 8,
+        label = "Schedule[hourly]"
+    ]
+
+    "File[/usr/share/elasticsearch/plugins]" [
+        fontsize = 8,
+        label = "File[/usr/share/elasticsearch/plugins]"
+    ]
+
+    "Package[vim]" [
+        fontsize = 8,
+        label = "Package[vim]"
+    ]
+
+    "File[/opt/servibroker/etc/apollo.xml]" [
+        fontsize = 8,
+        label = "File[/opt/servibroker/etc/apollo.xml]"
+    ]
+
+    "Exec[download archive apache-apollo-1.7.tar.gz and check sum]" [
+        fontsize = 8,
+        label = "Exec[download archive apache-apollo-1.7.tar.gz and check sum]"
+    ]
+
+    "Exec[prepare_map_demo]" [
+        fontsize = 8,
+        label = "Exec[prepare_map_demo]"
+    ]
+
+    "Package[gunicorn]" [
+        fontsize = 8,
+        label = "Package[gunicorn]"
+    ]
+
+    "Apt::Ppa[ppa:webupd8team/java]" [
+        fontsize = 8,
+        label = "Apt::Ppa[ppa:webupd8team/java]"
+    ]
+
+    "File[/data/userDB]" [
+        fontsize = 8,
+        label = "File[/data/userDB]"
+    ]
+
+    "Package[curl]" [
+        fontsize = 8,
+        label = "Package[curl]"
+    ]
+
+    "Concat::Fragment[fd0b234173aed6ab4786b7032214c741]" [
+        fontsize = 8,
+        label = "Concat::Fragment[fd0b234173aed6ab4786b7032214c741]"
+    ]
+
+    "Concat::Fragment[localhost-header]" [
+        fontsize = 8,
+        label = "Concat::Fragment[localhost-header]"
+    ]
+
+    "Nginx::Resource::Vhost[localhost]" [
+        fontsize = 8,
+        label = "Nginx::Resource::Vhost[localhost]"
+    ]
+
+    "Stage[deploy_app]" [
+        fontsize = 8,
+        label = "Stage[deploy_app]"
+    ]
+
+    "Python::Pip[Flask]" [
+        fontsize = 8,
+        label = "Python::Pip[Flask]"
+    ]
+
+    "File[/opt/servibroker]" [
+        fontsize = 8,
+        label = "File[/opt/servibroker]"
+    ]
+
+    "File[/etc/nginx/sites-enabled]" [
+        fontsize = 8,
+        label = "File[/etc/nginx/sites-enabled]"
+    ]
+
+    "Physical_volume[/dev/sdb]" [
+        fontsize = 8,
+        label = "Physical_volume[/dev/sdb]"
+    ]
+
+    "Filesystem[/dev/data/data]" [
+        fontsize = 8,
+        label = "Filesystem[/dev/data/data]"
+    ]
+
+    "Fstab::Augeas::Update[A test fstab entry]" [
+        fontsize = 8,
+        label = "Fstab::Augeas::Update[A test fstab entry]"
+    ]
+
+    "Nginx::Resource::Vhost[localhost]" [
+        fontsize = 8,
+        label = "Nginx::Resource::Vhost[localhost]"
+    ]
+
+    "Elasticsearch::Plugin[transport-couchbase]" [
+        fontsize = 8,
+        label = "Elasticsearch::Plugin[transport-couchbase]"
+    ]
+
+    "Schedule[monthly]" [
+        fontsize = 8,
+        label = "Schedule[monthly]"
+    ]
+
+    "File[/var/nginx/proxy_temp]" [
+        fontsize = 8,
+        label = "File[/var/nginx/proxy_temp]"
+    ]
+
+    "File[/data/couchbase]" [
+        fontsize = 8,
+        label = "File[/data/couchbase]"
+    ]
+
+    "User[vagrant]" [
+        fontsize = 8,
+        label = "User[vagrant]"
+    ]
+
+    "Elasticsearch::Service[serviolastic]" [
+        fontsize = 8,
+        label = "Elasticsearch::Service[serviolastic]"
+    ]
+
+    "Archive[kestrel-2.4.1]" [
+        fontsize = 8,
+        label = "Archive[kestrel-2.4.1]"
+    ]
+
+    "Wget::Fetch[couchbase-server-source]" [
+        fontsize = 8,
+        label = "Wget::Fetch[couchbase-server-source]"
+    ]
+
+    "Exec[download_package_elasticsearch]" [
+        fontsize = 8,
+        label = "Exec[download_package_elasticsearch]"
+    ]
+
+    "Anchor[apt::source::nginx]" [
+        fontsize = 8,
+        label = "Anchor[apt::source::nginx]"
+    ]
+
+    "Nginx::Resource::Location[localhost-default]" [
+        fontsize = 8,
+        label = "Nginx::Resource::Location[localhost-default]"
+    ]
+
+    "Archive::Download[apache-storm-0.9.1.tar.gz]" [
+        fontsize = 8,
+        label = "Archive::Download[apache-storm-0.9.1.tar.gz]"
+    ]
+
+    "Package[python]" [
+        fontsize = 8,
+        label = "Package[python]"
+    ]
+
+    "Anchor[elasticsearch::end]" [
+        fontsize = 8,
+        label = "Anchor[elasticsearch::end]"
+    ]
+
+    "File[/etc/elasticsearch/templates_import]" [
+        fontsize = 8,
+        label = "File[/etc/elasticsearch/templates_import]"
+    ]
+
+    "File[sources.list]" [
+        fontsize = 8,
+        label = "File[sources.list]"
+    ]
+
+    "Fstab::Augeas[A test fstab entry]" [
+        fontsize = 8,
+        label = "Fstab::Augeas[A test fstab entry]"
+    ]
+
+    "Anchor[nginx::package::end]" [
+        fontsize = 8,
+        label = "Anchor[nginx::package::end]"
+    ]
+
+    "File[/home/vagrant/LICENSE.txt]" [
+        fontsize = 8,
+        label = "File[/home/vagrant/LICENSE.txt]"
+    ]
+
+    "Anchor[elasticsearch::begin]" [
+        fontsize = 8,
+        label = "Anchor[elasticsearch::begin]"
+    ]
+
+    "File[/var/log/jetty]" [
+        fontsize = 8,
+        label = "File[/var/log/jetty]"
+    ]
+
+    "Package[couchbase-server]" [
+        fontsize = 8,
+        label = "Package[couchbase-server]"
+    ]
+
+    "Archive::Download[kestrel-2.4.1.zip]" [
+        fontsize = 8,
+        label = "Archive::Download[kestrel-2.4.1.zip]"
+    ]
+
+    "Class[Nginx::Package::Debian]" [
+        fontsize = 8,
+        label = "Class[Nginx::Package::Debian]"
+    ]
+
+    "Stage[deploy]" [
+        fontsize = 8,
+        label = "Stage[deploy]"
+    ]
+
+    "Python::Pip[Flask]" [
+        fontsize = 8,
+        label = "Python::Pip[Flask]"
+    ]
+
+    "Archive[apache-apollo-1.7]" [
+        fontsize = 8,
+        label = "Archive[apache-apollo-1.7]"
+    ]
+
+    "Elasticsearch::Plugin[mobz/elasticsearch-head]" [
+        fontsize = 8,
+        label = "Elasticsearch::Plugin[mobz/elasticsearch-head]"
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments]" [
+        fontsize = 8,
+        label = "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments]"
+    ]
+
+    "File[/opt/jetty/webapps/private.war]" [
+        fontsize = 8,
+        label = "File[/opt/jetty/webapps/private.war]"
+    ]
+
+    "Fstab::Augeas::Update[A test fstab entry]" [
+        fontsize = 8,
+        label = "Fstab::Augeas::Update[A test fstab entry]"
+    ]
+
+    "Augeas[Update A test fstab entry]" [
+        fontsize = 8,
+        label = "Augeas[Update A test fstab entry]"
+    ]
+
+    "File[/opt/jetty/webapps/root.war]" [
+        fontsize = 8,
+        label = "File[/opt/jetty/webapps/root.war]"
+    ]
+
+    "Class[Concat::Setup]" [
+        fontsize = 8,
+        label = "Class[Concat::Setup]"
+    ]
+
+    "Class[Python]" [
+        fontsize = 8,
+        label = "Class[Python]"
+    ]
+
+    "Elasticsearch::Plugin[mobz/elasticsearch-head]" [
+        fontsize = 8,
+        label = "Elasticsearch::Plugin[mobz/elasticsearch-head]"
+    ]
+
+    "Exec[apache-storm-0.9.1 unpack]" [
+        fontsize = 8,
+        label = "Exec[apache-storm-0.9.1 unpack]"
+    ]
+
+    "File[/etc/nginx/nginx.conf]" [
+        fontsize = 8,
+        label = "File[/etc/nginx/nginx.conf]"
+    ]
+
+    "Package[elasticsearch]" [
+        fontsize = 8,
+        label = "Package[elasticsearch]"
+    ]
+
+    "Apt::Key[Add key: 7BD9BF62 from Apt::Source nginx]" [
+        fontsize = 8,
+        label = "Apt::Key[Add key: 7BD9BF62 from Apt::Source nginx]"
+    ]
+
+    "File[/var/nginx]" [
+        fontsize = 8,
+        label = "File[/var/nginx]"
+    ]
+
+    "Exec[mkdir_datadir_elasticsearch_serviolastic]" [
+        fontsize = 8,
+        label = "Exec[mkdir_datadir_elasticsearch_serviolastic]"
+    ]
+
+    "Archive::Download[apache-apollo-1.7.tar.gz]" [
+        fontsize = 8,
+        label = "Archive::Download[apache-apollo-1.7.tar.gz]"
+    ]
+
+    "Class[Python::Install]" [
+        fontsize = 8,
+        label = "Class[Python::Install]"
+    ]
+
+    "Class[Elasticsearch::Params]" [
+        fontsize = 8,
+        label = "Class[Elasticsearch::Params]"
+    ]
+
+    "Exec[build_servioticy]" [
+        fontsize = 8,
+        label = "Exec[build_servioticy]"
+    ]
+
+    "File[/etc/elasticsearch/serviolastic]" [
+        fontsize = 8,
+        label = "File[/etc/elasticsearch/serviolastic]"
+    ]
+
+    "Archive::Extract[apache-storm-0.9.1]" [
+        fontsize = 8,
+        label = "Archive::Extract[apache-storm-0.9.1]"
+    ]
+
+    "Class[Settings]" [
+        fontsize = 8,
+        label = "Class[Settings]"
+    ]
+
+    "File[/etc/apt/sources.list.d/webupd8team-java-precise.list]" [
+        fontsize = 8,
+        label = "File[/etc/apt/sources.list.d/webupd8team-java-precise.list]"
+    ]
+
+    "File_line[cross_origin]" [
+        fontsize = 8,
+        label = "File_line[cross_origin]"
+    ]
+
+    "Class[Nginx::Package::Debian]" [
+        fontsize = 8,
+        label = "Class[Nginx::Package::Debian]"
+    ]
+
+    "Python::Pip[simplejson]" [
+        fontsize = 8,
+        label = "Python::Pip[simplejson]"
+    ]
+
+    "Wget::Fetch[jetty_download]" [
+        fontsize = 8,
+        label = "Wget::Fetch[jetty_download]"
+    ]
+
+    "File[/etc/nginx/conf.d/default.conf]" [
+        fontsize = 8,
+        label = "File[/etc/nginx/conf.d/default.conf]"
+    ]
+
+    "Service[jetty]" [
+        fontsize = 8,
+        label = "Service[jetty]"
+    ]
+
+    "File[/var/nginx/client_body_temp]" [
+        fontsize = 8,
+        label = "File[/var/nginx/client_body_temp]"
+    ]
+
+    "Stage[setup_app]" [
+        fontsize = 8,
+        label = "Stage[setup_app]"
+    ]
+
+    "Archive[apache-storm-0.9.1]" [
+        fontsize = 8,
+        label = "Archive[apache-storm-0.9.1]"
+    ]
+
+    "Fstab[A test fstab entry]" [
+        fontsize = 8,
+        label = "Fstab[A test fstab entry]"
+    ]
+
+    "Exec[mkdir_templates_elasticsearch]" [
+        fontsize = 8,
+        label = "Exec[mkdir_templates_elasticsearch]"
+    ]
+
+    "File[01proxy]" [
+        fontsize = 8,
+        label = "File[01proxy]"
+    ]
+
+    "Stage[deploy_infra]" [
+        fontsize = 8,
+        label = "Stage[deploy_infra]"
+    ]
+
+    "Elasticsearch::Instance[serviolastic]" [
+        fontsize = 8,
+        label = "Elasticsearch::Instance[serviolastic]"
+    ]
+
+    "Class[Apt::Params]" [
+        fontsize = 8,
+        label = "Class[Apt::Params]"
+    ]
+
+    "Exec[mkdir_configdir_elasticsearch_serviolastic]" [
+        fontsize = 8,
+        label = "Exec[mkdir_configdir_elasticsearch_serviolastic]"
+    ]
+
+    "Exec[install_plugin_transport-couchbase]" [
+        fontsize = 8,
+        label = "Exec[install_plugin_transport-couchbase]"
+    ]
+
+    "Package[couchbase]" [
+        fontsize = 8,
+        label = "Package[couchbase]"
+    ]
+
+    "Elasticsearch::Service::Init[serviolastic]" [
+        fontsize = 8,
+        label = "Elasticsearch::Service::Init[serviolastic]"
+    ]
+
+    "Class[Apt::Params]" [
+        fontsize = 8,
+        label = "Class[Apt::Params]"
+    ]
+
+    "Class[Main]" [
+        fontsize = 8,
+        label = "Class[Main]"
+    ]
+
+    "File[/etc/elasticsearch/serviolastic/elasticsearch.yml]" [
+        fontsize = 8,
+        label = "File[/etc/elasticsearch/serviolastic/elasticsearch.yml]"
+    ]
+
+    "Concat::Fragment[fd0b234173aed6ab4786b7032214c741]" [
+        fontsize = 8,
+        label = "Concat::Fragment[fd0b234173aed6ab4786b7032214c741]"
+    ]
+
+    "Class[Elasticsearch::Package]" [
+        fontsize = 8,
+        label = "Class[Elasticsearch::Package]"
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments/699_localhost-footer]" [
+        fontsize = 8,
+        label = "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments/699_localhost-footer]"
+    ]
+
+    "Package[python-pip]" [
+        fontsize = 8,
+        label = "Package[python-pip]"
+    ]
+
+    "Anchor[apt::ppa::ppa:webupd8team/java]" [
+        fontsize = 8,
+        label = "Anchor[apt::ppa::ppa:webupd8team/java]"
+    ]
+
+    "Nginx::Resource::Location[localhost-default]" [
+        fontsize = 8,
+        label = "Nginx::Resource::Location[localhost-default]"
+    ]
+
+    "Class[Python::Install]" [
+        fontsize = 8,
+        label = "Class[Python::Install]"
+    ]
+
+    "Wget::Fetch[fetch-maven]" [
+        fontsize = 8,
+        label = "Wget::Fetch[fetch-maven]"
+    ]
+
+    "File[/etc/nginx/sites-available]" [
+        fontsize = 8,
+        label = "File[/etc/nginx/sites-available]"
+    ]
+
+    "Package[python-software-properties]" [
+        fontsize = 8,
+        label = "Package[python-software-properties]"
+    ]
+
+    "File[/etc/nginx/conf.d/example_ssl.conf]" [
+        fontsize = 8,
+        label = "File[/etc/nginx/conf.d/example_ssl.conf]"
+    ]
+
+    "Archive[kestrel-2.4.1]" [
+        fontsize = 8,
+        label = "Archive[kestrel-2.4.1]"
+    ]
+
+    "Class[Apt::Update]" [
+        fontsize = 8,
+        label = "Class[Apt::Update]"
+    ]
+
+    "Schedule[never]" [
+        fontsize = 8,
+        label = "Schedule[never]"
+    ]
+
+    "Stage[setup]" [
+        fontsize = 8,
+        label = "Stage[setup]"
+    ]
+
+    "Class[Nginx::Params]" [
+        fontsize = 8,
+        label = "Class[Nginx::Params]"
+    ]
+
+    "Class[Jetty]" [
+        fontsize = 8,
+        label = "Class[Jetty]"
+    ]
+
+    "Exec[download archive kestrel-2.4.1.zip and check sum]" [
+        fontsize = 8,
+        label = "Exec[download archive kestrel-2.4.1.zip and check sum]"
+    ]
+
+    "File[/data/demo]" [
+        fontsize = 8,
+        label = "File[/data/demo]"
+    ]
+
+    "Class[Fstab::Variables]" [
+        fontsize = 8,
+        label = "Class[Fstab::Variables]"
+    ]
+
+    "Fstab::Augeas::New[A test fstab entry]" [
+        fontsize = 8,
+        label = "Fstab::Augeas::New[A test fstab entry]"
+    ]
+
+    "Class[Elasticsearch::Config]" [
+        fontsize = 8,
+        label = "Class[Elasticsearch::Config]"
+    ]
+
+    "File[/opt/servioticy-dispatcher/dispatcher.xml]" [
+        fontsize = 8,
+        label = "File[/opt/servioticy-dispatcher/dispatcher.xml]"
+    ]
+
+    "Exec[apt_update]" [
+        fontsize = 8,
+        label = "Exec[apt_update]"
+    ]
+
+    "Vcsrepo[/usr/src/servioticy]" [
+        fontsize = 8,
+        label = "Vcsrepo[/usr/src/servioticy]"
+    ]
+
+    "Concat[/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8,
+        label = "Concat[/etc/nginx/sites-available/localhost.conf]"
+    ]
+
+    "Class[Stdlib::Stages]" [
+        fontsize = 8,
+        label = "Class[Stdlib::Stages]"
+    ]
+
+    "Class[Elasticsearch::Package]" [
+        fontsize = 8,
+        label = "Class[Elasticsearch::Package]"
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments/001_localhost-header]" [
+        fontsize = 8,
+        label = "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments/001_localhost-header]"
+    ]
+
+    "Package[nginx]" [
+        fontsize = 8,
+        label = "Package[nginx]"
+    ]
+
+    "Archive::Extract[apache-apollo-1.7]" [
+        fontsize = 8,
+        label = "Archive::Extract[apache-apollo-1.7]"
+    ]
+
+    "Class[Git]" [
+        fontsize = 8,
+        label = "Class[Git]"
+    ]
+
+    "Package[forever]" [
+        fontsize = 8,
+        label = "Package[forever]"
+    ]
+
+    "File[/etc/apt/sources.list.d/chris-lea-node_js-precise.list]" [
+        fontsize = 8,
+        label = "File[/etc/apt/sources.list.d/chris-lea-node_js-precise.list]"
+    ]
+
+    "Class[Apt]" [
+        fontsize = 8,
+        label = "Class[Apt]"
+    ]
+
+    "Schedule[weekly]" [
+        fontsize = 8,
+        label = "Schedule[weekly]"
+    ]
+
+    "Schedule[puppet]" [
+        fontsize = 8,
+        label = "Schedule[puppet]"
+    ]
+
+    "Exec[wait for couchbase]" [
+        fontsize = 8,
+        label = "Exec[wait for couchbase]"
+    ]
+
+    "Exec[run_kestrel]" [
+        fontsize = 8,
+        label = "Exec[run_kestrel]"
+    ]
+
+    "File[/opt/servibroker/etc/users.properties]" [
+        fontsize = 8,
+        label = "File[/opt/servibroker/etc/users.properties]"
+    ]
+
+    "Stage[runtime]" [
+        fontsize = 8,
+        label = "Stage[runtime]"
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments/500_fd0b234173aed6ab4786b7032214c741]" [
+        fontsize = 8,
+        label = "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments/500_fd0b234173aed6ab4786b7032214c741]"
+    ]
+
+    "Package[python-dev]" [
+        fontsize = 8,
+        label = "Package[python-dev]"
+    ]
+
+    "Package[python-virtualenv]" [
+        fontsize = 8,
+        label = "Package[python-virtualenv]"
+    ]
+
+    "Anchor[nginx::end]" [
+        fontsize = 8,
+        label = "Anchor[nginx::end]"
+    ]
+
+    "Apt::Ppa[ppa:chris-lea/node.js]" [
+        fontsize = 8,
+        label = "Apt::Ppa[ppa:chris-lea/node.js]"
+    ]
+
+    "File[/var/lib/puppet/concat/bin]" [
+        fontsize = 8,
+        label = "File[/var/lib/puppet/concat/bin]"
+    ]
+
+    "Exec[apt_get_update_for_nginx]" [
+        fontsize = 8,
+        label = "Exec[apt_get_update_for_nginx]"
+    ]
+
+    "Exec[set-licence-seen]" [
+        fontsize = 8,
+        label = "Exec[set-licence-seen]"
+    ]
+
+    "Exec[wait for elasticsearch]" [
+        fontsize = 8,
+        label = "Exec[wait for elasticsearch]"
+    ]
+
+    "Anchor[nginx::begin]" [
+        fontsize = 8,
+        label = "Anchor[nginx::begin]"
+    ]
+
+    "Exec[add-apt-repository-ppa:chris-lea/node.js]" [
+        fontsize = 8,
+        label = "Exec[add-apt-repository-ppa:chris-lea/node.js]"
+    ]
+
+    "Exec[wget-couchbase-server-source]" [
+        fontsize = 8,
+        label = "Exec[wget-couchbase-server-source]"
+    ]
+
+    "Concat::Fragment[localhost-footer]" [
+        fontsize = 8,
+        label = "Concat::Fragment[localhost-footer]"
+    ]
+
+    "Class[Nginx::Service]" [
+        fontsize = 8,
+        label = "Class[Nginx::Service]"
+    ]
+
+    "Elasticsearch::Plugin[transport-couchbase]" [
+        fontsize = 8,
+        label = "Elasticsearch::Plugin[transport-couchbase]"
+    ]
+
+    "Class[Elasticsearch::Params]" [
+        fontsize = 8,
+        label = "Class[Elasticsearch::Params]"
+    ]
+
+    "Exec[run_broker]" [
+        fontsize = 8,
+        label = "Exec[run_broker]"
+    ]
+
+    "Exec[run_bridge]" [
+        fontsize = 8,
+        label = "Exec[run_bridge]"
+    ]
+
+    "File[/opt/apache-apollo-1.7]" [
+        fontsize = 8,
+        label = "File[/opt/apache-apollo-1.7]"
+    ]
+
+    "Vcsrepo[/opt/servioticy-bridge]" [
+        fontsize = 8,
+        label = "Vcsrepo[/opt/servioticy-bridge]"
+    ]
+
+    "Archive::Download[apache-apollo-1.7.tar.gz]" [
+        fontsize = 8,
+        label = "Archive::Download[apache-apollo-1.7.tar.gz]"
+    ]
+
+    "Class[Python::Config]" [
+        fontsize = 8,
+        label = "Class[Python::Config]"
+    ]
+
+    "Apt::Ppa[ppa:webupd8team/java]" [
+        fontsize = 8,
+        label = "Apt::Ppa[ppa:webupd8team/java]"
+    ]
+
+    "Augeas[defaults_serviolastic]" [
+        fontsize = 8,
+        label = "Augeas[defaults_serviolastic]"
+    ]
+
+    "Augeas[A test fstab entry]" [
+        fontsize = 8,
+        label = "Augeas[A test fstab entry]"
+    ]
+
+    "File[/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8,
+        label = "File[/etc/nginx/sites-available/localhost.conf]"
+    ]
+
+    "Exec[rm-on-error-apache-storm-0.9.1.tar.gz]" [
+        fontsize = 8,
+        label = "Exec[rm-on-error-apache-storm-0.9.1.tar.gz]"
+    ]
+
+    "Anchor[nginx::package::begin]" [
+        fontsize = 8,
+        label = "Anchor[nginx::package::begin]"
+    ]
+
+    "Package[make]" [
+        fontsize = 8,
+        label = "Package[make]"
+    ]
+
+    "Archive::Download[apache-storm-0.9.1.tar.gz]" [
+        fontsize = 8,
+        label = "Archive::Download[apache-storm-0.9.1.tar.gz]"
+    ]
+
+    "Exec[apt-get update]" [
+        fontsize = 8,
+        label = "Exec[apt-get update]"
+    ]
+
+    "Anchor[apt::update]" [
+        fontsize = 8,
+        label = "Anchor[apt::update]"
+    ]
+
+    "Exec[create-indices]" [
+        fontsize = 8,
+        label = "Exec[create-indices]"
+    ]
+
+    "Vcsrepo[/opt/servioticy-composer]" [
+        fontsize = 8,
+        label = "Vcsrepo[/opt/servioticy-composer]"
+    ]
+
+    "Package[oracle-java7-installer]" [
+        fontsize = 8,
+        label = "Package[oracle-java7-installer]"
+    ]
+
+    "Service[nginx]" [
+        fontsize = 8,
+        label = "Service[nginx]"
+    ]
+
+    "File[/home/vagrant/VERSION.txt]" [
+        fontsize = 8,
+        label = "File[/home/vagrant/VERSION.txt]"
+    ]
+
+    "File[/opt/servioticy-dispatcher]" [
+        fontsize = 8,
+        label = "File[/opt/servioticy-dispatcher]"
+    ]
+
+    "Exec[rm-on-error-kestrel-2.4.1.zip]" [
+        fontsize = 8,
+        label = "Exec[rm-on-error-kestrel-2.4.1.zip]"
+    ]
+
+    "Anchor[nginx::apt_repo]" [
+        fontsize = 8,
+        label = "Anchor[nginx::apt_repo]"
+    ]
+
+    "Schedule[daily]" [
+        fontsize = 8,
+        label = "Schedule[daily]"
+    ]
+
+    "Exec[create_buckets]" [
+        fontsize = 8,
+        label = "Exec[create_buckets]"
+    ]
+
+    "File[/tmp/nginx.mail.d]" [
+        fontsize = 8,
+        label = "File[/tmp/nginx.mail.d]"
+    ]
+
+    "Package[wget]" [
+        fontsize = 8,
+        label = "Package[wget]"
+    ]
+
+    "Group[vagrant]" [
+        fontsize = 8,
+        label = "Group[vagrant]"
+    ]
+
+    "Stage[main]" -> "Class[Elasticsearch::Config]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Package]" -> "Class[Elasticsearch::Config]" [
+        fontsize = 8
+    ]
+
+    "Class[Stdlib]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Settings]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Fstab::Variables]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Git]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Package]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Service]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Package]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Params]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Jetty]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Apt]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Concat::Setup]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Python]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Stdlib::Stages]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Package::Debian]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Config]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Maven::Maven]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Wget]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Python::Install]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Params]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Apt::Update]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Apt::Params]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Python::Config]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Archive::Extract[apache-apollo-1.7]" -> "Exec[apache-apollo-1.7 unpack]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[run_storm]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servioticy-dispatcher/dispatcher.xml]" -> "Exec[run_storm]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servioticy-dispatcher/dispatcher-0.2.1-jar-with-dependencies.jar]" -> "Exec[run_storm]" [
+        fontsize = 8
+    ]
+
+    "Exec[run_kestrel]" -> "Exec[run_storm]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "Exec[run_storm]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "File[/tmp/nginx.d]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Package]" -> "Exec[create_package_dir_elasticsearch]" [
+        fontsize = 8
+    ]
+
+    "Nginx::Resource::Vhost[localhost]" -> "Concat[/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "Filesystem[/dev/data/data]" -> "Lvm::Volume[data]" [
+        fontsize = 8
+    ]
+
+    "Physical_volume[/dev/sdb]" -> "Lvm::Volume[data]" [
+        fontsize = 8
+    ]
+
+    "Volume_group[data]" -> "Lvm::Volume[data]" [
+        fontsize = 8
+    ]
+
+    "Logical_volume[data]" -> "Lvm::Volume[data]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Wget]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat]" -> "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "Concat[/etc/nginx/sites-available/localhost.conf]" -> "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "Archive::Download[apache-storm-0.9.1.tar.gz]" -> "Exec[download archive apache-storm-0.9.1.tar.gz and check sum]" [
+        fontsize = 8
+    ]
+
+    "Package[curl]" -> "Exec[download archive apache-storm-0.9.1.tar.gz and check sum]" [
+        fontsize = 8
+    ]
+
+    "Exec[apt_update]" -> "Class[Apt::Update]" [
+        fontsize = 8
+    ]
+
+    "Package[wget]" -> "Class[Wget]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/data]" [
+        fontsize = 8
+    ]
+
+    "Wget::Fetch[fetch-maven]" -> "Exec[wget-fetch-maven]" [
+        fontsize = 8
+    ]
+
+    "Class[Wget]" -> "Exec[wget-fetch-maven]" [
+        fontsize = 8
+    ]
+
+    "Wget::Fetch[jetty_download]" -> "Exec[wget-jetty_download]" [
+        fontsize = 8
+    ]
+
+    "Class[Wget]" -> "Exec[wget-jetty_download]" [
+        fontsize = 8
+    ]
+
+    "Vcsrepo[/usr/src/elasticsearch-transport-couchbase]" -> "Exec[build_elasticsearch-transport-couchbase]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[build_elasticsearch-transport-couchbase]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "Exec[build_elasticsearch-transport-couchbase]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Fstab::Variables]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Package::Debian]" -> "Apt::Source[nginx]" [
+        fontsize = 8
+    ]
+
+    "Stage[runtime]" -> "Stage[runtime]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Nginx]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[set-licence-selected]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/home/vagrant/README.demos.txt]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "File[/home/vagrant/README.demos.txt]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "File[/home/vagrant/README.demos.txt]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Package]" -> "File[/etc/elasticsearch/serviolastic/logging.yml]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Instance[serviolastic]" -> "File[/etc/elasticsearch/serviolastic/logging.yml]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/elasticsearch/serviolastic]" -> "File[/etc/elasticsearch/serviolastic/logging.yml]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/init.d/elasticsearch-serviolastic]" -> "Elasticsearch::Service::Init[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Augeas[defaults_serviolastic]" -> "Elasticsearch::Service::Init[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Service[serviolastic]" -> "Elasticsearch::Service::Init[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Nginx::Resource::Vhost[localhost]" -> "Concat::Fragment[localhost-header]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Package[unzip]" [
+        fontsize = 8
+    ]
+
+    "Exec[apt-get update]" -> "Package[unzip]" [
+        fontsize = 8
+    ]
+
+    "Exec[set-licence-seen]" -> "Package[unzip]" [
+        fontsize = 8
+    ]
+
+    "Exec[set-licence-selected]" -> "Package[unzip]" [
+        fontsize = 8
+    ]
+
+    "Apt::Key[Add key: 7BD9BF62 from Apt::Source nginx]" -> "Anchor[apt_key 7BD9BF62 present]" [
+        fontsize = 8
+    ]
+
+    "Apt_key[Add key: 7BD9BF62 from Apt::Source nginx]" -> "Anchor[apt_key 7BD9BF62 present]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "File[/etc/nginx/conf.d/proxy.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/conf.d]" -> "File[/etc/nginx/conf.d/proxy.conf]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Package[g++]" [
+        fontsize = 8
+    ]
+
+    "Exec[apt-get update]" -> "Package[g++]" [
+        fontsize = 8
+    ]
+
+    "Exec[set-licence-seen]" -> "Package[g++]" [
+        fontsize = 8
+    ]
+
+    "Exec[set-licence-selected]" -> "Package[g++]" [
+        fontsize = 8
+    ]
+
+    "Python::Pip[simplejson]" -> "Exec[pip_install_simplejson]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Stdlib::Stages]" [
+        fontsize = 8
+    ]
+
+    "Exec[wget-couchbase-server-source]" -> "Wget::Fetch[couchbase-server-source]" [
+        fontsize = 8
+    ]
+
+    "Class[Concat::Setup]" -> "File[/var/lib/puppet/concat]" [
+        fontsize = 8
+    ]
+
+    "Wget::Fetch[jetty_download]" -> "Exec[jetty_untar]" [
+        fontsize = 8
+    ]
+
+    "Class[Jetty]" -> "Exec[jetty_untar]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "Exec[jetty_untar]" [
+        fontsize = 8
+    ]
+
+    "Class[Python]" -> "Anchor[python::end]" [
+        fontsize = 8
+    ]
+
+    "Class[Python::Config]" -> "Anchor[python::end]" [
+        fontsize = 8
+    ]
+
+    "Volume_group[data]" -> "Logical_volume[data]" [
+        fontsize = 8
+    ]
+
+    "Lvm::Volume[data]" -> "Logical_volume[data]" [
+        fontsize = 8
+    ]
+
+    "Maven::Environment[maven-env]" -> "File[/home/vagrant/.mavenrc]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "File[/home/vagrant/.mavenrc]" [
+        fontsize = 8
+    ]
+
+    "Physical_volume[/dev/sdb]" -> "Volume_group[data]" [
+        fontsize = 8
+    ]
+
+    "Lvm::Volume[data]" -> "Volume_group[data]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Maven::Maven]" [
+        fontsize = 8
+    ]
+
+    "Vcsrepo[/usr/src/servioticy]" -> "Class[Maven::Maven]" [
+        fontsize = 8
+    ]
+
+    "Apt::Ppa[ppa:chris-lea/node.js]" -> "Anchor[apt::ppa::ppa:chris-lea/node.js]" [
+        fontsize = 8
+    ]
+
+    "Class[Apt::Update]" -> "Anchor[apt::ppa::ppa:chris-lea/node.js]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/home/vagrant/downloads/]" [
+        fontsize = 8
+    ]
+
+    "Anchor[nginx::package::begin]" -> "Class[Nginx::Package]" [
+        fontsize = 8
+    ]
+
+    "Anchor[nginx::package::end]" -> "Class[Nginx::Package]" [
+        fontsize = 8
+    ]
+
+    "Stage[deploy_app]" -> "Stage[deploy_app]" [
+        fontsize = 8
+    ]
+
+    "File[/home/vagrant/.mavenrc]" -> "Maven::Environment[maven-env]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf]" -> "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments.concat.out]" [
+        fontsize = 8
+    ]
+
+    "Concat[/etc/nginx/sites-available/localhost.conf]" -> "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments.concat.out]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[run_userDB]" [
+        fontsize = 8
+    ]
+
+    "File[/data/userDB]" -> "Exec[run_userDB]" [
+        fontsize = 8
+    ]
+
+    "File[/data/userDB]" -> "Exec[run_userDB]" [
+        fontsize = 8
+    ]
+
+    "Package[python-pip]" -> "Exec[run_userDB]" [
+        fontsize = 8
+    ]
+
+    "Python::Pip[Flask]" -> "Exec[run_userDB]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "Exec[run_userDB]" [
+        fontsize = 8
+    ]
+
+    "Class[Maven::Maven]" -> "Exec[maven-untar]" [
+        fontsize = 8
+    ]
+
+    "Wget::Fetch[fetch-maven]" -> "Exec[maven-untar]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "File[/etc/nginx]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/kestrel-2.4.1]" -> "File[/opt/kestrel-2.4.1/config/servioticy_queues.scala]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/opt/kestrel-2.4.1/config/servioticy_queues.scala]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "File[/opt/kestrel-2.4.1/config/servioticy_queues.scala]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "File[/opt/kestrel-2.4.1/config/servioticy_queues.scala]" [
+        fontsize = 8
+    ]
+
+    "Stage[setup_app]" -> "Stage[setup_app]" [
+        fontsize = 8
+    ]
+
+    "Exec[create_broker]" -> "File[/opt/servibroker/etc/groups.properties]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/opt/servibroker/etc/groups.properties]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "File[/opt/servibroker/etc/groups.properties]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "File[/opt/servibroker/etc/groups.properties]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servibroker]" -> "File[/opt/servibroker/etc/groups.properties]" [
+        fontsize = 8
+    ]
+
+    "Class[Maven::Maven]" -> "File[/usr/bin/mvn]" [
+        fontsize = 8
+    ]
+
+    "Exec[maven-untar]" -> "File[/usr/bin/mvn]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/opt/kestrel-2.4.1]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "File[/opt/kestrel-2.4.1]" [
+        fontsize = 8
+    ]
+
+    "Archive[kestrel-2.4.1]" -> "File[/opt/kestrel-2.4.1]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "File[/opt/kestrel-2.4.1]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Package]" -> "File[/opt/elasticsearch/swdl]" [
+        fontsize = 8
+    ]
+
+    "Exec[create_package_dir_elasticsearch]" -> "File[/opt/elasticsearch/swdl]" [
+        fontsize = 8
+    ]
+
+    "Apt::Key[Add key: 7BD9BF62 from Apt::Source nginx]" -> "File[nginx.list]" [
+        fontsize = 8
+    ]
+
+    "Apt::Source[nginx]" -> "File[nginx.list]" [
+        fontsize = 8
+    ]
+
+    "File[sources.list.d]" -> "File[nginx.list]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Package]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "Stage[runtime]" -> "Stage[setup_infra]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Elasticsearch::Instance[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch]" -> "Elasticsearch::Instance[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Params]" -> "Elasticsearch::Instance[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/opt/servioticy-dispatcher/dispatcher-0.2.1-jar-with-dependencies.jar]" [
+        fontsize = 8
+    ]
+
+    "Exec[build_servioticy]" -> "File[/opt/servioticy-dispatcher/dispatcher-0.2.1-jar-with-dependencies.jar]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "File[/opt/servioticy-dispatcher/dispatcher-0.2.1-jar-with-dependencies.jar]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servioticy-dispatcher]" -> "File[/opt/servioticy-dispatcher/dispatcher-0.2.1-jar-with-dependencies.jar]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servioticy-dispatcher]" -> "File[/opt/servioticy-dispatcher/dispatcher-0.2.1-jar-with-dependencies.jar]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "File[/opt/servioticy-dispatcher/dispatcher-0.2.1-jar-with-dependencies.jar]" [
+        fontsize = 8
+    ]
+
+    "Class[Apt]" -> "File[sources.list.d]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Nginx::Service]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments.concat.out]" -> "Class[Nginx::Service]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/sites-available/localhost.conf]" -> "Class[Nginx::Service]" [
+        fontsize = 8
+    ]
+
+    "Concat[/etc/nginx/sites-available/localhost.conf]" -> "Class[Nginx::Service]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf]" -> "Class[Nginx::Service]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Package]" -> "Class[Nginx::Service]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat]" -> "Class[Nginx::Service]" [
+        fontsize = 8
+    ]
+
+    "Nginx::Resource::Location[localhost-default]" -> "Class[Nginx::Service]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments.concat]" -> "Class[Nginx::Service]" [
+        fontsize = 8
+    ]
+
+    "Anchor[nginx::begin]" -> "Class[Nginx::Service]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/bin/concatfragments.sh]" -> "Class[Nginx::Service]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/bin]" -> "Class[Nginx::Service]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "Class[Nginx::Service]" [
+        fontsize = 8
+    ]
+
+    "Class[Settings]" -> "Class[Settings]" [
+        fontsize = 8
+    ]
+
+    "Package[oracle-java7-installer]" -> "Vcsrepo[/usr/src/elasticsearch-transport-couchbase]" [
+        fontsize = 8
+    ]
+
+    "Package[git]" -> "Vcsrepo[/usr/src/elasticsearch-transport-couchbase]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Vcsrepo[/usr/src/elasticsearch-transport-couchbase]" [
+        fontsize = 8
+    ]
+
+    "Exec[build_couchbase_capi]" -> "Vcsrepo[/usr/src/elasticsearch-transport-couchbase]" [
+        fontsize = 8
+    ]
+
+    "Class[Maven::Maven]" -> "Vcsrepo[/usr/src/elasticsearch-transport-couchbase]" [
+        fontsize = 8
+    ]
+
+    "File[preferences.d]" -> "Class[Apt]" [
+        fontsize = 8
+    ]
+
+    "File[sources.list]" -> "Class[Apt]" [
+        fontsize = 8
+    ]
+
+    "File[old-proxy-file]" -> "Class[Apt]" [
+        fontsize = 8
+    ]
+
+    "File[sources.list.d]" -> "Class[Apt]" [
+        fontsize = 8
+    ]
+
+    "Anchor[apt::update]" -> "Class[Apt]" [
+        fontsize = 8
+    ]
+
+    "File[01proxy]" -> "Class[Apt]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[wait for api]" [
+        fontsize = 8
+    ]
+
+    "Service[jetty]" -> "Exec[wait for api]" [
+        fontsize = 8
+    ]
+
+    "Package[couchbase-server]" -> "Exec[wait for api]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servioticy_scripts]" -> "Exec[wait for api]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat]" -> "Class[Concat::Setup]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/bin]" -> "Class[Concat::Setup]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/bin/concatfragments.sh]" -> "Class[Concat::Setup]" [
+        fontsize = 8
+    ]
+
+    "Exec[apache-storm-0.9.1 unpack]" -> "Archive::Extract[apache-storm-0.9.1]" [
+        fontsize = 8
+    ]
+
+    "Stage[deploy]" -> "Stage[deploy]" [
+        fontsize = 8
+    ]
+
+    "Anchor[nginx::begin]" -> "Class[Nginx]" [
+        fontsize = 8
+    ]
+
+    "Anchor[nginx::end]" -> "Class[Nginx]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Params]" -> "Class[Nginx::Params]" [
+        fontsize = 8
+    ]
+
+    "Exec[wget-fetch-maven]" -> "Wget::Fetch[fetch-maven]" [
+        fontsize = 8
+    ]
+
+    "File[/usr/local/bin/mvn]" -> "Class[Maven::Maven]" [
+        fontsize = 8
+    ]
+
+    "File[/usr/bin/mvn]" -> "Class[Maven::Maven]" [
+        fontsize = 8
+    ]
+
+    "Exec[maven-untar]" -> "Class[Maven::Maven]" [
+        fontsize = 8
+    ]
+
+    "Wget::Fetch[fetch-maven]" -> "Class[Maven::Maven]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Service::Init[serviolastic]" -> "File[/etc/init.d/elasticsearch-serviolastic]" [
+        fontsize = 8
+    ]
+
+    "File[/home/vagrant/downloads/]" -> "Exec[rm-on-error-apache-apollo-1.7.tar.gz]" [
+        fontsize = 8
+    ]
+
+    "Archive::Download[apache-apollo-1.7.tar.gz]" -> "Exec[rm-on-error-apache-apollo-1.7.tar.gz]" [
+        fontsize = 8
+    ]
+
+    "File[/var/log/jetty]" -> "File[/etc/default/jetty]" [
+        fontsize = 8
+    ]
+
+    "Class[Jetty]" -> "File[/etc/default/jetty]" [
+        fontsize = 8
+    ]
+
+    "Class[Jetty]" -> "Wget::Fetch[jetty_download]" [
+        fontsize = 8
+    ]
+
+    "Apt::Key[Add key: 7BD9BF62 from Apt::Source nginx]" -> "Apt_key[Add key: 7BD9BF62 from Apt::Source nginx]" [
+        fontsize = 8
+    ]
+
+    "Class[Git]" -> "Package[git]" [
+        fontsize = 8
+    ]
+
+    "Exec[kestrel-2.4.1 unpack]" -> "Archive::Extract[kestrel-2.4.1]" [
+        fontsize = 8
+    ]
+
+    "Exec[rm-on-error-kestrel-2.4.1.zip]" -> "Archive::Download[kestrel-2.4.1.zip]" [
+        fontsize = 8
+    ]
+
+    "Exec[download archive kestrel-2.4.1.zip and check sum]" -> "Archive::Download[kestrel-2.4.1.zip]" [
+        fontsize = 8
+    ]
+
+    "Fstab[A test fstab entry]" -> "Fstab::Augeas[A test fstab entry]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Package[nodejs]" [
+        fontsize = 8
+    ]
+
+    "Exec[apt-get update]" -> "Package[nodejs]" [
+        fontsize = 8
+    ]
+
+    "Exec[set-licence-seen]" -> "Package[nodejs]" [
+        fontsize = 8
+    ]
+
+    "Exec[set-licence-selected]" -> "Package[nodejs]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Package[stompjs]" [
+        fontsize = 8
+    ]
+
+    "Package[nodejs]" -> "Package[stompjs]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/sites-enabled]" -> "File[/etc/nginx/sites-enabled/default]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "File[/etc/nginx/sites-enabled/default]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/sites-available]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/conf.d/example_ssl.conf]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/conf.mail.d]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/var/nginx]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/conf.mail.d/vhost_autogen.conf]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/tmp/nginx.d]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/var/nginx/proxy_temp]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/sites-enabled]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/tmp/nginx.mail.d]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/var/nginx/client_body_temp]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/conf.d/default.conf]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/sites-enabled/default]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/conf.d/proxy.conf]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/conf.d]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/nginx.conf]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/conf.d/vhost_autogen.conf]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx]" -> "Class[Nginx::Config]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Archive[apache-apollo-1.7]" [
+        fontsize = 8
+    ]
+
+    "File[/home/vagrant/downloads/]" -> "Archive[apache-apollo-1.7]" [
+        fontsize = 8
+    ]
+
+    "Package[curl]" -> "Archive[apache-apollo-1.7]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[create-xdcr]" [
+        fontsize = 8
+    ]
+
+    "Exec[create-indices]" -> "Exec[create-xdcr]" [
+        fontsize = 8
+    ]
+
+    "Exec[create_buckets]" -> "Exec[create-xdcr]" [
+        fontsize = 8
+    ]
+
+    "Vcsrepo[/usr/src/couchbase-capi-server]" -> "Exec[build_couchbase_capi]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[build_couchbase_capi]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "Exec[build_couchbase_capi]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "File[/etc/nginx/conf.d/vhost_autogen.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/conf.d]" -> "File[/etc/nginx/conf.d/vhost_autogen.conf]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Package]" -> "File[/data/elasticsearch]" [
+        fontsize = 8
+    ]
+
+    "Exec[mkdir_datadir_elasticsearch_serviolastic]" -> "File[/data/elasticsearch]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Instance[serviolastic]" -> "File[/data/elasticsearch]" [
+        fontsize = 8
+    ]
+
+    "File[/data]" -> "File[/data/elasticsearch]" [
+        fontsize = 8
+    ]
+
+    "Stage[setup_infra]" -> "Stage[setup_infra]" [
+        fontsize = 8
+    ]
+
+    "Package[oracle-java7-installer]" -> "Class[Elasticsearch]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Elasticsearch]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Config]" -> "File[/etc/elasticsearch]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Stage[setup]" -> "Stage[main]" [
+        fontsize = 8
+    ]
+
+    "Class[Python]" -> "Anchor[python::begin]" [
+        fontsize = 8
+    ]
+
+    "Python::Pip[Flask]" -> "Exec[pip_install_Flask]" [
+        fontsize = 8
+    ]
+
+    "Class[Apt]" -> "File[old-proxy-file]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "File[/etc/nginx/conf.d]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx]" -> "File[/etc/nginx/conf.d]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Instance[serviolastic]" -> "Vcsrepo[/opt/servioticy-indices]" [
+        fontsize = 8
+    ]
+
+    "Package[git]" -> "Vcsrepo[/opt/servioticy-indices]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Vcsrepo[/opt/servioticy-indices]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Service::Init[serviolastic]" -> "Service[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Augeas[defaults_serviolastic]" -> "Service[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Augeas[defaults_serviolastic]" -> "Service[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/init.d/elasticsearch-serviolastic]" -> "Service[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/init.d/elasticsearch-serviolastic]" -> "Service[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf]" -> "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments.concat]" [
+        fontsize = 8
+    ]
+
+    "Concat[/etc/nginx/sites-available/localhost.conf]" -> "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments.concat]" [
+        fontsize = 8
+    ]
+
+    "Archive::Extract[kestrel-2.4.1]" -> "Exec[kestrel-2.4.1 unpack]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/conf.mail.d]" -> "File[/etc/nginx/conf.mail.d/vhost_autogen.conf]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "File[/etc/nginx/conf.mail.d/vhost_autogen.conf]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/opt/servioticy_scripts]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "File[/opt/servioticy_scripts]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "File[/opt/servioticy_scripts]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Apt::Ppa[ppa:chris-lea/node.js]" [
+        fontsize = 8
+    ]
+
+    "Package[oracle-java7-installer]" -> "Vcsrepo[/usr/src/couchbase-capi-server]" [
+        fontsize = 8
+    ]
+
+    "Package[git]" -> "Vcsrepo[/usr/src/couchbase-capi-server]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Vcsrepo[/usr/src/couchbase-capi-server]" [
+        fontsize = 8
+    ]
+
+    "Class[Maven::Maven]" -> "Vcsrepo[/usr/src/couchbase-capi-server]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/opt/jetty/start.ini]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/jetty]" -> "File[/opt/jetty/start.ini]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "File[/etc/nginx/conf.mail.d]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx]" -> "File[/etc/nginx/conf.mail.d]" [
+        fontsize = 8
+    ]
+
+    "Anchor[python::end]" -> "Class[Python]" [
+        fontsize = 8
+    ]
+
+    "Anchor[python::begin]" -> "Class[Python]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Jetty]" [
+        fontsize = 8
+    ]
+
+    "Package[couchbase-server]" -> "Class[Jetty]" [
+        fontsize = 8
+    ]
+
+    "Anchor[elasticsearch::end]" -> "Class[Elasticsearch]" [
+        fontsize = 8
+    ]
+
+    "Anchor[elasticsearch::begin]" -> "Class[Elasticsearch]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Lvm::Volume[data]" [
+        fontsize = 8
+    ]
+
+    "Class[Apt]" -> "File[preferences.d]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Plugin[mobz/elasticsearch-head]" -> "Exec[install_plugin_mobz/elasticsearch-head]" [
+        fontsize = 8
+    ]
+
+    "File[/usr/share/elasticsearch/plugins]" -> "Exec[install_plugin_mobz/elasticsearch-head]" [
+        fontsize = 8
+    ]
+
+    "Class[Jetty]" -> "File[/opt/jetty]" [
+        fontsize = 8
+    ]
+
+    "Exec[jetty_untar]" -> "File[/opt/jetty]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[run_composer]" [
+        fontsize = 8
+    ]
+
+    "Vcsrepo[/opt/servioticy-composer]" -> "Exec[run_composer]" [
+        fontsize = 8
+    ]
+
+    "Package[forever]" -> "Exec[run_composer]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Service::Init[serviolastic]" -> "Elasticsearch::Service[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Archive::Download[kestrel-2.4.1.zip]" -> "Archive::Extract[kestrel-2.4.1]" [
+        fontsize = 8
+    ]
+
+    "Archive[kestrel-2.4.1]" -> "Archive::Extract[kestrel-2.4.1]" [
+        fontsize = 8
+    ]
+
+    "Apt::Key[Add key: 7BD9BF62 from Apt::Source nginx]" -> "Apt::Source[nginx]" [
+        fontsize = 8
+    ]
+
+    "Anchor[apt::source::nginx]" -> "Apt::Source[nginx]" [
+        fontsize = 8
+    ]
+
+    "File[nginx.list]" -> "Apt::Source[nginx]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Python::Pip[simplejson]" [
+        fontsize = 8
+    ]
+
+    "Class[Python::Install]" -> "Python::Pip[simplejson]" [
+        fontsize = 8
+    ]
+
+    "Class[Jetty]" -> "File[/etc/init.d/jetty]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/default/jetty]" -> "File[/etc/init.d/jetty]" [
+        fontsize = 8
+    ]
+
+    "Class[Maven::Maven]" -> "File[/usr/local/bin/mvn]" [
+        fontsize = 8
+    ]
+
+    "File[/usr/bin/mvn]" -> "File[/usr/local/bin/mvn]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/sites-available/localhost.conf]" -> "File[localhost.conf symlink]" [
+        fontsize = 8
+    ]
+
+    "Concat[/etc/nginx/sites-available/localhost.conf]" -> "File[localhost.conf symlink]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/sites-enabled]" -> "File[localhost.conf symlink]" [
+        fontsize = 8
+    ]
+
+    "Nginx::Resource::Vhost[localhost]" -> "File[localhost.conf symlink]" [
+        fontsize = 8
+    ]
+
+    "Package[python-software-properties]" -> "Exec[add-apt-repository-ppa:webupd8team/java]" [
+        fontsize = 8
+    ]
+
+    "Apt::Ppa[ppa:webupd8team/java]" -> "Exec[add-apt-repository-ppa:webupd8team/java]" [
+        fontsize = 8
+    ]
+
+    "File[sources.list.d]" -> "Exec[add-apt-repository-ppa:webupd8team/java]" [
+        fontsize = 8
+    ]
+
+    "Augeas[A test fstab entry]" -> "Fstab::Augeas::New[A test fstab entry]" [
+        fontsize = 8
+    ]
+
+    "Exec[apache-apollo-1.7 unpack]" -> "Archive::Extract[apache-apollo-1.7]" [
+        fontsize = 8
+    ]
+
+    "Class[Python::Config]" -> "Class[Python::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments/500_fd0b234173aed6ab4786b7032214c741]" -> "Exec[concat_/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf]" -> "Exec[concat_/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf]" -> "Exec[concat_/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments.concat]" -> "Exec[concat_/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "Concat[/etc/nginx/sites-available/localhost.conf]" -> "Exec[concat_/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments/001_localhost-header]" -> "Exec[concat_/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/bin/concatfragments.sh]" -> "Exec[concat_/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments/699_localhost-footer]" -> "Exec[concat_/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments]" -> "Exec[concat_/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments]" -> "Exec[concat_/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/home/vagrant/README.txt]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "File[/home/vagrant/README.txt]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "File[/home/vagrant/README.txt]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments/699_localhost-footer]" -> "Concat::Fragment[localhost-footer]" [
+        fontsize = 8
+    ]
+
+    "Stage[setup_infra]" -> "Stage[deploy_infra]" [
+        fontsize = 8
+    ]
+
+    "Class[Stdlib]" -> "Class[Stdlib]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Fstab[A test fstab entry]" [
+        fontsize = 8
+    ]
+
+    "Lvm::Volume[data]" -> "Fstab[A test fstab entry]" [
+        fontsize = 8
+    ]
+
+    "Class[Concat::Setup]" -> "File[/var/lib/puppet/concat/bin/concatfragments.sh]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/bin]" -> "File[/var/lib/puppet/concat/bin/concatfragments.sh]" [
+        fontsize = 8
+    ]
+
+    "Apt::Source[nginx]" -> "Apt::Key[Add key: 7BD9BF62 from Apt::Source nginx]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Maven::Environment[maven-env]" [
+        fontsize = 8
+    ]
+
+    "Class[Maven::Maven]" -> "Maven::Environment[maven-env]" [
+        fontsize = 8
+    ]
+
+    "Package[oracle-java7-installer]" -> "Exec[create_broker]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[create_broker]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/apache-apollo-1.7]" -> "Exec[create_broker]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Nginx::Package]" [
+        fontsize = 8
+    ]
+
+    "Anchor[nginx::begin]" -> "Class[Nginx::Package]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Stdlib]" [
+        fontsize = 8
+    ]
+
+    "Archive::Extract[apache-storm-0.9.1]" -> "Archive[apache-storm-0.9.1]" [
+        fontsize = 8
+    ]
+
+    "Archive::Download[apache-storm-0.9.1.tar.gz]" -> "Archive[apache-storm-0.9.1]" [
+        fontsize = 8
+    ]
+
+    "Package[git]" -> "Class[Git]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Config]" -> "File[/usr/share/elasticsearch/plugins]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Package[vim]" [
+        fontsize = 8
+    ]
+
+    "Exec[apt-get update]" -> "Package[vim]" [
+        fontsize = 8
+    ]
+
+    "Exec[set-licence-seen]" -> "Package[vim]" [
+        fontsize = 8
+    ]
+
+    "Exec[set-licence-selected]" -> "Package[vim]" [
+        fontsize = 8
+    ]
+
+    "Exec[create_broker]" -> "File[/opt/servibroker/etc/apollo.xml]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/opt/servibroker/etc/apollo.xml]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "File[/opt/servibroker/etc/apollo.xml]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "File[/opt/servibroker/etc/apollo.xml]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servibroker]" -> "File[/opt/servibroker/etc/apollo.xml]" [
+        fontsize = 8
+    ]
+
+    "Archive::Download[apache-apollo-1.7.tar.gz]" -> "Exec[download archive apache-apollo-1.7.tar.gz and check sum]" [
+        fontsize = 8
+    ]
+
+    "Package[curl]" -> "Exec[download archive apache-apollo-1.7.tar.gz and check sum]" [
+        fontsize = 8
+    ]
+
+    "Exec[create-xdcr]" -> "Exec[prepare_map_demo]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[prepare_map_demo]" [
+        fontsize = 8
+    ]
+
+    "Exec[run_storm]" -> "Exec[prepare_map_demo]" [
+        fontsize = 8
+    ]
+
+    "Package[python-pip]" -> "Exec[prepare_map_demo]" [
+        fontsize = 8
+    ]
+
+    "Python::Pip[simplejson]" -> "Exec[prepare_map_demo]" [
+        fontsize = 8
+    ]
+
+    "Exec[wait for api]" -> "Exec[prepare_map_demo]" [
+        fontsize = 8
+    ]
+
+    "Package[couchbase]" -> "Exec[prepare_map_demo]" [
+        fontsize = 8
+    ]
+
+    "File[/data/demo]" -> "Exec[prepare_map_demo]" [
+        fontsize = 8
+    ]
+
+    "Exec[run_kestrel]" -> "Exec[prepare_map_demo]" [
+        fontsize = 8
+    ]
+
+    "Package[couchbase-server]" -> "Exec[prepare_map_demo]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "Exec[prepare_map_demo]" [
+        fontsize = 8
+    ]
+
+    "Class[Python::Install]" -> "Package[gunicorn]" [
+        fontsize = 8
+    ]
+
+    "Package[python-software-properties]" -> "Apt::Ppa[ppa:webupd8team/java]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/apt/sources.list.d/webupd8team-java-precise.list]" -> "Apt::Ppa[ppa:webupd8team/java]" [
+        fontsize = 8
+    ]
+
+    "Exec[add-apt-repository-ppa:webupd8team/java]" -> "Apt::Ppa[ppa:webupd8team/java]" [
+        fontsize = 8
+    ]
+
+    "Anchor[apt::ppa::ppa:webupd8team/java]" -> "Apt::Ppa[ppa:webupd8team/java]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/data/userDB]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "File[/data/userDB]" [
+        fontsize = 8
+    ]
+
+    "File[/data]" -> "File[/data/userDB]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "File[/data/userDB]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Package[curl]" [
+        fontsize = 8
+    ]
+
+    "Exec[apt-get update]" -> "Package[curl]" [
+        fontsize = 8
+    ]
+
+    "Exec[set-licence-seen]" -> "Package[curl]" [
+        fontsize = 8
+    ]
+
+    "Exec[set-licence-selected]" -> "Package[curl]" [
+        fontsize = 8
+    ]
+
+    "Nginx::Resource::Location[localhost-default]" -> "Concat::Fragment[fd0b234173aed6ab4786b7032214c741]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments/001_localhost-header]" -> "Concat::Fragment[localhost-header]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Nginx::Resource::Vhost[localhost]" [
+        fontsize = 8
+    ]
+
+    "Exec[prepare_map_demo]" -> "Nginx::Resource::Vhost[localhost]" [
+        fontsize = 8
+    ]
+
+    "Stage[setup_app]" -> "Stage[deploy_app]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Python::Pip[Flask]" [
+        fontsize = 8
+    ]
+
+    "Class[Python::Install]" -> "Python::Pip[Flask]" [
+        fontsize = 8
+    ]
+
+    "Exec[create_broker]" -> "File[/opt/servibroker]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/opt/servibroker]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "File[/opt/servibroker]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "File[/opt/servibroker]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "File[/etc/nginx/sites-enabled]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx]" -> "File[/etc/nginx/sites-enabled]" [
+        fontsize = 8
+    ]
+
+    "Lvm::Volume[data]" -> "Physical_volume[/dev/sdb]" [
+        fontsize = 8
+    ]
+
+    "Lvm::Volume[data]" -> "Filesystem[/dev/data/data]" [
+        fontsize = 8
+    ]
+
+    "Logical_volume[data]" -> "Filesystem[/dev/data/data]" [
+        fontsize = 8
+    ]
+
+    "Fstab::Augeas[A test fstab entry]" -> "Fstab::Augeas::Update[A test fstab entry]" [
+        fontsize = 8
+    ]
+
+    "Concat::Fragment[localhost-header]" -> "Nginx::Resource::Vhost[localhost]" [
+        fontsize = 8
+    ]
+
+    "Concat[/etc/nginx/sites-available/localhost.conf]" -> "Nginx::Resource::Vhost[localhost]" [
+        fontsize = 8
+    ]
+
+    "Concat::Fragment[localhost-footer]" -> "Nginx::Resource::Vhost[localhost]" [
+        fontsize = 8
+    ]
+
+    "Nginx::Resource::Location[localhost-default]" -> "Nginx::Resource::Vhost[localhost]" [
+        fontsize = 8
+    ]
+
+    "File[localhost.conf symlink]" -> "Nginx::Resource::Vhost[localhost]" [
+        fontsize = 8
+    ]
+
+    "Exec[install_plugin_transport-couchbase]" -> "Elasticsearch::Plugin[transport-couchbase]" [
+        fontsize = 8
+    ]
+
+    "File[/var/nginx]" -> "File[/var/nginx/proxy_temp]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "File[/var/nginx/proxy_temp]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/data/couchbase]" [
+        fontsize = 8
+    ]
+
+    "Fstab[A test fstab entry]" -> "File[/data/couchbase]" [
+        fontsize = 8
+    ]
+
+    "File[/data]" -> "File[/data/couchbase]" [
+        fontsize = 8
+    ]
+
+    "Package[couchbase-server]" -> "File[/data/couchbase]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "User[vagrant]" [
+        fontsize = 8
+    ]
+
+    "Class[Jetty]" -> "User[vagrant]" [
+        fontsize = 8
+    ]
+
+    "Exec[install_plugin_mobz/elasticsearch-head]" -> "Elasticsearch::Service[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Exec[mkdir_datadir_elasticsearch_serviolastic]" -> "Elasticsearch::Service[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/elasticsearch/serviolastic/elasticsearch.yml]" -> "Elasticsearch::Service[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Package]" -> "Elasticsearch::Service[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Instance[serviolastic]" -> "Elasticsearch::Service[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Exec[install_plugin_transport-couchbase]" -> "Elasticsearch::Service[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/elasticsearch/serviolastic]" -> "Elasticsearch::Service[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Exec[mkdir_configdir_elasticsearch_serviolastic]" -> "Elasticsearch::Service[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/elasticsearch/serviolastic/logging.yml]" -> "Elasticsearch::Service[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/elasticsearch/serviolastic/logging.yml]" -> "Elasticsearch::Service[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "File[/data/elasticsearch]" -> "Elasticsearch::Service[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Package[unzip]" -> "Archive[kestrel-2.4.1]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Archive[kestrel-2.4.1]" [
+        fontsize = 8
+    ]
+
+    "File[/home/vagrant/downloads/]" -> "Archive[kestrel-2.4.1]" [
+        fontsize = 8
+    ]
+
+    "Package[curl]" -> "Archive[kestrel-2.4.1]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Wget::Fetch[couchbase-server-source]" [
+        fontsize = 8
+    ]
+
+    "File[/home/vagrant/downloads/]" -> "Wget::Fetch[couchbase-server-source]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Package]" -> "Exec[download_package_elasticsearch]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/elasticsearch/swdl]" -> "Exec[download_package_elasticsearch]" [
+        fontsize = 8
+    ]
+
+    "Apt::Source[nginx]" -> "Anchor[apt::source::nginx]" [
+        fontsize = 8
+    ]
+
+    "Class[Apt::Update]" -> "Anchor[apt::source::nginx]" [
+        fontsize = 8
+    ]
+
+    "Nginx::Resource::Vhost[localhost]" -> "Nginx::Resource::Location[localhost-default]" [
+        fontsize = 8
+    ]
+
+    "Archive[apache-storm-0.9.1]" -> "Archive::Download[apache-storm-0.9.1.tar.gz]" [
+        fontsize = 8
+    ]
+
+    "Class[Python::Install]" -> "Package[python]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch]" -> "Anchor[elasticsearch::end]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/elasticsearch]" -> "File[/etc/elasticsearch/templates_import]" [
+        fontsize = 8
+    ]
+
+    "Exec[mkdir_templates_elasticsearch]" -> "File[/etc/elasticsearch/templates_import]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Config]" -> "File[/etc/elasticsearch/templates_import]" [
+        fontsize = 8
+    ]
+
+    "Class[Apt]" -> "File[sources.list]" [
+        fontsize = 8
+    ]
+
+    "Fstab::Augeas::Update[A test fstab entry]" -> "Fstab::Augeas[A test fstab entry]" [
+        fontsize = 8
+    ]
+
+    "Fstab::Augeas::New[A test fstab entry]" -> "Fstab::Augeas[A test fstab entry]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Package::Debian]" -> "Anchor[nginx::package::end]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Package]" -> "Anchor[nginx::package::end]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/home/vagrant/LICENSE.txt]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "File[/home/vagrant/LICENSE.txt]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "File[/home/vagrant/LICENSE.txt]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch]" -> "Anchor[elasticsearch::begin]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/jetty]" -> "File[/var/log/jetty]" [
+        fontsize = 8
+    ]
+
+    "Class[Jetty]" -> "File[/var/log/jetty]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Package[couchbase-server]" [
+        fontsize = 8
+    ]
+
+    "Wget::Fetch[couchbase-server-source]" -> "Package[couchbase-server]" [
+        fontsize = 8
+    ]
+
+    "Archive[kestrel-2.4.1]" -> "Archive::Download[kestrel-2.4.1.zip]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Nginx::Package::Debian]" [
+        fontsize = 8
+    ]
+
+    "Anchor[nginx::package::begin]" -> "Class[Nginx::Package::Debian]" [
+        fontsize = 8
+    ]
+
+    "Stage[deploy_app]" -> "Stage[deploy]" [
+        fontsize = 8
+    ]
+
+    "Exec[pip_install_Flask]" -> "Python::Pip[Flask]" [
+        fontsize = 8
+    ]
+
+    "Archive::Download[apache-apollo-1.7.tar.gz]" -> "Archive[apache-apollo-1.7]" [
+        fontsize = 8
+    ]
+
+    "Archive::Extract[apache-apollo-1.7]" -> "Archive[apache-apollo-1.7]" [
+        fontsize = 8
+    ]
+
+    "Exec[install_plugin_mobz/elasticsearch-head]" -> "Elasticsearch::Plugin[mobz/elasticsearch-head]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf]" -> "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments]" [
+        fontsize = 8
+    ]
+
+    "Concat[/etc/nginx/sites-available/localhost.conf]" -> "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/opt/jetty/webapps/private.war]" [
+        fontsize = 8
+    ]
+
+    "Exec[build_servioticy]" -> "File[/opt/jetty/webapps/private.war]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/jetty]" -> "File[/opt/jetty/webapps/private.war]" [
+        fontsize = 8
+    ]
+
+    "Augeas[Update A test fstab entry]" -> "Fstab::Augeas::Update[A test fstab entry]" [
+        fontsize = 8
+    ]
+
+    "Fstab::Augeas::Update[A test fstab entry]" -> "Augeas[Update A test fstab entry]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/opt/jetty/webapps/root.war]" [
+        fontsize = 8
+    ]
+
+    "Exec[build_servioticy]" -> "File[/opt/jetty/webapps/root.war]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/jetty]" -> "File[/opt/jetty/webapps/root.war]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Concat::Setup]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Python]" [
+        fontsize = 8
+    ]
+
+    "Package[oracle-java7-installer]" -> "Elasticsearch::Plugin[mobz/elasticsearch-head]" [
+        fontsize = 8
+    ]
+
+    "Package[git]" -> "Elasticsearch::Plugin[mobz/elasticsearch-head]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Elasticsearch::Plugin[mobz/elasticsearch-head]" [
+        fontsize = 8
+    ]
+
+    "Archive::Extract[apache-storm-0.9.1]" -> "Exec[apache-storm-0.9.1 unpack]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "File[/etc/nginx/nginx.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx]" -> "File[/etc/nginx/nginx.conf]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Package]" -> "Package[elasticsearch]" [
+        fontsize = 8
+    ]
+
+    "Exec[download_package_elasticsearch]" -> "Package[elasticsearch]" [
+        fontsize = 8
+    ]
+
+    "Anchor[apt_key 7BD9BF62 present]" -> "Apt::Key[Add key: 7BD9BF62 from Apt::Source nginx]" [
+        fontsize = 8
+    ]
+
+    "Apt_key[Add key: 7BD9BF62 from Apt::Source nginx]" -> "Apt::Key[Add key: 7BD9BF62 from Apt::Source nginx]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "File[/var/nginx]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Package]" -> "Exec[mkdir_datadir_elasticsearch_serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Instance[serviolastic]" -> "Exec[mkdir_datadir_elasticsearch_serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Exec[download archive apache-apollo-1.7.tar.gz and check sum]" -> "Archive::Download[apache-apollo-1.7.tar.gz]" [
+        fontsize = 8
+    ]
+
+    "Exec[rm-on-error-apache-apollo-1.7.tar.gz]" -> "Archive::Download[apache-apollo-1.7.tar.gz]" [
+        fontsize = 8
+    ]
+
+    "Package[python-virtualenv]" -> "Class[Python::Install]" [
+        fontsize = 8
+    ]
+
+    "Package[python-pip]" -> "Class[Python::Install]" [
+        fontsize = 8
+    ]
+
+    "Package[python]" -> "Class[Python::Install]" [
+        fontsize = 8
+    ]
+
+    "Package[python-dev]" -> "Class[Python::Install]" [
+        fontsize = 8
+    ]
+
+    "Package[gunicorn]" -> "Class[Python::Install]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Elasticsearch::Params]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[build_servioticy]" [
+        fontsize = 8
+    ]
+
+    "Maven::Environment[maven-env]" -> "Exec[build_servioticy]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "Exec[build_servioticy]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Package]" -> "File[/etc/elasticsearch/serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Instance[serviolastic]" -> "File[/etc/elasticsearch/serviolastic]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/elasticsearch]" -> "File[/etc/elasticsearch/serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Exec[mkdir_configdir_elasticsearch_serviolastic]" -> "File[/etc/elasticsearch/serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Archive::Download[apache-storm-0.9.1.tar.gz]" -> "Archive::Extract[apache-storm-0.9.1]" [
+        fontsize = 8
+    ]
+
+    "Archive[apache-storm-0.9.1]" -> "Archive::Extract[apache-storm-0.9.1]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Settings]" [
+        fontsize = 8
+    ]
+
+    "Exec[add-apt-repository-ppa:webupd8team/java]" -> "File[/etc/apt/sources.list.d/webupd8team-java-precise.list]" [
+        fontsize = 8
+    ]
+
+    "Apt::Ppa[ppa:webupd8team/java]" -> "File[/etc/apt/sources.list.d/webupd8team-java-precise.list]" [
+        fontsize = 8
+    ]
+
+    "File[sources.list.d]" -> "File[/etc/apt/sources.list.d/webupd8team-java-precise.list]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File_line[cross_origin]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/jetty/start.ini]" -> "File_line[cross_origin]" [
+        fontsize = 8
+    ]
+
+    "Exec[apt_get_update_for_nginx]" -> "Class[Nginx::Package::Debian]" [
+        fontsize = 8
+    ]
+
+    "Anchor[nginx::apt_repo]" -> "Class[Nginx::Package::Debian]" [
+        fontsize = 8
+    ]
+
+    "Apt::Source[nginx]" -> "Class[Nginx::Package::Debian]" [
+        fontsize = 8
+    ]
+
+    "Package[nginx]" -> "Class[Nginx::Package::Debian]" [
+        fontsize = 8
+    ]
+
+    "Exec[pip_install_simplejson]" -> "Python::Pip[simplejson]" [
+        fontsize = 8
+    ]
+
+    "Exec[wget-jetty_download]" -> "Wget::Fetch[jetty_download]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "File[/etc/nginx/conf.d/default.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/conf.d]" -> "File[/etc/nginx/conf.d/default.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/jetty/webapps/private.war]" -> "Service[jetty]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/init.d/jetty]" -> "Service[jetty]" [
+        fontsize = 8
+    ]
+
+    "Class[Jetty]" -> "Service[jetty]" [
+        fontsize = 8
+    ]
+
+    "File_line[cross_origin]" -> "Service[jetty]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/jetty/webapps/root.war]" -> "Service[jetty]" [
+        fontsize = 8
+    ]
+
+    "Exec[jetty_untar]" -> "Service[jetty]" [
+        fontsize = 8
+    ]
+
+    "File[/var/nginx]" -> "File[/var/nginx/client_body_temp]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "File[/var/nginx/client_body_temp]" [
+        fontsize = 8
+    ]
+
+    "Stage[deploy_infra]" -> "Stage[setup_app]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Archive[apache-storm-0.9.1]" [
+        fontsize = 8
+    ]
+
+    "File[/home/vagrant/downloads/]" -> "Archive[apache-storm-0.9.1]" [
+        fontsize = 8
+    ]
+
+    "Package[curl]" -> "Archive[apache-storm-0.9.1]" [
+        fontsize = 8
+    ]
+
+    "Fstab::Augeas[A test fstab entry]" -> "Fstab[A test fstab entry]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Config]" -> "Exec[mkdir_templates_elasticsearch]" [
+        fontsize = 8
+    ]
+
+    "Class[Apt]" -> "File[01proxy]" [
+        fontsize = 8
+    ]
+
+    "Stage[deploy_infra]" -> "Stage[deploy_infra]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/elasticsearch/serviolastic/elasticsearch.yml]" -> "Elasticsearch::Instance[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Exec[mkdir_datadir_elasticsearch_serviolastic]" -> "Elasticsearch::Instance[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/elasticsearch/serviolastic]" -> "Elasticsearch::Instance[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Exec[mkdir_configdir_elasticsearch_serviolastic]" -> "Elasticsearch::Instance[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Service[serviolastic]" -> "Elasticsearch::Instance[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "File[/data/elasticsearch]" -> "Elasticsearch::Instance[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/elasticsearch/serviolastic/logging.yml]" -> "Elasticsearch::Instance[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Class[Apt::Params]" -> "Class[Apt::Params]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Package]" -> "Exec[mkdir_configdir_elasticsearch_serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Instance[serviolastic]" -> "Exec[mkdir_configdir_elasticsearch_serviolastic]" [
+        fontsize = 8
+    ]
+
+    "File[/usr/share/elasticsearch/plugins]" -> "Exec[install_plugin_transport-couchbase]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Plugin[transport-couchbase]" -> "Exec[install_plugin_transport-couchbase]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Package[couchbase]" [
+        fontsize = 8
+    ]
+
+    "Package[make]" -> "Package[couchbase]" [
+        fontsize = 8
+    ]
+
+    "Package[nodejs]" -> "Package[couchbase]" [
+        fontsize = 8
+    ]
+
+    "Package[g++]" -> "Package[couchbase]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Service[serviolastic]" -> "Elasticsearch::Service::Init[serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Apt::Params]" [
+        fontsize = 8
+    ]
+
+    "Exec[wait for api]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servibroker/etc/users.properties]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/data/couchbase]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Fstab[A test fstab entry]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Package[couchbase]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Python::Pip[Flask]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/home/vagrant/README.demos.txt]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/data/userDB]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Vcsrepo[/usr/src/servioticy]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Vcsrepo[/usr/src/couchbase-capi-server]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servibroker]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Plugin[mobz/elasticsearch-head]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Vcsrepo[/opt/servioticy-bridge]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[set-licence-selected]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[run_composer]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Archive[apache-apollo-1.7]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Lvm::Volume[data]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[create_buckets]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Package[oracle-java7-installer]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[wait for elasticsearch]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File_line[cross_origin]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[set-licence-seen]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Apt::Ppa[ppa:webupd8team/java]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[create-xdcr]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/kestrel-2.4.1/config/servioticy_queues.scala]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Python::Pip[simplejson]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/home/vagrant/downloads/]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[prepare_map_demo]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[run_bridge]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Vcsrepo[/usr/src/elasticsearch-transport-couchbase]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Nginx::Resource::Vhost[localhost]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Archive[kestrel-2.4.1]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Package[couchbase-server]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Package[vim]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[build_elasticsearch-transport-couchbase]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/home/vagrant/VERSION.txt]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[run_kestrel]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servibroker/etc/apollo.xml]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[run_storm]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servioticy_scripts]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/jetty/start.ini]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Wget::Fetch[couchbase-server-source]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Archive[apache-storm-0.9.1]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Vcsrepo[/opt/servioticy-indices]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Package[stompjs]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Vcsrepo[/opt/servioticy-composer]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[apt-get update]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/apache-apollo-1.7]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[build_servioticy]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/data/demo]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Package[forever]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servioticy-dispatcher/dispatcher.xml]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/data]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Package[nodejs]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Package[curl]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/home/vagrant/README.txt]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[wait for couchbase]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/home/vagrant/LICENSE.txt]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Package[unzip]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[run_userDB]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Maven::Environment[maven-env]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servibroker/etc/groups.properties]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Instance[serviolastic]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servioticy-dispatcher/dispatcher-0.2.1-jar-with-dependencies.jar]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[run_broker]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Plugin[transport-couchbase]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/jetty/webapps/root.war]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[create-indices]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servioticy-dispatcher]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Package[make]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Package[g++]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[create_broker]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/kestrel-2.4.1]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/jetty/webapps/private.war]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Exec[build_couchbase_capi]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Apt::Ppa[ppa:chris-lea/node.js]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Package]" -> "File[/etc/elasticsearch/serviolastic/elasticsearch.yml]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Instance[serviolastic]" -> "File[/etc/elasticsearch/serviolastic/elasticsearch.yml]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/elasticsearch/serviolastic]" -> "File[/etc/elasticsearch/serviolastic/elasticsearch.yml]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments/500_fd0b234173aed6ab4786b7032214c741]" -> "Concat::Fragment[fd0b234173aed6ab4786b7032214c741]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/elasticsearch/swdl]" -> "Class[Elasticsearch::Package]" [
+        fontsize = 8
+    ]
+
+    "Package[elasticsearch]" -> "Class[Elasticsearch::Package]" [
+        fontsize = 8
+    ]
+
+    "Exec[download_package_elasticsearch]" -> "Class[Elasticsearch::Package]" [
+        fontsize = 8
+    ]
+
+    "Exec[create_package_dir_elasticsearch]" -> "Class[Elasticsearch::Package]" [
+        fontsize = 8
+    ]
+
+    "Concat::Fragment[localhost-footer]" -> "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments/699_localhost-footer]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments]" -> "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments/699_localhost-footer]" [
+        fontsize = 8
+    ]
+
+    "Class[Python::Install]" -> "Package[python-pip]" [
+        fontsize = 8
+    ]
+
+    "Apt::Ppa[ppa:webupd8team/java]" -> "Anchor[apt::ppa::ppa:webupd8team/java]" [
+        fontsize = 8
+    ]
+
+    "Class[Apt::Update]" -> "Anchor[apt::ppa::ppa:webupd8team/java]" [
+        fontsize = 8
+    ]
+
+    "Concat::Fragment[fd0b234173aed6ab4786b7032214c741]" -> "Nginx::Resource::Location[localhost-default]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Python::Install]" [
+        fontsize = 8
+    ]
+
+    "Anchor[python::begin]" -> "Class[Python::Install]" [
+        fontsize = 8
+    ]
+
+    "Class[Maven::Maven]" -> "Wget::Fetch[fetch-maven]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "File[/etc/nginx/sites-available]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx]" -> "File[/etc/nginx/sites-available]" [
+        fontsize = 8
+    ]
+
+    "Apt::Ppa[ppa:webupd8team/java]" -> "Package[python-software-properties]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "File[/etc/nginx/conf.d/example_ssl.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/conf.d]" -> "File[/etc/nginx/conf.d/example_ssl.conf]" [
+        fontsize = 8
+    ]
+
+    "Archive::Download[kestrel-2.4.1.zip]" -> "Archive[kestrel-2.4.1]" [
+        fontsize = 8
+    ]
+
+    "Archive::Extract[kestrel-2.4.1]" -> "Archive[kestrel-2.4.1]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Apt::Update]" [
+        fontsize = 8
+    ]
+
+    "Stage[setup]" -> "Stage[setup]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Nginx::Params]" [
+        fontsize = 8
+    ]
+
+    "Wget::Fetch[jetty_download]" -> "Class[Jetty]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/init.d/jetty]" -> "Class[Jetty]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/jetty]" -> "Class[Jetty]" [
+        fontsize = 8
+    ]
+
+    "File[/var/log/jetty]" -> "Class[Jetty]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "Class[Jetty]" [
+        fontsize = 8
+    ]
+
+    "Service[jetty]" -> "Class[Jetty]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/default/jetty]" -> "Class[Jetty]" [
+        fontsize = 8
+    ]
+
+    "Exec[jetty_untar]" -> "Class[Jetty]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "Class[Jetty]" [
+        fontsize = 8
+    ]
+
+    "Archive::Download[kestrel-2.4.1.zip]" -> "Exec[download archive kestrel-2.4.1.zip and check sum]" [
+        fontsize = 8
+    ]
+
+    "Package[curl]" -> "Exec[download archive kestrel-2.4.1.zip and check sum]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/data/demo]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "File[/data/demo]" [
+        fontsize = 8
+    ]
+
+    "File[/data]" -> "File[/data/demo]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "File[/data/demo]" [
+        fontsize = 8
+    ]
+
+    "Class[Fstab::Variables]" -> "Class[Fstab::Variables]" [
+        fontsize = 8
+    ]
+
+    "Fstab::Augeas::Update[A test fstab entry]" -> "Fstab::Augeas::New[A test fstab entry]" [
+        fontsize = 8
+    ]
+
+    "Fstab::Augeas[A test fstab entry]" -> "Fstab::Augeas::New[A test fstab entry]" [
+        fontsize = 8
+    ]
+
+    "File[/usr/share/elasticsearch/plugins]" -> "Class[Elasticsearch::Config]" [
+        fontsize = 8
+    ]
+
+    "Exec[mkdir_templates_elasticsearch]" -> "Class[Elasticsearch::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/elasticsearch]" -> "Class[Elasticsearch::Config]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/elasticsearch/templates_import]" -> "Class[Elasticsearch::Config]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/opt/servioticy-dispatcher/dispatcher.xml]" [
+        fontsize = 8
+    ]
+
+    "Exec[build_servioticy]" -> "File[/opt/servioticy-dispatcher/dispatcher.xml]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "File[/opt/servioticy-dispatcher/dispatcher.xml]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servioticy-dispatcher]" -> "File[/opt/servioticy-dispatcher/dispatcher.xml]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servioticy-dispatcher]" -> "File[/opt/servioticy-dispatcher/dispatcher.xml]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "File[/opt/servioticy-dispatcher/dispatcher.xml]" [
+        fontsize = 8
+    ]
+
+    "Exec[add-apt-repository-ppa:chris-lea/node.js]" -> "Exec[apt_update]" [
+        fontsize = 8
+    ]
+
+    "File[sources.list]" -> "Exec[apt_update]" [
+        fontsize = 8
+    ]
+
+    "Exec[add-apt-repository-ppa:webupd8team/java]" -> "Exec[apt_update]" [
+        fontsize = 8
+    ]
+
+    "File[old-proxy-file]" -> "Exec[apt_update]" [
+        fontsize = 8
+    ]
+
+    "Class[Apt::Update]" -> "Exec[apt_update]" [
+        fontsize = 8
+    ]
+
+    "File[nginx.list]" -> "Exec[apt_update]" [
+        fontsize = 8
+    ]
+
+    "File[sources.list.d]" -> "Exec[apt_update]" [
+        fontsize = 8
+    ]
+
+    "File[01proxy]" -> "Exec[apt_update]" [
+        fontsize = 8
+    ]
+
+    "Package[git]" -> "Vcsrepo[/usr/src/servioticy]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Vcsrepo[/usr/src/servioticy]" [
+        fontsize = 8
+    ]
+
+    "Exec[concat_/etc/nginx/sites-available/localhost.conf]" -> "Concat[/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments.concat.out]" -> "Concat[/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/sites-available/localhost.conf]" -> "Concat[/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf]" -> "Concat[/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments.concat]" -> "Concat[/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments]" -> "Concat[/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "Class[Stdlib::Stages]" -> "Class[Stdlib::Stages]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Elasticsearch::Package]" [
+        fontsize = 8
+    ]
+
+    "Anchor[elasticsearch::begin]" -> "Class[Elasticsearch::Package]" [
+        fontsize = 8
+    ]
+
+    "Concat::Fragment[localhost-header]" -> "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments/001_localhost-header]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments]" -> "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments/001_localhost-header]" [
+        fontsize = 8
+    ]
+
+    "Anchor[nginx::apt_repo]" -> "Package[nginx]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Package::Debian]" -> "Package[nginx]" [
+        fontsize = 8
+    ]
+
+    "Archive::Download[apache-apollo-1.7.tar.gz]" -> "Archive::Extract[apache-apollo-1.7]" [
+        fontsize = 8
+    ]
+
+    "Archive[apache-apollo-1.7]" -> "Archive::Extract[apache-apollo-1.7]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Git]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Package[forever]" [
+        fontsize = 8
+    ]
+
+    "Package[nodejs]" -> "Package[forever]" [
+        fontsize = 8
+    ]
+
+    "Exec[add-apt-repository-ppa:chris-lea/node.js]" -> "File[/etc/apt/sources.list.d/chris-lea-node_js-precise.list]" [
+        fontsize = 8
+    ]
+
+    "Apt::Ppa[ppa:chris-lea/node.js]" -> "File[/etc/apt/sources.list.d/chris-lea-node_js-precise.list]" [
+        fontsize = 8
+    ]
+
+    "File[sources.list.d]" -> "File[/etc/apt/sources.list.d/chris-lea-node_js-precise.list]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Apt]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[wait for couchbase]" [
+        fontsize = 8
+    ]
+
+    "Package[couchbase-server]" -> "Exec[wait for couchbase]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/kestrel-2.4.1]" -> "Exec[run_kestrel]" [
+        fontsize = 8
+    ]
+
+    "Package[oracle-java7-installer]" -> "Exec[run_kestrel]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[run_kestrel]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/kestrel-2.4.1/config/servioticy_queues.scala]" -> "Exec[run_kestrel]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "Exec[run_kestrel]" [
+        fontsize = 8
+    ]
+
+    "Exec[create_broker]" -> "File[/opt/servibroker/etc/users.properties]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/opt/servibroker/etc/users.properties]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "File[/opt/servibroker/etc/users.properties]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "File[/opt/servibroker/etc/users.properties]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servibroker]" -> "File[/opt/servibroker/etc/users.properties]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Stage[runtime]" [
+        fontsize = 8
+    ]
+
+    "Concat::Fragment[fd0b234173aed6ab4786b7032214c741]" -> "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments/500_fd0b234173aed6ab4786b7032214c741]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments]" -> "File[/var/lib/puppet/concat/_etc_nginx_sites-available_localhost.conf/fragments/500_fd0b234173aed6ab4786b7032214c741]" [
+        fontsize = 8
+    ]
+
+    "Class[Python::Install]" -> "Package[python-dev]" [
+        fontsize = 8
+    ]
+
+    "Class[Python::Install]" -> "Package[python-virtualenv]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Service]" -> "Anchor[nginx::end]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx]" -> "Anchor[nginx::end]" [
+        fontsize = 8
+    ]
+
+    "Anchor[apt::ppa::ppa:chris-lea/node.js]" -> "Apt::Ppa[ppa:chris-lea/node.js]" [
+        fontsize = 8
+    ]
+
+    "Exec[add-apt-repository-ppa:chris-lea/node.js]" -> "Apt::Ppa[ppa:chris-lea/node.js]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/apt/sources.list.d/chris-lea-node_js-precise.list]" -> "Apt::Ppa[ppa:chris-lea/node.js]" [
+        fontsize = 8
+    ]
+
+    "File[/var/lib/puppet/concat]" -> "File[/var/lib/puppet/concat/bin]" [
+        fontsize = 8
+    ]
+
+    "Class[Concat::Setup]" -> "File[/var/lib/puppet/concat/bin]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Package::Debian]" -> "Exec[apt_get_update_for_nginx]" [
+        fontsize = 8
+    ]
+
+    "Apt::Source[nginx]" -> "Exec[apt_get_update_for_nginx]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[set-licence-seen]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[wait for elasticsearch]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch]" -> "Exec[wait for elasticsearch]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servioticy_scripts]" -> "Exec[wait for elasticsearch]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx]" -> "Anchor[nginx::begin]" [
+        fontsize = 8
+    ]
+
+    "Package[python-software-properties]" -> "Exec[add-apt-repository-ppa:chris-lea/node.js]" [
+        fontsize = 8
+    ]
+
+    "Apt::Ppa[ppa:chris-lea/node.js]" -> "Exec[add-apt-repository-ppa:chris-lea/node.js]" [
+        fontsize = 8
+    ]
+
+    "File[sources.list.d]" -> "Exec[add-apt-repository-ppa:chris-lea/node.js]" [
+        fontsize = 8
+    ]
+
+    "Wget::Fetch[couchbase-server-source]" -> "Exec[wget-couchbase-server-source]" [
+        fontsize = 8
+    ]
+
+    "Class[Wget]" -> "Exec[wget-couchbase-server-source]" [
+        fontsize = 8
+    ]
+
+    "Nginx::Resource::Vhost[localhost]" -> "Concat::Fragment[localhost-footer]" [
+        fontsize = 8
+    ]
+
+    "Service[nginx]" -> "Class[Nginx::Service]" [
+        fontsize = 8
+    ]
+
+    "Package[oracle-java7-installer]" -> "Elasticsearch::Plugin[transport-couchbase]" [
+        fontsize = 8
+    ]
+
+    "Package[git]" -> "Elasticsearch::Plugin[transport-couchbase]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Elasticsearch::Plugin[transport-couchbase]" [
+        fontsize = 8
+    ]
+
+    "Exec[build_elasticsearch-transport-couchbase]" -> "Elasticsearch::Plugin[transport-couchbase]" [
+        fontsize = 8
+    ]
+
+    "Class[Elasticsearch::Params]" -> "Class[Elasticsearch::Params]" [
+        fontsize = 8
+    ]
+
+    "Package[oracle-java7-installer]" -> "Exec[run_broker]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servibroker/etc/groups.properties]" -> "Exec[run_broker]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[run_broker]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servibroker/etc/apollo.xml]" -> "Exec[run_broker]" [
+        fontsize = 8
+    ]
+
+    "File[/opt/servibroker/etc/users.properties]" -> "Exec[run_broker]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "Exec[run_broker]" [
+        fontsize = 8
+    ]
+
+    "Package[stompjs]" -> "Exec[run_bridge]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[run_bridge]" [
+        fontsize = 8
+    ]
+
+    "Vcsrepo[/opt/servioticy-bridge]" -> "Exec[run_bridge]" [
+        fontsize = 8
+    ]
+
+    "Package[forever]" -> "Exec[run_bridge]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/opt/apache-apollo-1.7]" [
+        fontsize = 8
+    ]
+
+    "Archive[apache-apollo-1.7]" -> "File[/opt/apache-apollo-1.7]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "File[/opt/apache-apollo-1.7]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "File[/opt/apache-apollo-1.7]" [
+        fontsize = 8
+    ]
+
+    "Package[git]" -> "Vcsrepo[/opt/servioticy-bridge]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Vcsrepo[/opt/servioticy-bridge]" [
+        fontsize = 8
+    ]
+
+    "Package[forever]" -> "Vcsrepo[/opt/servioticy-bridge]" [
+        fontsize = 8
+    ]
+
+    "Archive[apache-apollo-1.7]" -> "Archive::Download[apache-apollo-1.7.tar.gz]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Python::Config]" [
+        fontsize = 8
+    ]
+
+    "Class[Python::Install]" -> "Class[Python::Config]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Apt::Ppa[ppa:webupd8team/java]" [
+        fontsize = 8
+    ]
+
+    "Elasticsearch::Service::Init[serviolastic]" -> "Augeas[defaults_serviolastic]" [
+        fontsize = 8
+    ]
+
+    "Fstab::Augeas::New[A test fstab entry]" -> "Augeas[A test fstab entry]" [
+        fontsize = 8
+    ]
+
+    "File[/etc/nginx/sites-available]" -> "File[/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "Exec[concat_/etc/nginx/sites-available/localhost.conf]" -> "File[/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "Concat[/etc/nginx/sites-available/localhost.conf]" -> "File[/etc/nginx/sites-available/localhost.conf]" [
+        fontsize = 8
+    ]
+
+    "Archive::Download[apache-storm-0.9.1.tar.gz]" -> "Exec[rm-on-error-apache-storm-0.9.1.tar.gz]" [
+        fontsize = 8
+    ]
+
+    "File[/home/vagrant/downloads/]" -> "Exec[rm-on-error-apache-storm-0.9.1.tar.gz]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Package]" -> "Anchor[nginx::package::begin]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Package[make]" [
+        fontsize = 8
+    ]
+
+    "Exec[apt-get update]" -> "Package[make]" [
+        fontsize = 8
+    ]
+
+    "Exec[set-licence-seen]" -> "Package[make]" [
+        fontsize = 8
+    ]
+
+    "Exec[set-licence-selected]" -> "Package[make]" [
+        fontsize = 8
+    ]
+
+    "Exec[rm-on-error-apache-storm-0.9.1.tar.gz]" -> "Archive::Download[apache-storm-0.9.1.tar.gz]" [
+        fontsize = 8
+    ]
+
+    "Exec[download archive apache-storm-0.9.1.tar.gz and check sum]" -> "Archive::Download[apache-storm-0.9.1.tar.gz]" [
+        fontsize = 8
+    ]
+
+    "Apt::Ppa[ppa:webupd8team/java]" -> "Exec[apt-get update]" [
+        fontsize = 8
+    ]
+
+    "Apt::Ppa[ppa:chris-lea/node.js]" -> "Exec[apt-get update]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[apt-get update]" [
+        fontsize = 8
+    ]
+
+    "Class[Apt::Update]" -> "Anchor[apt::update]" [
+        fontsize = 8
+    ]
+
+    "Class[Apt]" -> "Anchor[apt::update]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[create-indices]" [
+        fontsize = 8
+    ]
+
+    "Vcsrepo[/opt/servioticy-indices]" -> "Exec[create-indices]" [
+        fontsize = 8
+    ]
+
+    "Exec[wait for elasticsearch]" -> "Exec[create-indices]" [
+        fontsize = 8
+    ]
+
+    "Package[git]" -> "Vcsrepo[/opt/servioticy-composer]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Vcsrepo[/opt/servioticy-composer]" [
+        fontsize = 8
+    ]
+
+    "Package[forever]" -> "Vcsrepo[/opt/servioticy-composer]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Package[oracle-java7-installer]" [
+        fontsize = 8
+    ]
+
+    "Exec[apt-get update]" -> "Package[oracle-java7-installer]" [
+        fontsize = 8
+    ]
+
+    "Exec[set-licence-seen]" -> "Package[oracle-java7-installer]" [
+        fontsize = 8
+    ]
+
+    "Exec[set-licence-selected]" -> "Package[oracle-java7-installer]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Service]" -> "Service[nginx]" [
+        fontsize = 8
+    ]
+
+    "File[localhost.conf symlink]" -> "Service[nginx]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/home/vagrant/VERSION.txt]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "File[/home/vagrant/VERSION.txt]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "File[/home/vagrant/VERSION.txt]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "File[/opt/servioticy-dispatcher]" [
+        fontsize = 8
+    ]
+
+    "Group[vagrant]" -> "File[/opt/servioticy-dispatcher]" [
+        fontsize = 8
+    ]
+
+    "User[vagrant]" -> "File[/opt/servioticy-dispatcher]" [
+        fontsize = 8
+    ]
+
+    "Archive::Download[kestrel-2.4.1.zip]" -> "Exec[rm-on-error-kestrel-2.4.1.zip]" [
+        fontsize = 8
+    ]
+
+    "File[/home/vagrant/downloads/]" -> "Exec[rm-on-error-kestrel-2.4.1.zip]" [
+        fontsize = 8
+    ]
+
+    "Exec[apt_get_update_for_nginx]" -> "Anchor[nginx::apt_repo]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Package::Debian]" -> "Anchor[nginx::apt_repo]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Exec[create_buckets]" [
+        fontsize = 8
+    ]
+
+    "Package[curl]" -> "Exec[create_buckets]" [
+        fontsize = 8
+    ]
+
+    "Exec[wait for couchbase]" -> "Exec[create_buckets]" [
+        fontsize = 8
+    ]
+
+    "Class[Nginx::Config]" -> "File[/tmp/nginx.mail.d]" [
+        fontsize = 8
+    ]
+
+    "Class[Wget]" -> "Package[wget]" [
+        fontsize = 8
+    ]
+
+    "Class[Jetty]" -> "Group[vagrant]" [
+        fontsize = 8
+    ]
+
+}
