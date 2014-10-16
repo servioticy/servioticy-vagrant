@@ -1,6 +1,6 @@
 exec {"wait for api":
-  require => [Package['couchbase-server'],Service["jetty"], File['/opt/servioticy_scripts']],
-  command => "/usr/bin/wget --spider --tries 50 --retry-connrefused --no-check-certificate -q http://localhost:8080",
+  require => [Package['couchbase-server'],Package['curl'],Service["jetty"], File['/opt/servioticy_scripts']],
+  command => "/bin/sh /opt/servioticy_scripts/wait_for_api.sh",
 }
 
 vcsrepo { "/usr/src/servioticy":
