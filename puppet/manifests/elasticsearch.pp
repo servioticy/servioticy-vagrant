@@ -31,7 +31,8 @@ $config_hash = {
 
 elasticsearch::instance { 'serviolastic':
   config => $config_hash,
-  datadir => '/data/elasticsearch'
+  datadir => '/data/elasticsearch',
+  before => Service["jetty"]
 } 
 
 vcsrepo { "/opt/servioticy-indices":
