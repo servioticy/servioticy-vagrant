@@ -26,7 +26,7 @@ $config_hash = {
   'node.name' => 'servinode',
   'network.publish_host' => '127.0.0.1',
   'discovery.zen.ping.multicast.enabled' => 'false',
-  'discovery.zen.ping.unicast.hosts' => '["127.0.0.1"]'
+  'discovery.zen.ping.unicast.hosts' => "[\"${::ipaddress_eth0}\", \"127.0.0.1\"]"
 }
 
 elasticsearch::instance { 'serviolastic':
