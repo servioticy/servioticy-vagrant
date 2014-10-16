@@ -37,7 +37,13 @@ package { 'stompjs':
   require => [Package['nodejs']]
 }
 
-package { ['oracle-java7-installer', 'curl', 'nodejs', 'unzip', 'vim', 'make', 'g++']:
+package { ['nodejs']:
+  ensure => present,
+  require => Exec['apt-get update'], Package['g++']]
+}
+
+
+package { ['oracle-java7-installer', 'curl', 'unzip', 'vim', 'make', 'g++']:
   ensure => present,
   require => Exec['apt-get update', 'set-licence-selected', 'set-licence-seen']
 }
