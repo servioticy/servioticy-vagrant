@@ -122,7 +122,7 @@ for d in range(ndata):
     tmstmp = tmstmp + deltatime
     print sample
     updateSensorData(soId2, 'data', json.dumps(sample))
-    time.sleep(4)
+    #time.sleep(4)
     
 
 print 'END'
