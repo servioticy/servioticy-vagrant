@@ -44,5 +44,9 @@ forever start -a -l /tmp/forever_red.log -o /tmp/nodered.js.out.log -e /tmp/node
 echo COMPOSER running
 
 
+echo Starting DEMO...
+sudo /etc/init.d/nginx start &> /dev/null
+echo DEMO running
+
 echo "*******************************"
 echo sevIoTicy is now running.

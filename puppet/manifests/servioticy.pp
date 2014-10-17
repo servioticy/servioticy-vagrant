@@ -44,20 +44,20 @@ exec{ 'stop_all':
     group    => 'vagrant',
     cwd => "/opt/servioticy_scripts",
     path => "/bin:/usr/bin/:/opt/servioticy_scripts",
-    command => "sh stopAll.sh",
+    command => "sh stopAll.sh; sh stopAll.sh",
     require => [ Exec['prepare_map_demo'] ],
 }
 
 file_line { 'motd1':
-   path => '/etc/motd',
+   path => '/etc/motd.tail',
    line => 'Welcome to servIoTicy Virtual Appliance',
 } ->
 file_line { 'motd2':
-   path => '/etc/motd',
+   path => '/etc/motd.tail',
    line => " * You can run 'start-servioticy' and 'stop-servioticy' to start and stop all the services",
 } ->
 file_line { 'motd3':
-   path => '/etc/motd',
+   path => '/etc/motd.tail',
    line => "Enjoy!",
    before => Exec['stop_all']
 }
