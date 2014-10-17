@@ -39,7 +39,7 @@ vcsrepo { "/opt/servioticy-indices":
   provider => git,
   owner    => 'vagrant',
   group    => 'vagrant',
-  require  => [ Package["git"] ],
+  require  => [ Package["git"],  Exec['wait for elasticsearch']],
   source   => "https://github.com/servioticy/servioticy-elasticsearch-indices.git",
   revision => 'master',
   before   => [Exec['create-indices'], Exec['create-xdcr']]
