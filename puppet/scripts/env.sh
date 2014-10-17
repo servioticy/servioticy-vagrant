@@ -6,6 +6,7 @@ export SCRIPTS=$ROOT/servioticy_scripts
 export APOLLO_HOME=$ROOT/apache-apollo-1.7
 export SERVIBROKER_HOME=$ROOT/servibroker
 export BRIDGE_HOME=$ROOT/servioticy-bridge
+export COMPOSER_HOME=$ROOT/servioticy-composer
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle
 export COUCHBASE_HOME=$ROOT/couchbase
 export KESTREL_HOME=$ROOT/kestrel-2.4.1

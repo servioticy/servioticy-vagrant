@@ -38,5 +38,11 @@ echo Starting MQTT-REST Bridge...
 forever start -a -l /tmp/forever.log -o /tmp/bridge.js.out.log -e /tmp/bridge.js.err.log mqtt-and-stomp-bridge.js &> /dev/null
 echo MQTT-REST Bridge running
 
+cd $COMPOSER_HOME
+echo Starting COMPOSER...
+forever start -a -l /tmp/forever_red.log -o /tmp/nodered.js.out.log -e /tmp/nodered.js.err.log red.js &> /dev/null
+echo COMPOSER running
+
+
 echo "*******************************"
 echo sevIoTicy is now running.
