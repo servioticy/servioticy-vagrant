@@ -100,3 +100,17 @@ file { '/opt/jetty/webapps/root.war':
           notify  => Service["jetty"],
           require => Exec['build_servioticy']
 }
+
+file { '/usr/bin/start-servioticy':
+   ensure => 'link',
+   target => '/opt/servioticy_scripts/startAll.sh',
+   require => File['/opt/servioticy_scripts'],
+   mode => 755
+}
+
+file { '/usr/bin/stop-servioticy':
+   ensure => 'link',
+   target => '/opt/servioticy_scripts/stopAll.sh',
+   require => File['/opt/servioticy_scripts'],
+   mode => 755
+}

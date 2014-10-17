@@ -1,5 +1,5 @@
 #!/bin/bash
-. env.sh
+. /opt/servioticy_scripts/env.sh
 
 echo Starting servIoTicy services...
 echo "*******************************"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. env.sh
+. /opt/servioticy_scripts/env.sh
 
 echo Stopping servIoTicy services...
 #Stop ALL

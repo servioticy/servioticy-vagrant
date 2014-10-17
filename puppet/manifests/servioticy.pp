@@ -37,3 +37,27 @@ exec{ 'prepare_map_demo':
     command => "sh create_all.sh; python generate_fake_data.py",
     require => [ Package['python-pip'], File['/data/demo'], Package['couchbase-server'],  Package['couchbase'], Exec['create-xdcr'], Exec['wait for api'], Exec['run_kestrel'], Exec['run_storm'] ],
 }
+
+
+exec{ 'stop_all':
+    user    => 'vagrant',
+    group    => 'vagrant',
+    cwd => "/opt/servioticy_scripts",
+    path => "/bin:/usr/bin/:/opt/servioticy_scripts",
+    command => "sh stopAll.sh",
+    require => [ Exec['prepare_map_demo'] ],
+}
+
+file_line { 'motd1':
+   path => '/etc/motd',
+   line => 'Welcome to servIoTicy Virtual Appliance',
+} ->
+file_line { 'motd2':
+   path => '/etc/motd',
+   line => " * You can run 'start-servioticy' and 'stop-servioticy' to start and stop all the services",
+} ->
+file_line { 'motd3':
+   path => '/etc/motd',
+   line => "Enjoy!",
+   before => Exec['stop_all']
+}
