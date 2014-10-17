@@ -30,8 +30,8 @@ $SCRIPTS/wait_for_kestrel.sh
 
 cd $STORM_HOME
 rm -f $STORM_LOG_FILE
-bin/storm jar $DISPATCHER_HOME/dispatcher-0.4.0-jar-with-dependencies.jar com.servioticy.dispatcher.DispatcherTopology -f $DISPATCHER_HOME/dispatcher.xml &> $STORM_LOG_FILE &
-#$SCRIPTS/wait_for_storm.sh 
+bin/storm jar $DISPATCHER_HOME/dispatcher-0.4.0-jar-with-dependencies.jar com.servioticy.dispatcher.DispatcherTopology -f $DISPATCHER_HOME/dispatcher.xml -d &> $STORM_LOG_FILE &
+$SCRIPTS/wait_for_storm.sh 
 
 cd $BRIDGE_HOME
 echo Starting MQTT-REST Bridge...
