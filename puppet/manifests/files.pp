@@ -58,9 +58,9 @@ file { '/opt/servioticy-dispatcher':
           group => 'vagrant'
 } 
 
-file { '/opt/servioticy-dispatcher/dispatcher-0.4.0-jar-with-dependencies.jar':
+file { '/opt/servioticy-dispatcher/dispatcher-0.4.1-jar-with-dependencies.jar':
           ensure => present,
-          source => "/usr/src/servioticy/servioticy-dispatcher/target/dispatcher-0.4.0-jar-with-dependencies.jar",
+          source => "/usr/src/servioticy/servioticy-dispatcher/target/dispatcher-0.4.1-jar-with-dependencies.jar",
           require => [File['/opt/servioticy-dispatcher'],Exec['build_servioticy'],File['/opt/servioticy-dispatcher']],
           owner => 'vagrant',
           group => 'vagrant'
