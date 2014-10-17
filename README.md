@@ -5,15 +5,21 @@ Puppet is used to setup and launch all the needed components to run the servioti
 
 
 ##Requirements
-You need to install the following vagrant plugin: vagrant-puppet-install
+* Vagrant 1.6 or newwer is necessary (see vagrantup.com for more information)
 
-The procedure is:
+* You need to install the following vagrant plugin: vagrant-puppet-install
+
+The procedure to install the plugin is:
 
 `vagrant plugin install vagrant-puppet-install`
 
 ##Running  the instance
 
 Now we are ready to run
+
+`vagrant up`
+
+If you want to update the components again, you can always run:
 
 `vagrant up --provision`
 
@@ -22,9 +28,13 @@ You can then login into the instance running:
 
 `vagrant ssh`
 
+Now you can start or stop the servioticy services by running:
+
+`start-servioticy` and `stop-servioticy`
+
 ##Notes
 
-- The provision script handles either the startup of the services, so use
+- The provision script handles either the configuration of the services, so use
 `vagrant up --provision` when starting the VM.
 
 - If you use Windows as your host system, note that you may encounter issues with the End-of-Line codification (CRLF in Windows vs LF in Unix/OSX). To avoid problems, use the following command in your git configuration (assuming you are not a developer committing code) before cloning this repository
