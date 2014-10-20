@@ -7,6 +7,11 @@ vcsrepo { "/usr/src/compose-idm":
   source   => "https://github.com/nopobyte/compose-idm",
   revision => 'master',
 } ->
+file_line { 'change_idm_port':
+  path  => '/usr/src/compose-idm/src/main/resources/application.properties',
+  line  => 'server.port = 8082',
+  match => '^server.port = 8080',
+} ->
 exec { "compose-idm":
     path => "/usr/local/bin/:/usr/bin:/bin/:/usr/src/compose-idm:/opt/gradle-2.1/bin",
     cwd => "/usr/src/compose-idm",
