@@ -43,7 +43,7 @@ package { ['nodejs']:
 }
 
 
-package { ['oracle-java7-installer', 'curl', 'unzip', 'vim', 'make', 'g++']:
+package { ['oracle-java7-installer', 'curl', 'unzip', 'vim', 'make', 'g++', 'tomcat7']:
   ensure => present,
   require => Exec['apt-get update', 'set-licence-selected', 'set-licence-seen']
 }

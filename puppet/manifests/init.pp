@@ -1,4 +1,4 @@
-include wget, git, apt
+include wget, git, apt, augeas
 
 Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin/"] }
 

@@ -10,7 +10,7 @@ vcsrepo { "/usr/src/compose-idm":
 file_line { 'change_idm_port':
   path  => '/usr/src/compose-idm/src/main/resources/application.properties',
   line  => 'server.port = 8082',
-  match => '^server.port = 8080',
+  match => '^server.port*',
 } ->
 exec { "compose-idm":
     path => "/usr/local/bin/:/usr/bin:/bin/:/usr/src/compose-idm:/opt/gradle-2.1/bin",
@@ -20,3 +20,6 @@ exec { "compose-idm":
     group    => 'vagrant',
     require => Class['gradle']
 } 
+
+
+#/opt/java/jdk1.7.0_45/bin/java -jar /opt/idm/COMPOSEIdentityManagement-0.5.0.jar

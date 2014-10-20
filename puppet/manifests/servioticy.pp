@@ -48,6 +48,10 @@ exec{ 'stop_all':
     require => [ Exec['prepare_map_demo'] ],
 }
 
+file_line { 'motd0':
+   path => '/etc/motd.tail',
+   line => '*********************************************************',
+} ->
 file_line { 'motd1':
    path => '/etc/motd.tail',
    line => 'Welcome to servIoTicy Virtual Appliance',
@@ -60,4 +64,8 @@ file_line { 'motd3':
    path => '/etc/motd.tail',
    line => "Enjoy!",
    before => Exec['stop_all']
+}->
+file_line { 'motd4':
+   path => '/etc/motd.tail',
+   line => '*********************************************************',
 }

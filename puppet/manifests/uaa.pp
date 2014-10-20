@@ -7,14 +7,11 @@ vcsrepo { "/usr/src/cf-uaa":
   source   => "git://github.com/cloudfoundry/uaa.git",
   revision => 'master',
 } ->
-exec { "cf-uaa":
+exec { "build-uaa":
     path => "/usr/local/bin/:/usr/bin:/bin/:/usr/src/cf-uaa",
     cwd => "/usr/src/cf-uaa",
-    command => "mvn install",
+    require => [ Package['tomcat7'], Class['gradle'] ],
+    command => "gradle :cloudfoundry-identity-uaa:war",
     user    => 'vagrant',
-    group    => 'vagrant',
-    require => Class['gradle']
+    group    => 'vagrant',    
 } 
-
-# mvn tomcat7:run -Dmaven.tomcat.port=8081
-

@@ -108,6 +108,12 @@ file { '/opt/jetty/webapps/root.war':
           require => Exec['build_servioticy']
 }
 
+file { '/usr/src/cf-uaa/uaa/build/libs/cloudfoundry-identity-uaa-1.9.0.war':
+          ensure => present,
+          source => "/usr/src/cf-uaa/uaa/build/libs/cloudfoundry-identity-uaa-1.9.0.war",
+          require => Exec['build-uaa']
+}
+
 file { '/usr/bin/start-servioticy':
    ensure => 'link',
    target => '/opt/servioticy_scripts/startAll.sh',
