@@ -132,5 +132,5 @@ file { '/opt/compose-idm':
 file { '/opt/compose-idm/COMPOSEIdentityManagement-0.8.0.jar':
           ensure => present,
           source => "/usr/src/compose-idm/build/libs/COMPOSEIdentityManagement-0.8.0.jar",
-          require => [ Exec['compose-idm'], File['/opt/compose-idm] ]
+          require => [ Exec['compose-idm'], File['/opt/compose-idm'] ]
 }

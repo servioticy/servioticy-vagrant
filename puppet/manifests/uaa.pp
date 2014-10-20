@@ -3,11 +3,11 @@ vcsrepo { "/usr/src/cf-uaa":
   provider => git,
   owner    => 'vagrant',
   group    => 'vagrant',
-  require  => [ Package["git"], Class['Maven'], Package['oracle-java7-installer'], Package['curl'], Packag['unzip'] ],
+  require  => [ Package["git"], Class['maven::maven'], Package['oracle-java7-installer'], Package['curl'], Package['unzip'] ],
   source   => "git://github.com/cloudfoundry/uaa.git",
   revision => 'master',
 } ->
-exec { "cf-uaa",
+exec { "cf-uaa":
     path => "/usr/local/bin/:/usr/bin:/bin/:/usr/src/cf-uaa",
     cwd => "/usr/src/cf-uaa",
     command => "mvn install",
