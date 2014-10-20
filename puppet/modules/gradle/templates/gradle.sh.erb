@@ -1,0 +1,5 @@
+export GRADLE_HOME=<%= @target_real %>
+export PATH="$PATH:<%= @target_real %>/bin"
+<% if @daemon %>
+  export GRADLE_OPTS="-Dorg.gradle.daemon=true"
+<% end %>

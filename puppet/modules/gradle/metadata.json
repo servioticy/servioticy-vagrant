@@ -1,0 +1,33 @@
+{
+  "name": "gini-gradle",
+  "version": "0.2.0",
+  "source": "https://github.com/gini/puppet-gradle",
+  "author": "Jochen Schalanda",
+  "license": "Apache 2.0",
+  "summary": "Puppet module for installing the Gradle build tool from the official distribution",
+  "description": "This module installs the Gradle build tool from the official project site. Check README.md for details.",
+  "project_page": "https://github.com/gini/puppet-gradle",
+  "dependencies": [
+    {
+      "name": "gini/archive",
+      "version_requirement": ">=0.1.0"
+    }
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "Gemfile": "6450f4a0556852a10a64c1e8f6be856e",
+    "LICENSE-2.0.txt": "3b83ef96387f14655fc854ddc3c6bd57",
+    "Modulefile": "66426c70069388b380bb80a943cc5ddc",
+    "README.md": "8cb2b4e1f691316e5e6d8a48034bf62e",
+    "Rakefile": "727888ad80f809c4984181b169499d96",
+    "manifests/init.pp": "be33d5647572a5c3e5b7cc7f78295765",
+    "manifests/params.pp": "74249bf58005e0d61b8a779a52d42784",
+    "spec/classes/gradle_spec.rb": "d3a2c258d3405bd25ae986c0724090ff",
+    "spec/fixtures/manifests/site.pp": "d41d8cd98f00b204e9800998ecf8427e",
+    "spec/spec_helper.rb": "792eeb7aa7edafb93e2bc1d27c5e75c5",
+    "templates/gradle.sh.erb": "587650b79d31805521f6ddc1492cac48",
+    "tests/init.pp": "fdfa6c7c327351611b3941ad07c09aec"
+  }
+}

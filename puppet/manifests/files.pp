@@ -121,3 +121,16 @@ file { '/usr/bin/stop-servioticy':
    require => File['/opt/servioticy_scripts'],
    mode => 755
 }
+
+
+file { '/opt/compose-idm':
+          ensure => 'directory',
+          owner => 'vagrant',
+          group => 'vagrant'
+} 
+
+file { '/opt/compose-idm/COMPOSEIdentityManagement-0.8.0.jar':
+          ensure => present,
+          source => "/usr/src/compose-idm/build/libs/COMPOSEIdentityManagement-0.8.0.jar",
+          require => [ Exec['compose-idm'], File['/opt/compose-idm] ]
+}
