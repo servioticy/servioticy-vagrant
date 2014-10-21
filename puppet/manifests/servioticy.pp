@@ -45,7 +45,7 @@ exec{ 'stop_all':
     cwd => "/opt/servioticy_scripts",
     path => "/bin:/usr/bin/:/opt/servioticy_scripts",
     command => "sh stopAll.sh; sh stopAll.sh",
-    require => [ Exec['prepare_map_demo'] ],
+    require => [ Exec['prepare_map_demo'], Exec['build-uaa'] ],
 }
 
 file_line { 'motd0':
