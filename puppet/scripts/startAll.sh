@@ -11,11 +11,14 @@ $SCRIPTS/wait_for_elasticsearch_up.sh
 sudo /etc/init.d/couchbase-server start &> /dev/null
 $SCRIPTS/wait_for_couchbase_up.sh 
 
-sudo /etc/init.d/tomcat7 start &> /dev/null
+sudo env JAVA_HOME=$JAVA_HOME /etc/init.d/tomcat7 start &> /dev/null
 $SCRIPTS/wait_for_tomcat_up.sh
 
+sudo /etc/init.d/mysql start &> /dev/null
+$SCRIPTS/wait_for_mysql_up.sh
+
 cd $IDM_HOME
-$JAVA_HOME/bin/java -jar COMPOSEIdentityManagement-0.5.0.jar userDB.py &> /dev/null &
+$JAVA_HOME/bin/java -jar COMPOSEIdentityManagement-0.8.0.jar &> /dev/null &
 $SCRIPTS/wait_for_IDM_up.sh
 
 
