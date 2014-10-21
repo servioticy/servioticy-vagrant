@@ -158,6 +158,7 @@ file { '/opt/compose-idm':
           group => 'vagrant'
 } 
 
+
 file { '/opt/compose-idm/COMPOSEIdentityManagement-0.8.0.jar':
           ensure => present,
           source => "/usr/src/compose-idm/build/libs/COMPOSEIdentityManagement-0.8.0.jar",
