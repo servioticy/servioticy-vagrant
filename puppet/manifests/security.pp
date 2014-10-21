@@ -45,10 +45,11 @@ exec { "compose-pdp":
     require => [ Class['gradle'] ]
 } ->
 exec { "install-pdp":
-    path => "/usr/local/bin/:/usr/bin:/bin/:/usr/src/compose-pdp:/opt/gradle-2.1/bin",
+    path => "/usr/local/bin/:/usr/bin:/bin/",
     cwd => "/usr/src/compose-pdp/build/libs",
     command => "mvn install:install-file -Dfile=PDPComponentServioticy-0.1.0.jar -DgroupId=de.passau.uni -DartifactId=servioticy-pdp -Dversion=0.1.0 -Dpackaging=jar",
     user    => 'vagrant',
     group    => 'vagrant',
-    before   => [ Exec['build_servioticy'],  Class['maven::maven'] ] 
+    before   => Exec['build_servioticy'],
+    require  => Class['maven::maven'], 
 }
