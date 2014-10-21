@@ -34,7 +34,8 @@ exec{ 'prepare_map_demo':
     group    => 'vagrant',
     cwd => "/data/demo/map/utils",
     path => "/bin:/usr/bin/",
-    command => "sh create_all.sh; python generate_fake_data.py",
+    #command => "sh create_all.sh; python generate_fake_data.py",
+    command => "sh create_all.sh",
     require => [ Package['python-pip'], File['/data/demo'], Package['couchbase-server'],  Package['couchbase'], Exec['create-xdcr'], Exec['wait for api'], Exec['run_kestrel'], Exec['run_storm'] ],
 }
 
