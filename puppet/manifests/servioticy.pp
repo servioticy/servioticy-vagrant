@@ -10,7 +10,7 @@ vcsrepo { "/usr/src/servioticy":
   group    => 'vagrant',
   require  => [ Package["git"] ],
   source   => "https://github.com/servioticy/servioticy.git",
-  revision => 'master',
+  revision => 'security',
 } ->
 class { "maven::maven":
   version => "3.2.2", # version to install
