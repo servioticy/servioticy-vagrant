@@ -2,13 +2,6 @@ class { '::mysql::server':
   root_password    => 'root',
 }
 
-#mysql::db { 'composeidentity2':
-#  user     => 'foo',
-#  password => 'foo',
-#  host     => 'localhost',
-#  grant    => ['ALL']
-#}
-
 mysql_database { 'composeidentity2':
   ensure  => 'present',
 } ->
