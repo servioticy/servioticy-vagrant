@@ -26,7 +26,7 @@ do
 
 done
 
-for pid in `ps -fA  | grep -e userDB.py -e apollo -e elasticsearch -e nodejs -e nginx| tr -s " " | tr -d "\t" | perl -pe "s/^[ ]//" | cut -d " "  -f 2`
+for pid in `ps -fA  | grep -e apollo -e elasticsearch -e nodejs -e nginx| tr -s " " | tr -d "\t" | perl -pe "s/^[ ]//" | cut -d " "  -f 2`
 do
         sudo kill -9 $pid &> /dev/null
 

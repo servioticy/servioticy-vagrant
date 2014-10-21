@@ -48,11 +48,6 @@ package { ['oracle-java7-installer', 'curl', 'unzip', 'vim', 'make', 'g++', 'tom
   require => Exec['apt-get update', 'set-licence-selected', 'set-licence-seen']
 }
 
-python::pip { 'Flask' :
-    pkgname       => 'Flask',
-    before     => Exec['run_userDB']
-}
-
 python::pip { 'simplejson' :
     pkgname       => 'simplejson',
     before     => Exec['prepare_map_demo']

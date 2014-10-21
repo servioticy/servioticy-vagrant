@@ -11,12 +11,15 @@ file_line { 'change_idm_port':
   path  => '/usr/src/compose-idm/src/main/resources/application.properties',
   line  => 'server.port = 8082',
   match => '^server.port*',
-} ->
+  before => [ Exec['compose-idm'], File['/usr/src/compose-idm/src/main/resources/uaa.properties'] ]
+} 
+
+
 exec { "compose-idm":
     path => "/usr/local/bin/:/usr/bin:/bin/:/usr/src/compose-idm:/opt/gradle-2.1/bin",
     cwd => "/usr/src/compose-idm",
     command => "sh compile_jar.sh",
     user    => 'vagrant',
     group    => 'vagrant',
-    require => Class['gradle']
+    require => [ Class['gradle'], File['/usr/src/compose-idm/src/main/resources/uaa.properties'] ]
 } 
