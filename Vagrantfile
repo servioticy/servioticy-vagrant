@@ -59,6 +59,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # sqlite DB
   config.vm.network :forwarded_port, guest: 5010, host: 5010
   
+  # MySQL
+    config.vm.network :forwarded_port, guest: 3306, host: 3306
+    
   # IDM
   config.vm.network :forwarded_port, guest: 8082, host: 8082
   

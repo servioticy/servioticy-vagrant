@@ -11,6 +11,14 @@ $SCRIPTS/wait_for_elasticsearch_up.sh
 sudo /etc/init.d/couchbase-server start &> /dev/null
 $SCRIPTS/wait_for_couchbase_up.sh 
 
+sudo /etc/init.d/tomcat7 start &> /dev/null
+$SCRIPTS/wait_for_tomcat_up.sh
+
+cd $IDM_HOME
+$JAVA_HOME/bin/java -jar COMPOSEIdentityManagement-0.5.0.jar userDB.py &> /dev/null &
+$SCRIPTS/wait_for_IDM_up.sh
+
+
 cd $USERDB_HOME
 python userDB.py &> /dev/null &
 $SCRIPTS/wait_for_userDB.sh

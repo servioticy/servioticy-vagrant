@@ -9,6 +9,7 @@ sudo /etc/init.d/couchbase-server stop &> /dev/null
 sudo $API_HOME/bin/jetty.sh stop &> /dev/null
 sudo /etc/init.d/elasticsearch-serviolastic stop &> /dev/null
 sudo /etc/init.d/nginx stop &> /dev/null
+sudo /etc/init.d/tomcat7 stop &> /dev/null
 
 forever stopall &> /dev/null
 
@@ -18,7 +19,7 @@ do
 
 done
 
-for pid in `ps -fA  | grep java |grep -e kestrel -e storm -e jetty | tr -s " " | tr -d "\t" | perl -pe "s/^[ ]//" | cut -d " "  -f 2`
+for pid in `ps -fA  | grep java |grep -e kestrel -e storm -e jetty  -e tomcat -e COMPOSEIdentityManagement -e gradle | tr -s " " | tr -d "\t" | perl -pe "s/^[ ]//" | cut -d " "  -f 2`
 do
         sudo kill -9 $pid &> /dev/null
 
@@ -34,5 +35,6 @@ sudo rm -f $COUCHBASE_HOME/var/lib/couchbase/logs/*
 sudo rm -f $API_HOME/logs/*
 sudo rm -f  /var/log/elasticsearch/serviolastic/*
 sudo rm -f $SERVIBROKER_HOME/log/*
+sudo rm -f var/log/tomcat7/*
 
 echo Done.

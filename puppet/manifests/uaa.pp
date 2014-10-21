@@ -8,7 +8,7 @@ vcsrepo { "/usr/src/cf-uaa":
   revision => 'master',
 } ->
 exec { "build-uaa":
-    path => "/usr/local/bin/:/usr/bin:/bin/:/usr/src/cf-uaa",
+    path => "/usr/local/bin/:/usr/bin:/bin/:/usr/src/cf-uaa:/opt/gradle-2.1/bin",
     cwd => "/usr/src/cf-uaa",
     require => [ Package['tomcat7'], Class['gradle'] ],
     command => "gradle :cloudfoundry-identity-uaa:war",

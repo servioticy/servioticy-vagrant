@@ -20,6 +20,3 @@ exec { "compose-idm":
     group    => 'vagrant',
     require => Class['gradle']
 } 
-
-
-#/opt/java/jdk1.7.0_45/bin/java -jar /opt/idm/COMPOSEIdentityManagement-0.5.0.jar

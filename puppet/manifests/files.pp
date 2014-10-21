@@ -20,6 +20,29 @@ file { '/opt/apache-storm-0.9.2-incubating':
           before => Exec['run_storm']
 } 
 
+group { "tomcat7":
+      ensure => present,
+} ->
+user { "tomcat7":
+    ensure => present,
+    groups => 'tomcat7',
+} ->
+file { '/etc/tomcat7':
+  ensure => 'directory',
+  owner => "tomcat7",
+  group => "tomcat7",
+} ->
+file { '/etc/tomcat7/server.xml':
+          ensure => present,
+          replace => true,
+          owner    => 'tomcat7',
+          group    => 'tomcat7',
+          before => Package['tomcat7'],          
+          source => "/vagrant/puppet/files/server.xml",
+}
+
+
+
 file { '/home/vagrant/LICENSE.txt':
           ensure => present,
           replace => true,
@@ -108,7 +131,7 @@ file { '/opt/jetty/webapps/root.war':
           require => Exec['build_servioticy']
 }
 
-file { '/usr/src/cf-uaa/uaa/build/libs/cloudfoundry-identity-uaa-1.9.0.war':
+file { ' /var/lib/tomcat7/webapps/uaa.war':
           ensure => present,
           source => "/usr/src/cf-uaa/uaa/build/libs/cloudfoundry-identity-uaa-1.9.0.war",
           require => Exec['build-uaa']
@@ -140,3 +163,4 @@ file { '/opt/compose-idm/COMPOSEIdentityManagement-0.8.0.jar':
           source => "/usr/src/compose-idm/build/libs/COMPOSEIdentityManagement-0.8.0.jar",
           require => [ Exec['compose-idm'], File['/opt/compose-idm'] ]
 }
+

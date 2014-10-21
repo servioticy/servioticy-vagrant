@@ -63,9 +63,9 @@ file_line { 'motd2':
 file_line { 'motd3':
    path => '/etc/motd.tail',
    line => "Enjoy!",
-   before => Exec['stop_all']
 }->
 file_line { 'motd4':
    path => '/etc/motd.tail',
    line => '*********************************************************',
+   before => Exec['stop_all']
 }
