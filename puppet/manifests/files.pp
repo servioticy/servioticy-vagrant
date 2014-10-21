@@ -131,10 +131,10 @@ file { '/opt/jetty/webapps/root.war':
           require => Exec['build_servioticy']
 }
 
-file { ' /var/lib/tomcat7/webapps/uaa.war':
+file { '/var/lib/tomcat7/webapps/uaa.war':
           ensure => present,
           source => "/usr/src/cf-uaa/uaa/build/libs/cloudfoundry-identity-uaa-1.9.0.war",
-          require => Exec['build-uaa']
+          require => [Exec['build-uaa'], Package['tomcat7']]
 }
 
 file { '/usr/bin/start-servioticy':
