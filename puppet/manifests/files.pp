@@ -168,5 +168,5 @@ file { '/opt/compose-idm/COMPOSEIdentityManagement-0.8.0.jar':
 file { '/usr/src/compose-idm/src/main/resources/uaa.properties':
           ensure => present,
           source => "/vagrant/puppet/files/idm/uaa.properties",
-          require => [ Exec['compose-idm'], File['/opt/compose-idm'] ]
+          require => [ File['/opt/compose-idm'] ]
 }
