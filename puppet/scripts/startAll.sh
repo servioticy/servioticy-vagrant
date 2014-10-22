@@ -70,25 +70,38 @@ echo Starting COMPOSER...
 forever start -a -l /tmp/forever_red.log -o /tmp/nodered.js.out.log -e /tmp/nodered.js.err.log red.js &> /dev/null
 echo COMPOSER running
 
-#if [ ! -f /var/log/servioticy_initialized ];
-#then
-#	cd $DEMO_HOME/utils
-#	sh create_all.sh
-#	python generate_fake_data.py
-#	cd $START_FOLDER
-#fi
+if [ ! -f /var/log/servioticy_initialized ];
+then
+	cd $DEMO_HOME/utils
+	sh create_all.sh &> /dev/null
+	python generate_fake_data.py &> /dev/null
+	cd $START_FOLDER
+fi
 
-#echo Starting DEMO...
-#sudo /etc/init.d/nginx start &> /dev/null
-#echo DEMO running
+echo Starting DEMO...
+sudo /etc/init.d/nginx start &> /dev/null
+echo DEMO running
 
 if [ ! -f /var/log/servioticy_initialized ];
 then
 	sudo touch /var/log/servioticy_initialized
-fi
 
-echo
-echo "*******************************"
-echo sevIoTicy is now running.
-echo "*******************************"
-echo
+	echo
+	echo "*********************************"
+	echo    sevIoTicy is now initialized
+	echo 
+	echo Please run 'start-servioticy' again
+	echo "*********************************"
+	echo
+	
+	nohup stop-servioticy &> /dev/null &
+
+else
+
+	echo
+	echo "*******************************"
+	echo sevIoTicy is now running.
+	echo "*******************************"
+	echo
+
+fi
