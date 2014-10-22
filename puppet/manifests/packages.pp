@@ -55,5 +55,18 @@ python::pip { 'Flask' :
 
 python::pip { 'simplejson' :
     pkgname       => 'simplejson',
-    before     => Exec['prepare_map_demo']
+#    before     => Exec['prepare_map_demo']
+}
+
+
+package {'mysql-server':
+  ensure => present,
+  responsefile=>'/tmp/mysql-server.response',
+  require=> [File['/tmp/mysql-server.response'],Exec['apt-get update']],
+}
+
+
+package {'mysql-client':
+  ensure => present,
+  require => Exec['apt-get update']
 }

@@ -5,8 +5,7 @@
 echo Stopping servIoTicy services...
 #Stop ALL
 sudo /etc/init.d/couchbase-server stop &> /dev/null
-
-sudo $API_HOME/bin/jetty.sh stop &> /dev/null
+sudo /etc/init.d/jetty stop &> /dev/null
 sudo /etc/init.d/elasticsearch-serviolastic stop &> /dev/null
 sudo /etc/init.d/nginx stop &> /dev/null
 

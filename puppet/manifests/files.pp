@@ -17,7 +17,7 @@ file { '/opt/apache-storm-0.9.2-incubating':
           ensure => 'directory',
           owner => 'vagrant',
           group => 'vagrant',
-          before => Exec['run_storm']
+#          before => Exec['run_storm']
 } 
 
 file { '/home/vagrant/LICENSE.txt':

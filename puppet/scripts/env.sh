@@ -15,7 +15,7 @@ export DISPATCHER_HOME=$ROOT/servioticy-dispatcher
 export API_HOME=$ROOT/jetty
 export USERDB_HOME=$DATA/userDB
 export ELASTICSEARCH_HOME=$ROOT/elasticsearch
-
+export DEMO_HOME=$DATA/demo/map
 
 export CB_STATUS_FILE=/tmp/cb.status
 export KESTREL_STATUS_FILE=/tmp/kestrel.log

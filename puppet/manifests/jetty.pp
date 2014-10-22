@@ -3,8 +3,13 @@ class { 'jetty':
   home    => "/opt",
   user    => "vagrant",
   group   => "vagrant",
-  require => [Package["couchbase-server"]]
+#  require => [Package["couchbase-server"]],
+} ->
+exec{ 'stop-jetty':
+  require => [Class['jetty']],
+  command => "/etc/init.d/jetty stop",
 }
+
 
 file { '/opt/jetty/start.ini':
   ensure => 'present',
@@ -13,5 +18,5 @@ file { '/opt/jetty/start.ini':
 file_line { 'cross_origin':
    path => '/opt/jetty/start.ini',
    line => '--module=servlets',
-   notify  => Service["jetty"],
+   #notify  => Service["jetty"],
 }
