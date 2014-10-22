@@ -17,7 +17,7 @@ file { '/opt/apache-storm-0.9.2-incubating':
           ensure => 'directory',
           owner => 'vagrant',
           group => 'vagrant',
-          before => Exec['run_storm']
+#          before => Exec['run_storm']
 } 
 
 group { "tomcat7":
@@ -170,4 +170,11 @@ file { '/usr/src/compose-idm/src/main/resources/uaa.properties':
           ensure => present,
           source => "/vagrant/puppet/files/idm/uaa.properties",
           require => [ File['/opt/compose-idm'] ]
+}
+
+
+
+file { '/tmp/mysql-server.response':
+          ensure => present,
+          source => "/vagrant/puppet/files/mysql.response",
 }

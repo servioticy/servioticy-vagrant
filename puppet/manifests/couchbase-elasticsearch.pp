@@ -36,10 +36,10 @@ elasticsearch::plugin{ 'transport-couchbase':
   require  => [ Package["git"], Package['oracle-java7-installer'], Exec['build_elasticsearch-transport-couchbase']],
 }
 
-exec {
-    'create-xdcr':
-      command => '/bin/sh create_xdcr.sh',
-      cwd => "/vagrant/puppet/files",
-      path =>  "/usr/local/bin/:/bin/:/usr/bin/",      
-      require => [Exec['create_buckets'], Exec['build_elasticsearch-transport-couchbase'], Exec['create-indices']]     
-}
+#exec {
+#    'create-xdcr':
+#      command => '/bin/sh create_xdcr.sh',
+#      cwd => "/vagrant/puppet/files",
+#      path =>  "/usr/local/bin/:/bin/:/usr/bin/",      
+#      require => [Exec['create_buckets'], Exec['build_elasticsearch-transport-couchbase'], Exec['create-indices']]     
+#}

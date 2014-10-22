@@ -17,12 +17,13 @@ file { '/opt/kestrel-2.4.1/config/servioticy_queues.scala':
           source => "/vagrant/puppet/files/servioticy_queues.scala",
           owner    => 'vagrant',
           group    => 'vagrant',
-} ->
-exec { "run_kestrel":
-    command => "java -server -Xmx1024m -Dstage=servioticy_queues -jar /opt/kestrel-2.4.1/kestrel_2.9.2-2.4.1.jar &",
-    cwd     => "/opt/kestrel-2.4.1",
-    require => Package['oracle-java7-installer'] ,
-    user    => 'vagrant',
-    group    => 'vagrant',
-    unless => "ps -fA | grep kestrel | grep -v grep",
 }
+#->
+#exec { "run_kestrel":
+#    command => "java -server -Xmx1024m -Dstage=servioticy_queues -jar /opt/kestrel-2.4.1/kestrel_2.9.2-2.4.1.jar &",
+#    cwd     => "/opt/kestrel-2.4.1",
+#    require => Package['oracle-java7-installer'] ,
+#    user    => 'vagrant',
+#    group    => 'vagrant',
+#    unless => "ps -fA | grep kestrel | grep -v grep",
+#}

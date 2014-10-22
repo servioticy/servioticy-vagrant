@@ -52,7 +52,7 @@ class jetty(
 
   service { "jetty":
     enable     => true,
-    ensure     => running,
+    ensure     => stopped,
     hasstatus  => false,
     hasrestart => true,
   }
