@@ -28,11 +28,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :private_network, ip: "192.168.56.101"
 
   config.vm.provider :virtualbox do |vb|
+    #vb.gui = true
     vb.customize ["modifyvm", :id, "--memory", "4096"]
-    unless File.exist?("./datadisk.vdi")        
-      vb.customize ['createhd', '--filename', './datadisk.vdi', '--size', 2 * 1024]
-      vb.customize ['storageattach', :id, '--storagectl', "SATA Controller", '--port', 1, '--device', 0, '--type', 'hdd', '--medium', './datadisk.vdi' ]
-    end
+    #unless File.exist?("./datadisk.vdi")        
+    #  vb.customize ['createhd', '--filename', './datadisk.vdi', '--size', 2 * 1024]
+    #  vb.customize ['storageattach', :id, '--storagectl', "SATA Controller", '--port', 1, '--device', 0, '--type', 'hdd', '--medium', './datadisk.vdi' ]
+    #end
   end
   
   #config.vm.provision :shell, :inline => "sudo apt-get update && sudo apt-get install puppet -y"
