@@ -95,10 +95,23 @@ echo COMPOSER running
 if [ ! -f /var/log/servioticy_initialized ];
 then
 	sudo touch /var/log/servioticy_initialized
-fi
 
-echo
-echo "*******************************"
-echo sevIoTicy is now running.
-echo "*******************************"
-echo
+	echo
+	echo "*********************************"
+	echo    sevIoTicy is now initialized
+	echo 
+	echo Please run 'start-servioticy' again
+	echo "*********************************"
+	echo
+	
+	nohup stop-servioticy &> /dev/null &
+
+else
+
+	echo
+	echo "*******************************"
+	echo sevIoTicy is now running.
+	echo "*******************************"
+	echo
+
+fi
