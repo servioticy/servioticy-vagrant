@@ -54,14 +54,14 @@ python::pip { 'simplejson' :
 }
 
 
-package {'mysql-server':
+package {'mysql-server-5.5':
   ensure => present,
   responsefile=>'/tmp/mysql-server.response',
   require=> [File['/tmp/mysql-server.response'],Exec['apt-get update']],
 }
 
 
-package {'mysql-client':
+package {'mysql-client-5.5':
   ensure => present,
   require => Exec['apt-get update']
 }

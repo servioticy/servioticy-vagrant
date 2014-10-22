@@ -176,5 +176,5 @@ file { '/usr/src/compose-idm/src/main/resources/uaa.properties':
 
 file { '/tmp/mysql-server.response':
           ensure => present,
-          source => "/vagrant/puppet/files/mysql.response",
+          source => "/vagrant/puppet/files/mysql-server.response",
 }
