@@ -52,6 +52,12 @@ echo "--------------------------------------------------------"
     --bucket=subscriptions \
      -c localhost --user=admin --password=password 
      
+/opt/couchbase/bin/couchbase-cli bucket-create \
+    --bucket-type=couchbase \
+    --bucket-ramsize=200 \
+    --bucket-replica=1 \
+    --bucket=reputation \
+     -c localhost --user=admin --password=password 
      
 #create views for service objects
 curl -X PUT -H "Content-Type: application/json" http://admin:password@localhost:8092/serviceobjects/_design/user -d @byUser.ddoc &> /dev/null
