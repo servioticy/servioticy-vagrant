@@ -45,6 +45,12 @@ new KestrelConfig {
     maxAge = 300.seconds
     maxItems = 1500000
     keepJournal = false
+  } :: new QueueBuilder {
+    name = "reputation"
+    // Timeout for the descriptors
+    maxAge = 300.seconds
+    maxItems = 1500000
+    keepJournal = false
   }
 
   loggers = new LoggerConfig {
