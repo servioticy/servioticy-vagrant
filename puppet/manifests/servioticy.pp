@@ -22,6 +22,13 @@ maven::environment { 'maven-env' :
     maven_opts => '-Xmx1384m',       # anything to add to MAVEN_OPTS in ~/.mavenrc
     maven_path_additions => "",      # anything to add to the PATH in ~/.mavenrc
 } -> 
+exec { "build_rhinomod":
+   cwd     => "/usr/src/servioticy/servioticy-dispatcher",
+   command => "bash unmanaged_dependencies.sh",
+   path    => "/usr/local/bin/:/usr/bin:/bin/:/usr/src/servioticy/servioticy-dispatcher",
+   user    => 'vagrant',
+   timeout => 0
+} -> 
 exec { "build_servioticy":
    cwd     => "/usr/src/servioticy",
    command => "git submodule update --init --recursive; mvn -Dmaven.test.skip=true package",
