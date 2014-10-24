@@ -99,8 +99,11 @@ then
 	echo
 	echo "*********************************"
 	echo    sevIoTicy is now initialized
+	echo      but needs to be restarted
+	echo      to get all changes applied
 	echo 
-	echo Please run 'start-servioticy' again
+	echo Please run 'stop-servioticy' and 
+	echo  then 'start-servioticy' again
 	echo "*********************************"
 	echo
 	
