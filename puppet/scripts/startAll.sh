@@ -38,7 +38,7 @@ else
 	$SCRIPTS/wait_for_couchbase_up.sh
 fi
 
-sudo service mysql startt &> /dev/null
+sudo service mysql start &> /dev/null
 $SCRIPTS/wait_for_mysql_up.sh
 if [ ! -f /var/log/servioticy_initialized ];
 then
