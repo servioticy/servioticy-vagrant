@@ -24,7 +24,7 @@ maven::environment { 'maven-env' :
 } -> 
 exec { "build_servioticy":
    cwd     => "/usr/src/servioticy",
-   command => "mvn -Dmaven.test.skip=true package",
+   command => "git submodule update --init --recursive; mvn -Dmaven.test.skip=true package",
    path    => "/usr/local/bin/:/usr/bin:/bin/",
    user    => 'vagrant',
    timeout => 0
