@@ -27,6 +27,7 @@ exec { "build_rhinomod":
    command => "bash unmanaged_dependencies.sh",
    path    => "/usr/local/bin/:/usr/bin:/bin/:/usr/src/servioticy/servioticy-dispatcher",
    user    => 'vagrant',
+   require => Package['ant'],
    timeout => 0
 } -> 
 exec { "build_servioticy":
