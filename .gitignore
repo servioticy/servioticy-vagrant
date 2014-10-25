@@ -2,6 +2,7 @@ nbproject
 .project
 .vagrant
 *.vdi
+*.dot
 servioticy/*
 broker/bridge/node_modules
 nbproject

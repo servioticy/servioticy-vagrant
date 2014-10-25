@@ -36,6 +36,12 @@ elasticsearch::plugin{ 'transport-couchbase':
   require  => [ Package["git"], Package['oracle-java7-installer'], Exec['build_elasticsearch-transport-couchbase']],
 }
 
+#elasticsearch::plugin{ 'transport-couchbase':
+#  module_dir => 'transport-couchbase',
+#  url        => 'http://packages.couchbase.com/releases/elastic-search-adapter/2.0.0/elasticsearch-transport-couchbase-2.0.0.zip',
+#  instances  => 'serviolastic',
+#  require  => [ Package["git"], Package['oracle-java7-installer'], Exec['build_elasticsearch-transport-couchbase']],
+#}
 #exec {
 #    'create-xdcr':
 #      command => '/bin/sh create_xdcr.sh',
