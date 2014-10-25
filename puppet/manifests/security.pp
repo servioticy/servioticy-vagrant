@@ -39,7 +39,7 @@ exec { "compose-idm":
 exec { "compose-pdp":
     path => "/usr/local/bin/:/usr/bin:/bin/:/usr/src/compose-pdp:/opt/gradle-2.1/bin",
     cwd => "/usr/src/compose-pdp",
-    command => "gradle clean build",
+    command => "gradle clean build install -x test",
     user    => 'vagrant',
     group    => 'vagrant',
     require => [ Class['gradle'] ]
