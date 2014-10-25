@@ -24,7 +24,7 @@ maven::environment { 'maven-env' :
 } -> 
 exec { "build_rhinomod":
    cwd     => "/usr/src/servioticy/servioticy-dispatcher",
-   command => "bash unmanaged_dependencies.sh",
+   command => "bash unmanaged-dependencies.sh",
    path    => "/usr/local/bin/:/usr/bin:/bin/:/usr/src/servioticy/servioticy-dispatcher",
    user    => 'vagrant',
    require => Package['ant'],
