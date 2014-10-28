@@ -34,8 +34,9 @@ done
 
 sudo rm -f $COUCHBASE_HOME/var/lib/couchbase/logs/*
 sudo rm -f $API_HOME/logs/*
-sudo rm -f  /var/log/elasticsearch/serviolastic/*
+sudo rm -f /var/log/elasticsearch/serviolastic/*
 sudo rm -f $SERVIBROKER_HOME/log/*
-sudo rm -f var/log/tomcat7/*
+sudo rm -f /var/log/tomcat7/*
+sudo rm -rf /var/lib/tomcat7/webapps/uaa
 
 echo Done.

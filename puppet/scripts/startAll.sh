@@ -40,7 +40,7 @@ fi
 
 sudo service mysql start &> /dev/null
 $SCRIPTS/wait_for_mysql_up.sh
-if [ ! -f /var/log/servioticy_initialized ];
+if [ ! -f /var/log/idmsetup ];
 then
 	$SCRIPTS/create_database.sh &> /dev/null
 fi
