@@ -40,10 +40,8 @@ fi
 
 sudo service mysql start &> /dev/null
 $SCRIPTS/wait_for_mysql_up.sh
-if [ ! -f /var/log/idmsetup ];
-then
-	$SCRIPTS/create_database.sh &> /dev/null
-fi
+$SCRIPTS/create_database.sh &> /dev/null
+
 
 sudo env JAVA_HOME=$JAVA_HOME /etc/init.d/tomcat7 start &> /dev/null
 $SCRIPTS/wait_for_tomcat_up.sh
