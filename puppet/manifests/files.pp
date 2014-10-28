@@ -178,3 +178,10 @@ file { '/tmp/mysql-server.response':
           ensure => present,
           source => "/vagrant/puppet/files/mysql-server.response",
 }
+
+
+file { '/usr/share/tomcat7/lib/mysql-connector-java-5.1.16.jar':
+          ensure => present,
+          source => "/usr/share/java/mysql-connector-java-5.1.16.jar",
+          require => Package['libmysql-java'],
+}
