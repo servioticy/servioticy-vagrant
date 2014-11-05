@@ -4,16 +4,16 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
-unless Vagrant.has_plugin?("vagrant-puppet-install")
-  raise 'vagrant-puppet-install is not installed!'
-end
+#unless Vagrant.has_plugin?("vagrant-puppet-install")
+#  raise 'vagrant-puppet-install is not installed!'
+#end
 
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "hashicorp/precise64"
-  config.puppet_install.puppet_version = :latest
+  #config.puppet_install.puppet_version = :latest
   
   # required by maven
   config.ssh.shell = "export JAVA_HOME=/usr/lib/jvm/java-7-oracle"
@@ -37,6 +37,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
   
   #config.vm.provision :shell, :inline => "sudo apt-get update && sudo apt-get install puppet -y"
+  config.vm.provision :shell, :path => "install_puppet.sh"
   
   #puppet config
   config.vm.provision "puppet" do |puppet|
