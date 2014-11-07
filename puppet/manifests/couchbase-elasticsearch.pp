@@ -5,7 +5,7 @@ vcsrepo { "/usr/src/couchbase-capi-server":
   group    => 'vagrant',
   require  => [ Package["git"], Class['maven::maven'], Package['oracle-java7-installer'] ],
   source   => "https://github.com/couchbaselabs/couchbase-capi-server.git",
-  revision => 'master',
+  revision => '3cbcfdff4a06e3f080eba3d4d7439f0bab5a834e',
 } ->
 exec { "build_couchbase_capi":
    cwd     => "/usr/src/couchbase-capi-server",
@@ -20,7 +20,7 @@ vcsrepo { "/usr/src/elasticsearch-transport-couchbase":
   group    => 'vagrant',
   require  => [ Package["git"], Class['maven::maven'], Package['oracle-java7-installer'] ],
   source   => "https://github.com/couchbaselabs/elasticsearch-transport-couchbase.git",
-  revision => 'master',
+  revision => '83e588076e0a3df6fa61c0824256e6a00d08a081',
 } ->
 exec { "build_elasticsearch-transport-couchbase":
    cwd     => "/usr/src/elasticsearch-transport-couchbase",
