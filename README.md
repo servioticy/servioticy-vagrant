@@ -7,12 +7,6 @@ Puppet is used to setup and launch all the needed components to run the servioti
 ##Requirements
 * Vagrant 1.6 or newwer is necessary (see vagrantup.com for more information)
 
-* You need to install the following vagrant plugin: vagrant-puppet-install
-
-The procedure to install the plugin is:
-
-`vagrant plugin install vagrant-puppet-install`
-
 ##Running  the instance
 
 Now we are ready to run
