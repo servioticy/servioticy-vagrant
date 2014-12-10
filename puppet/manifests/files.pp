@@ -133,7 +133,7 @@ file { '/opt/jetty/webapps/root.war':
 
 file { '/var/lib/tomcat7/webapps/uaa.war':
           ensure => present,
-          source => "/usr/src/cf-uaa/uaa/build/libs/cloudfoundry-identity-uaa-1.9.0.war",
+          source => "/usr/src/cf-uaa/uaa/build/libs/cloudfoundry-identity-uaa-1.11.war",
           require => [Exec['build-uaa'], Package['tomcat7']]
 }
 

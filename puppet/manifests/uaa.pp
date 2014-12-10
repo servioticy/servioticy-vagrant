@@ -5,7 +5,7 @@ vcsrepo { "/usr/src/cf-uaa":
   group    => 'vagrant',
   require  => [ Package["git"], Class['maven::maven'], Package['oracle-java7-installer'], Package['curl'], Package['unzip'] ],
   source   => "git://github.com/cloudfoundry/uaa.git",
-  revision => 'master',
+  revision => '9156eed2dcc13d8aa1198523d5ce3876e3fe61d7',
 } ->
 yaml_setting { 'classname':
  target => '/usr/src/cf-uaa/uaa/src/main/resources/uaa.yml',
