@@ -5,7 +5,7 @@ vcsrepo { "/opt/servioticy-bridge":
   group    => 'vagrant',
   require  => [ Package["git"], Package['forever'] ],
   source   => "https://github.com/servioticy/servioticy-brokers.git",
-  revision => 'master'
+  revision => 'vagrant'
 } 
 #->
 #exec { "run_bridge":

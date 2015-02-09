@@ -2,7 +2,7 @@ archive { 'apache-apollo-1.7':
   ensure => present,
   follow_redirects => true,
   checksum => false,
-  url    => 'http://ftp.cixug.es/apache/activemq/activemq-apollo/1.7/apache-apollo-1.7-unix-distro.tar.gz',
+  url    => 'http://archive.apache.org/dist/activemq/activemq-apollo/1.7/apache-apollo-1.7-unix-distro.tar.gz',
   target => '/opt',
   src_target => '/home/vagrant/downloads',
   require  => [ Package["curl"], File['/home/vagrant/downloads/'] ],      
