@@ -2,7 +2,7 @@ archive { 'apache-storm-0.9.2':
   ensure => present,
   follow_redirects => true,
   checksum => false,
-  url    => 'http://ftp.cixug.es/apache/incubator/storm/apache-storm-0.9.2-incubating/apache-storm-0.9.2-incubating.tar.gz',
+  url    => 'http://www.eu.apache.org/dist/storm/apache-storm-0.9.2-incubating/apache-storm-0.9.2-incubating.tar.gz',
   target => '/opt',
   src_target => '/home/vagrant/downloads',
   require  => [ Package["curl"], File['/home/vagrant/downloads/'] ],
