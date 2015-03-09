@@ -1,21 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <context>
-	<servioticyAPI>http://127.0.0.1:8080/</servioticyAPI>
-	<kestrels>
-		<kestrel>
-             <addr>127.0.0.1</addr>
-        </kestrel>
-		<port>2229</port>
-		<queue>services</queue>
-	</kestrels>
-	<pubsub>
-		<mqtt>
+    <servioticyAPI>http://localhost:8080/</servioticyAPI>
+    <benchmark>false</benchmark>
+    <benchResultsDir>~</benchResultsDir>
+    <spouts>
+        <updates>
+            <name>services</name>
+            <addresses>
+                <address>localhost</address>
+            </addresses>
+            <port>2229</port>
+        </updates>
+        <actions>
+            <name>actions</name>
+            <addresses>
+                <address>localhost</address>
+            </addresses>
+            <port>2229</port>
+        </actions>
+        <reputation>
+            <name>reputation</name>
+            <addresses>
+                <address>localhost</address>
+            </addresses>
+            <port>2229</port>
+        </reputation>
+    </spouts>
+	<publishers>
+		<external>
 			<name>servioticy</name>
-			<uri>tcp://localhost:1883</uri>
+			<address>tcp://localhost</address>
+			<port>1833</port>
 			<username>compose</username>
 			<password>shines</password>
-		</mqtt>
-	</pubsub>
-        <benchmark>false</benchmark>
-        <benchResultsDir>/tmp</benchResultsDir>
+			<class>com.servioticy.dispatcher.publishers.MQTTPublisher</class>
+		</external>
+		<internal>
+			<name>servioticy</name>
+			<address>tcp://localhost</address>
+			<port>1833</port>
+			<username>compose</username>
+			<password>shines</password>
+			<class>com.servioticy.dispatcher.publishers.MQTTPublisher</class>
+		</internal>
+        <actions>
+            <name>servioticy</name>
+            <address>tcp://localhost</address>
+            <port>1833</port>
+            <username>compose</username>
+            <password>shines</password>
+            <class>com.servioticy.dispatcher.publishers.MQTTPublisher</class>
+        </actions>
+	</publishers>
+    <storage>
+        <addresses>
+            <address>http://localhost:8091/pools</address>
+        </addresses>
+        <buckets>
+            <reputation>reputation</reputation>
+        </buckets>
+    </storage>
+
 </context>
