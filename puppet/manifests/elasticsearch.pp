@@ -16,7 +16,8 @@ class { 'elasticsearch':
   init_defaults => $init_hash,
   require => Package['oracle-java7-installer'] ,
   ensure => 'present',
-  status => 'disabled'
+  status => 'disabled',
+  package_dl_timeout => 0
 }
 
 $config_hash = {

@@ -6,6 +6,7 @@ archive { 'apache-apollo-1.7':
   target => '/opt',
   src_target => '/home/vagrant/downloads',
   require  => [ Package["curl"], File['/home/vagrant/downloads/'] ],      
+  timeout => 0
 } ->
 file { '/opt/apache-apollo-1.7':
   owner    => 'vagrant',
