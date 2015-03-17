@@ -137,12 +137,31 @@
 # [*logging_file*]
 #   Instead of a hash you can supply a puppet:// file source for the logging.yml file
 #
+# [*logging_template*]
+#  Use a custom logging template - just supply the reative path ie ${module}/elasticsearch/logging.yml.erb
+#
 # [*default_logging_level*]
 #   Default logging level for Elasticsearch.
 #   Defaults to: INFO
 #
 # [*repo_stage*]
 #   Use stdlib stage setup for managing the repo, instead of anchoring
+#
+# [*instances*]
+#   Define instances via a hash. This is mainly used with Hiera's auto binding
+#   Defaults to: undef
+#
+# [*instances_hiera_merge*]
+#   Enable Hiera's merging function for the instances
+#   Defaults to: false
+#
+# [*plugins*]
+#   Define plugins via a hash. This is mainly used with Hiera's auto binding
+#   Defaults to: undef
+#
+# [*plugins_hiera_merge*]
+#   Enable Hiera's merging function for the plugins
+#   Defaults to: false
 #
 # The default values for the parameters are set in elasticsearch::params. Have
 # a look at the corresponding <tt>params.pp</tt> manifest file if you need more
@@ -198,8 +217,13 @@ class elasticsearch(
   $repo_version          = false,
   $logging_file          = undef,
   $logging_config        = undef,
+  $logging_template      = undef,
   $default_logging_level = $elasticsearch::params::default_logging_level,
-  $repo_stage            = false
+  $repo_stage            = false,
+  $instances             = undef,
+  $instances_hiera_merge = false,
+  $plugins               = undef,
+  $plugins_hiera_merge   = false
 ) inherits elasticsearch::params {
 
   anchor {'elasticsearch::begin': }
@@ -255,7 +279,11 @@ class elasticsearch(
   validate_bool($manage_repo)
 
   if ($manage_repo == true) {
-    validate_string($repo_version)
+    if $repo_version == undef {
+      fail('Please fill in a repository version at $repo_version')
+    } else {
+      validate_string($repo_version)
+    }
   }
 
   #### Manage actions
@@ -266,13 +294,45 @@ class elasticsearch(
   # configuration
   class { 'elasticsearch::config': }
 
+  # Hiera support for instances
+  validate_bool($instances_hiera_merge)
+
+  if $instances_hiera_merge == true {
+    $x_instances = hiera_hash('elasticsearch::instances', $::elasticsearch::instances)
+  } else {
+    $x_instances = $instances
+  }
+
+  if $x_instances {
+    validate_hash($x_instances)
+    create_resources('elasticsearch::instance', $x_instances)
+  }
+
+  # Hiera support for plugins
+  validate_bool($plugins_hiera_merge)
+
+  if $plugins_hiera_merge == true {
+    $x_plugins = hiera_hash('elasticsearch::plugins', $::elasticsearch::plugins)
+  } else {
+    $x_plugins = $plugins
+  }
+
+  if $x_plugins {
+    validate_hash($x_plugins)
+    create_resources('elasticsearch::plugin', $x_plugins)
+  }
+
+
   if $java_install == true {
     # Install java
-    class { 'elasticsearch::java': }
+    class { '::java':
+      package      => $java_package,
+      distribution => 'jre'
+    }
 
     # ensure we first java java and then manage the service
     Anchor['elasticsearch::begin']
-    -> Class['elasticsearch::java']
+    -> Class['::java']
     -> Class['elasticsearch::package']
   }
 
@@ -311,11 +371,13 @@ class elasticsearch(
     Anchor['elasticsearch::begin']
     -> Class['elasticsearch::package']
     -> Class['elasticsearch::config']
-
+    -> Elasticsearch::Instance <| |>
+    -> Elasticsearch::Template <| |>
   } else {
 
     # make sure all services are getting stopped before software removal
-    Class['elasticsearch::config']
+    Elasticsearch::Instance <| |>
+    -> Class['elasticsearch::config']
     -> Class['elasticsearch::package']
 
   }

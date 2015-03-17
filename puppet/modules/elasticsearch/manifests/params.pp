@@ -82,10 +82,10 @@ class elasticsearch::params {
 
   case $::kernel {
     'Linux': {
-      $download_tool = 'wget -O'
+      $download_tool = 'wget --no-check-certificate -O'
     }
     'Darwin': {
-      $download_tool = 'curl -o'
+      $download_tool = 'curl --insecure -o'
     }
     default: {
       fail("\"${module_name}\" provides no download tool default value
@@ -97,10 +97,12 @@ class elasticsearch::params {
   case $::kernel {
     'Linux': {
       $configdir   = '/etc/elasticsearch'
+      $logdir      = '/var/log/elasticsearch'
       $package_dir = '/opt/elasticsearch/swdl'
       $installpath = '/opt/elasticsearch'
-      $plugindir   = '/usr/share/elasticsearch/plugins'
-      $plugintool  = '/usr/share/elasticsearch/bin/plugin'
+      $homedir     = '/usr/share/elasticsearch'
+      $plugindir   = "${homedir}/plugins"
+      $plugintool  = "${homedir}/bin/plugin"
       $datadir     = '/usr/share/elasticsearch/data'
     }
     default: {
@@ -131,30 +133,43 @@ class elasticsearch::params {
   # service parameters
   case $::operatingsystem {
     'RedHat', 'CentOS', 'Fedora', 'Scientific', 'Amazon', 'OracleLinux', 'SLC': {
+
+      case $::operatingsystemmajrelease {
+        '7': {
+          $init_template     = 'elasticsearch.systemd.erb'
+          $service_providers = 'systemd'
+        }
+        default: {
+          $init_template     = 'elasticsearch.RedHat.erb'
+          $service_providers = [ 'init' ]
+        }
+      }
+
       $service_name       = 'elasticsearch'
       $service_hasrestart = true
       $service_hasstatus  = true
       $service_pattern    = $service_name
-      $service_providers  = [ 'init' ]
       $defaults_location  = '/etc/sysconfig'
-      $init_template      = 'elasticsearch.RedHat.erb'
+      $pid_dir            = '/var/run/elasticsearch'
     }
     'Debian', 'Ubuntu': {
       $service_name       = 'elasticsearch'
       $service_hasrestart = true
       $service_hasstatus  = true
       $service_pattern    = $service_name
-      $service_providers  = [ 'init' ]
+      $service_providers  = 'init'
       $defaults_location  = '/etc/default'
       $init_template      = 'elasticsearch.Debian.erb'
+      $pid_dir            = false
     }
     'Darwin': {
       $service_name       = 'FIXME/TODO'
       $service_hasrestart = true
       $service_hasstatus  = true
       $service_pattern    = $service_name
-      $service_providers  = [ 'launchd' ]
+      $service_providers  = 'launchd'
       $defaults_location  = false
+      $pid_dir            = false
     }
     'OpenSuSE': {
       $service_name       = 'elasticsearch'
@@ -163,7 +178,8 @@ class elasticsearch::params {
       $service_pattern    = $service_name
       $service_providers  = 'systemd'
       $defaults_location  = '/etc/sysconfig'
-      $init_template      = 'elasticsearch.OpenSuSE.erb'
+      $init_template      = 'elasticsearch.systemd.erb'
+      $pid_dir            = '/var/run/elasticsearch'
     }
     default: {
       fail("\"${module_name}\" provides no service parameters
