@@ -108,7 +108,7 @@ define elasticsearch::service::init(
   }
 
   $notify_service = $elasticsearch::restart_on_change ? {
-    true  => Service[$name],
+    true  => Service["elasticsearch-instance-${name}"],
     false => undef,
   }
 
@@ -118,26 +118,32 @@ define elasticsearch::service::init(
     # defaults file content. Either from a hash or file
     if ($init_defaults_file != undef) {
       file { "${elasticsearch::params::defaults_location}/elasticsearch-${name}":
-        ensure  => $ensure,
-        source  => $init_defaults_file,
-        owner   => 'root',
-        group   => 'root',
-        mode    => '0644',
-        before  => Service[$name],
-        notify  => $notify_service
+        ensure => $ensure,
+        source => $init_defaults_file,
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0644',
+        before => Service["elasticsearch-instance-${name}"],
+        notify => $notify_service
       }
 
     } elsif ($init_defaults != undef and is_hash($init_defaults) ) {
 
-      $init_defaults_pre_hash = { 'ES_USER' => $elasticsearch::elasticsearch_user, 'ES_GROUP' => $elasticsearch::elasticsearch_group }
+      if(has_key($init_defaults, 'ES_USER')) {
+        if($init_defaults['ES_USER'] != $elasticsearch::elasticsearch_user) {
+          fail('Found ES_USER setting for init_defaults but is not same as elasticsearch_user setting. Please use elasticsearch_user setting.')
+        }
+      }
+
+      $init_defaults_pre_hash = { 'ES_USER' => $elasticsearch::elasticsearch_user, 'ES_GROUP' => $elasticsearch::elasticsearch_group, 'MAX_OPEN_FILES' => '65535' }
       $new_init_defaults = merge($init_defaults_pre_hash, $init_defaults)
 
       augeas { "defaults_${name}":
-        incl     => "${elasticsearch::params::defaults_location}/elasticsearch-${name}",
-        lens     => 'Shellvars.lns',
-        changes  => template("${module_name}/etc/sysconfig/defaults.erb"),
-        before   => Service[$name],
-        notify   => $notify_service
+        incl    => "${elasticsearch::params::defaults_location}/elasticsearch-${name}",
+        lens    => 'Shellvars.lns',
+        changes => template("${module_name}/etc/sysconfig/defaults.erb"),
+        before  => Service["elasticsearch-instance-${name}"],
+        notify  => $notify_service
       }
 
     }
@@ -151,7 +157,7 @@ define elasticsearch::service::init(
         owner   => 'root',
         group   => 'root',
         mode    => '0755',
-        before  => Service[$name],
+        before  => Service["elasticsearch-instance-${name}"],
         notify  => $notify_service
       }
 
@@ -161,12 +167,12 @@ define elasticsearch::service::init(
 
     file { "/etc/init.d/elasticsearch-${name}":
       ensure    => 'absent',
-      subscribe => Service[$name]
+      subscribe => Service["elasticsearch-instance-${name}"]
     }
 
     file { "${elasticsearch::params::defaults_location}/elasticsearch-${name}":
       ensure    => 'absent',
-      subscribe => Service[$name]
+      subscribe => Service["elasticsearch-${$name}"]
     }
 
   }
@@ -175,7 +181,7 @@ define elasticsearch::service::init(
   if ( $status != 'unmanaged') {
 
     # action
-    service { $name:
+    service { "elasticsearch-instance-${name}":
       ensure     => $service_ensure,
       enable     => $service_enable,
       name       => "elasticsearch-${name}",

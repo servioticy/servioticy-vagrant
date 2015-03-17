@@ -1,3 +1,80 @@
+##0.9.2( Mar 06, 2015 )
+
+###Summary
+Bugfix release 0.9.2
+
+####Features
+* Introducing es_instance_conn_validator resource to verify instance availability
+
+####Bugfixes
+* Fix missing data path when using the path config setting but not setting the data path
+
+####Changes
+None
+
+####Testing changes
+None
+
+####Known bugs
+* Possible package conflicts when using ruby/python defines with main package name
+
+##0.9.1 ( Feb 23, 2015 )
+
+###Summary
+This is the first bug fix release for 0.9 version.
+A bug was reported with the recursive file management.
+
+####Features
+None
+
+####Bugfixes
+* Fix recursive file management
+* Set undefined variables to work with strict_variables
+
+####Changes
+None
+
+####Testing changes
+None
+
+####Known bugs
+* Possible package conflicts when using ruby/python defines with main package name
+
+##0.9.0 ( Feb 02, 2015 )
+
+###Summary
+This release is the first one towards 1.0 release.
+Our planning is to provide LTS releases with the puppet module
+
+####Features
+* Support for using hiera to define instances and plugins.
+* Support for OpenSuSE 13.x
+* Custom facts about the installed Elasticsearch instance(s)
+* Proxy host/port support for the plugin installation
+* Ability to supply a custom logging.yml template
+
+####Bugfixes
+* Ensure file owners are correct accross all related files
+* Fix of possible service name conflict
+* Empty main config would fail with instances
+* Removal of standard files from packages we dont use
+* Ensuring correct sequence of plugin and template defines
+* Added ES_CLASSPATH export to init scripts
+
+####Changes
+* Java installation to use puppetlabs-java module
+* Added Support and testing for Puppet 3.7 and PE 3.7
+* Improve metadata.json based on scoring from Forge
+
+
+####Testing changes
+* Added testing against Puppet 3.7 and PE 3.7
+* Using rspec3
+* Using rspec-puppet-facts gem simplifies rspec testing
+
+####Known Bugs
+* Possible package conflicts when using ruby/python defines with main package name
+
 ##0.4.0 ( Jun 18, 2014 ) - Backwards compatible breaking release
 
 ###Summary
