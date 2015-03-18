@@ -121,3 +121,8 @@ file { '/usr/bin/stop-servioticy':
    require => File['/opt/servioticy_scripts'],
    mode => 755
 }
+
+file { '/home/vagrant/.bash_aliases':
+   ensure => 'link',
+   target => '/vagrant/puppet/scripts/env.sh',
+}
