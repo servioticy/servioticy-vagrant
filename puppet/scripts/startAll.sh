@@ -44,6 +44,7 @@ python userDB.py &> /dev/null &
 $SCRIPTS/wait_for_userDB.sh
 
 sudo rm -rf $API_LOG_FOLDER/*
+echo Starting API (Jetty) service...
 sudo /etc/init.d/jetty start &> /dev/null
 $SCRIPTS/wait_for_api.sh 
 

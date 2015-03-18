@@ -1,4 +1,3 @@
-echo Starting API (Jetty) service...
 status=`/usr/bin/curl -X GET -s localhost:8080|grep 403| sed 's/ //g'`
 while [ -z $status ]
 do
