@@ -65,6 +65,16 @@ curl -XPUT 'http://localhost:9200/soupdates/' -d '{
                 }
             ],
             "properties": {
+                "doc": {
+                    "properties": {                       
+                        "customFields": {
+                            "enabled": false
+                        },
+                        "security": {
+                            "enabled": false
+                        }
+                    }
+                },
                 "meta": {
                     "properties": {
                         "id": {
@@ -79,7 +89,18 @@ curl -XPUT 'http://localhost:9200/soupdates/' -d '{
 }'
 
 curl -XPUT 'http://localhost:9200/subscriptions/' -d '{
-   "mappings": {
+    "settings": {
+        "analysis": {
+            "analyzer": {
+               "ignore_case_no_parse": {
+                  "type": "custom",
+                  "tokenizer": "keyword",
+                  "filter": "lowercase"
+               }
+            }
+        }
+    },
+    "mappings": {
         "couchbaseCheckpoint": {
             "dynamic": "true",
             "_source": {
@@ -134,7 +155,8 @@ curl -XPUT 'http://localhost:9200/subscriptions/' -d '{
                             "type": "string"
                         },
                         "destination": {
-                            "type": "string"
+                            "type" : "string",
+                            "analyzer": "ignore_case_no_parse"                        
                         },
                         "stream": {
                             "type": "string"
