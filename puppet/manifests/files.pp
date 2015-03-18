@@ -183,7 +183,7 @@ file { '/tmp/mysql-server.response':
 file { '/usr/share/tomcat7/lib/mysql-connector-java-5.1.16.jar':
           ensure => present,
           source => "/usr/share/java/mysql-connector-java-5.1.16.jar",
-          require => Package['libmysql-java'],
+          require => Package['libmysql-java', 'tomcat7'],
 }
 
 file { '/home/vagrant/.bash_aliases':
