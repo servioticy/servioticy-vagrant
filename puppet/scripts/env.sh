@@ -27,5 +27,5 @@ export USERDB_STATUS_FILE=/tmp/userdb.status
 export ELASTICSEARCH_LOG_FILE=/var/log/elasticsearch/serviolastic/serviolastic.log
 
 
-export PATH=$JAVA_HOME/bin:$PATH
+#export PATH=$JAVA_HOME/bin:$PATH
 

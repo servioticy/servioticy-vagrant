@@ -52,6 +52,7 @@ $JAVA_HOME/bin/java -jar COMPOSEIdentityManagement-0.8.0.jar &> /dev/null &
 $SCRIPTS/wait_for_IDM_up.sh
 
 sudo rm -rf $API_LOG_FOLDER/*
+echo "Starting API (Jetty) service..."
 sudo /etc/init.d/jetty start &> /dev/null
 $SCRIPTS/wait_for_api.sh 
 

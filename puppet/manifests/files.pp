@@ -185,3 +185,8 @@ file { '/usr/share/tomcat7/lib/mysql-connector-java-5.1.16.jar':
           source => "/usr/share/java/mysql-connector-java-5.1.16.jar",
           require => Package['libmysql-java'],
 }
+
+file { '/home/vagrant/.bash_aliases':
+   ensure => 'link',
+   target => '/vagrant/puppet/scripts/env.sh',
+}
