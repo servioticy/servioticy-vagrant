@@ -9,6 +9,13 @@ echo Starting servIoTicy services...
 echo "*******************************"
 echo
 
+sudo rm -f $ELASTICSEARCH_LOG_FILE
+sudo rm -rf $API_LOG_FOLDER/*
+sudo rm -f $BROKER_LOG_FILE
+rm -f $STORM_LOG_FILE
+rm -f $KESTREL_STATUS_FILE
+sleep 5
+
 if [ ! -f /var/log/servioticy_initialized ];
 then
 	echo
@@ -19,7 +26,6 @@ then
 	echo
 fi
 
-sudo rm -f $ELASTICSEARCH_LOG_FILE
 sudo /etc/init.d/elasticsearch-serviolastic start &> /dev/null
 $SCRIPTS/wait_for_elasticsearch_up.sh
 if [ ! -f /var/log/servioticy_initialized ];
@@ -34,10 +40,8 @@ then
 	$SCRIPTS/create_buckets.sh &> /dev/null
 	$SCRIPTS/create_views.sh &> /dev/null
 	$SCRIPTS/create_xdcr.sh &> /dev/null
-
-else
-	$SCRIPTS/wait_for_couchbase_up.sh
 fi
+$SCRIPTS/wait_for_couchbase_up.sh
 
 sudo service mysql start &> /dev/null
 $SCRIPTS/wait_for_mysql_up.sh
@@ -51,22 +55,18 @@ cd $IDM_HOME
 $JAVA_HOME/bin/java -jar COMPOSEIdentityManagement-0.8.0.jar &> /dev/null &
 $SCRIPTS/wait_for_IDM_up.sh
 
-sudo rm -rf $API_LOG_FOLDER/*
 echo "Starting API (Jetty) service..."
 sudo /etc/init.d/jetty start &> /dev/null
 $SCRIPTS/wait_for_api.sh 
 
-sudo rm -f $BROKER_LOG_FILE
 sudo $SERVIBROKER_HOME/bin/apollo-broker run &> /dev/null &
 $SCRIPTS/wait_for_broker.sh 
 
 cd $KESTREL_HOME
-rm -f $KESTREL_STATUS_FILE
 $JAVA_HOME/bin/java -server -Xmx1024m -Dstage=servioticy_queues -jar kestrel_2.9.2-2.4.1.jar &> /dev/null &
 $SCRIPTS/wait_for_kestrel.sh 
 
 cd $STORM_HOME
-rm -f $STORM_LOG_FILE
 bin/storm jar $DISPATCHER_HOME/dispatcher-0.4.3-security-SNAPSHOT-jar-with-dependencies.jar com.servioticy.dispatcher.DispatcherTopology -f $DISPATCHER_HOME/dispatcher.xml -d &> $STORM_LOG_FILE &
 $SCRIPTS/wait_for_storm.sh 
 
