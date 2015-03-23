@@ -40,6 +40,7 @@ if [ ! -f /var/log/servioticy_initialized ];
 then
 	$SCRIPTS/wait_for_couchbase.sh 
 	$SCRIPTS/create_buckets.sh &> /dev/null
+	$SCRIPTS/wait_for_couchbase_up.sh
 	$SCRIPTS/create_views.sh &> /dev/null
 	$SCRIPTS/create_xdcr.sh &> /dev/null
 fi
