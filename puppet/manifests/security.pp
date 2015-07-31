@@ -47,7 +47,7 @@ exec { "compose-pdp":
 exec { "install-pdp":
     path => "/usr/local/bin/:/usr/bin:/bin/",
     cwd => "/usr/src/compose-pdp/build/libs",
-    command => "mvn install:install-file -Dfile=PDPComponentServioticy-0.1.0.jar -DgroupId=de.passau.uni -DartifactId=servioticy-pdp -Dversion=0.1.0 -Dpackaging=jar",
+    command => "mvn install:install-file -Dfile=PDPComponentServioticy-0.2.0.jar -DgroupId=de.passau.uni -DartifactId=servioticy-pdp -Dversion=0.2.0 -Dpackaging=jar",
     user    => 'vagrant',
     group    => 'vagrant',
     before   => Exec['build_servioticy'],
