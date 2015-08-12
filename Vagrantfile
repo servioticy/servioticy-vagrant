@@ -55,6 +55,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # couchbase
   config.vm.network :forwarded_port, guest: 8092, host: 8092
   config.vm.network :forwarded_port, guest: 8091, host: 8091
+  config.vm.network :forwarded_port, guest: 11210, host: 11210
 
   # elastic search
   config.vm.network :forwarded_port, guest: 9200, host: 9200
