@@ -1,6 +1,6 @@
 #Elasticsearch Puppet module
 
-[![Build Status](https://travis-ci.org/elasticsearch/puppet-elasticsearch.png?branch=master)](https://travis-ci.org/elasticsearch/puppet-elasticsearch)
+[![Build Status](https://travis-ci.org/elastic/puppet-elasticsearch.png?branch=master)](https://travis-ci.org/elastic/puppet-elasticsearch)
 
 ####Table of Contents
 
@@ -41,12 +41,13 @@ This module has been tested against ES 1.0 and up.
 ###Requirements
 
 * The [stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib) Puppet library.
+* [ceritsc/yum](https://forge.puppetlabs.com/ceritsc/yum) For yum version lock.
 * Augeas
 
 #### Repository management
 When using the repository management you will need the following dependency modules:
 
-* Debian/Ubuntu: [Puppetlabs/apt](http://forge.puppetlabs.com/puppetlabs/apt)
+* Debian/Ubuntu: [Puppetlabs/apt](http://forge.puppetlabs.com/puppetlabs/apt) Version 1.8.x or lower.
 * OpenSuSE: [Darin/zypprepo](https://forge.puppetlabs.com/darin/zypprepo)
 
 ##Usage
@@ -111,19 +112,17 @@ See [Advanced features](#advanced-features) for more information
 
 ###Plug-ins
 
-Install [a variety of plugins](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/modules-plugins.html#known-plugins):
+Install [a variety of plugins](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/modules-plugins.html#known-plugins). Note that `module_dir` is where the plugin will install itself to and must match that published by the plugin author; it is not where you would like to install it yourself.
 
 ####From official repository
 ```puppet
 elasticsearch::plugin{'lmenezes/elasticsearch-kopf':
-  module_dir => 'kopf',
   instances  => 'instance_name'
 }
 ```
 ####From custom url
 ```puppet
-elasticsearch::plugin{ 'elasticsearch-jetty':
-  module_dir => 'jetty',
+elasticsearch::plugin{ 'jetty':
   url        => 'https://oss-es-plugins.s3.amazonaws.com/elasticsearch-jetty/elasticsearch-jetty-1.2.1.zip',
   instances  => 'instance_name'
 }
@@ -134,7 +133,6 @@ elasticsearch::plugin{ 'elasticsearch-jetty':
 You can also use a proxy if required by setting the `proxy_host` and `proxy_port` options:
 ```puppet
 elasticsearch::plugin { 'lmenezes/elasticsearch-kopf',
-  module_dir => 'kopf',
   instances  => 'instance_name',
   proxy_host => 'proxy.host.com',
   proxy_port => 3128
@@ -145,6 +143,35 @@ elasticsearch::plugin { 'lmenezes/elasticsearch-kopf',
 * `elasticsearch/plugin/version` for official elasticsearch plugins (download from download.elasticsearch.org)
 * `groupId/artifactId/version`   for community plugins (download from maven central or oss sonatype)
 * `username/repository`          for site plugins (download from github master)
+
+####Upgrading plugins
+When you specify a certain plugin version, you can upgrade that plugin by specifying the new version.
+
+```puppet
+elasticsearch::plugin { 'elasticsearch/elasticsearch-cloud-aws/2.1.1':
+}
+```
+
+And to upgrade, you would simply change it to
+
+```puppet
+elasticsearch::plugin { 'elasticsearch/elasticsearch-cloud-aws/2.4.1':
+}
+```
+
+Please note that this does not work when you specify 'latest' as a version number.
+
+###Scripts
+
+Install [scripts](http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-scripting.html) to be used by Elasticsearch.
+These scripts are shared accross all defined instances on the same host.
+
+```puppet
+elasticsearch::script { 'myscript':
+  ensure => 'present',
+  source => 'puppet:///path/to/my/script.groovy'
+}
+```
 
 ###Templates
 
@@ -244,9 +271,13 @@ When a repository is not available or preferred you can install the packages fro
 #####http/https/ftp
 ```puppet
 class { 'elasticsearch':
-  package_url => 'https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.2.deb'
+  package_url       => 'https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.2.deb',
+  proxy_url         => 'http://proxy.example.com:8080/',
 }
 ```
+Setting proxy_url to a location will enable download using the provided proxy
+server. This parameter is also used by elasticsearch::plugin. Setting the port
+in the proxy_url is mandatory. proxy_url defaults to undef (proxy disabled). 
 
 #####puppet://
 ```puppet
@@ -312,6 +343,20 @@ class { 'elasticsearch':
 Note: `init_defaults` hash can be passed to the main class and to the instance.
 
 ##Advanced features
+
+###Package version pinning
+
+The module supports pinning the package version to avoid accidental upgrades that are not done by Puppet.
+To enable this feature:
+
+```puppet
+class { 'elasticsearch':
+  package_pin => true,
+  version     => '1.5.2',
+}
+```
+
+In this example we pin the package version to 1.5.2.
 
 
 ###Data directories
@@ -464,8 +509,8 @@ This module has been built on and tested against Puppet 3.2 and higher.
 
 The module has been tested on:
 
-* Debian 6/7
-* CentOS 6
+* Debian 6/7/8
+* CentOS 6/7
 * Ubuntu 12.04, 14.04
 * OpenSuSE 13.x
 
@@ -482,4 +527,4 @@ Testing on other platforms has been light and cannot be guaranteed.
 
 ##Support
 
-Need help? Join us in [#elasticsearch](https://webchat.freenode.net?channels=%23elasticsearch) on Freenode IRC or subscribe to the [elasticsearch@googlegroups.com](https://groups.google.com/forum/#!forum/elasticsearch) mailing list.
+Need help? Join us in [#elasticsearch](https://webchat.freenode.net?channels=%23elasticsearch) on Freenode IRC or on the [discussion forum](https://discuss.elastic.co/).

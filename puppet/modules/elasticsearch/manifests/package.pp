@@ -28,7 +28,7 @@ class elasticsearch::package {
     path      => [ '/bin', '/usr/bin', '/usr/local/bin' ],
     cwd       => '/',
     tries     => 3,
-    try_sleep => 10
+    try_sleep => 10,
   }
 
   #### Package management
@@ -47,7 +47,7 @@ class elasticsearch::package {
     } else {
 
       # install specific version
-      $package_ensure = $elasticsearch::version
+      $package_ensure = $elasticsearch::real_version
 
     }
 
@@ -66,7 +66,7 @@ class elasticsearch::package {
         cwd     => '/',
         path    => ['/usr/bin', '/bin'],
         command => "mkdir -p ${elasticsearch::package_dir}",
-        creates => $elasticsearch::package_dir;
+        creates => $elasticsearch::package_dir,
       }
 
       file { $package_dir:
@@ -90,37 +90,46 @@ class elasticsearch::package {
 
       case $protocol_type {
 
-        puppet: {
+        'puppet': {
 
           file { $pkg_source:
-            ensure  => present,
+            ensure  => file,
             source  => $elasticsearch::package_url,
             require => File[$package_dir],
             backup  => false,
-            before  => $before
+            before  => $before,
           }
 
         }
-        ftp, https, http: {
+        'ftp', 'https', 'http': {
+
+          if $elasticsearch::proxy_url != undef {
+            $exec_environment = [
+              'use_proxy=yes',
+              "http_proxy=${elasticsearch::proxy_url}",
+              "https_proxy=${elasticsearch::proxy_url}",
+            ]
+          }
 
           exec { 'download_package_elasticsearch':
-            command => "${elasticsearch::params::download_tool} ${pkg_source} ${elasticsearch::package_url} 2> /dev/null",
-            creates => $pkg_source,
-            timeout => $elasticsearch::package_dl_timeout,
-            require => File[$package_dir],
-            before  => $before
+            command     => "${elasticsearch::params::download_tool} ${pkg_source} ${elasticsearch::package_url} 2> /dev/null",
+            creates     => $pkg_source,
+            environment => $exec_environment,
+            timeout     => $elasticsearch::package_dl_timeout,
+            require     => File[$package_dir],
+            before      => $before,
           }
 
         }
-        file: {
+        'file': {
 
           $source_path = $sourceArray[1]
           file { $pkg_source:
-            ensure  => present,
+            ensure  => file,
             source  => $source_path,
             require => File[$package_dir],
             backup  => false,
-            before  => $before
+            before  => $before,
           }
 
         }
@@ -153,7 +162,7 @@ class elasticsearch::package {
     } else {
       $pkg_provider = undef
     }
-    $package_ensure = 'absent'
+    $package_ensure = 'purged'
 
     $package_dir = $elasticsearch::package_dir
 
@@ -161,7 +170,7 @@ class elasticsearch::package {
       ensure => 'absent',
       purge  => true,
       force  => true,
-      backup => false
+      backup => false,
     }
 
   }
