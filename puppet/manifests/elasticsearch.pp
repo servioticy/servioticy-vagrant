@@ -38,7 +38,7 @@ vcsrepo { "/opt/servioticy-indices":
   group    => 'vagrant',
   require  => [ Package["git"] ],
   source   => "https://github.com/servioticy/servioticy-elasticsearch-indices.git",
-  revision => 'security',
+  revision => 'master',
 } 
 
 elasticsearch::plugin{ 'mobz/elasticsearch-head':
