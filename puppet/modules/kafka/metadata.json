@@ -1,0 +1,47 @@
+{
+  "name": "puppet-kafka",
+  "version": "1.0.1",
+  "author": "puppet",
+  "summary": "Module for managing apache kafka",
+  "license": "Apache 2.0",
+  "source": "https://github.com/puppet-community/puppet-kafka",
+  "project_page": "https://github.com/puppet-community/puppet-kafka",
+  "issues_url": "https://github.com/puppet-community/puppet-kafka/issues",
+  "tags": [
+    "apache",
+    "kafka"
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5.0",
+        "6.0"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "5.0",
+        "6.0"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "6.0",
+        "7.0"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "12.04",
+        "14.04"
+      ]
+    }
+  ],
+  "dependencies": [
+    {"name":"puppetlabs/stdlib","version_requirement":">= 3.0.0 <5.0.0"}
+  ]
+}

@@ -1,9 +1,3 @@
-#exec {"wait for elasticsearch":
-#  require => [Elasticsearch::Instance['serviolastic'], File['/opt/servioticy_scripts']],
-#  command => "/bin/sh /opt/servioticy_scripts/wait_for_elasticsearch.sh",
-#  timeout => 0
-#}
-
 $init_hash = {
   'ES_USER' => 'elasticsearch',
   'ES_GROUP' => 'elasticsearch',
@@ -12,7 +6,7 @@ $init_hash = {
 }
 
 class { 'elasticsearch':
-  package_url => 'https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.3.4.deb',
+  package_url => 'https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.7.2.deb',
   init_defaults => $init_hash,
   require => Package['oracle-java7-installer'] ,
   ensure => 'present',
@@ -42,19 +36,10 @@ vcsrepo { "/opt/servioticy-indices":
   provider => git,
   owner    => 'vagrant',
   group    => 'vagrant',
-#  require  => [ Package["git"],  Exec['wait for elasticsearch']],
   require  => [ Package["git"] ],
   source   => "https://github.com/servioticy/servioticy-elasticsearch-indices.git",
-  revision => 'master',
-#  before   => [Exec['create-indices'], Exec['create-xdcr']]
+  revision => 'security',
 } 
-
-#exec {
-#    'create-indices':
-#      command => 'sleep 10 && /bin/sh create_soupdates.sh; /bin/sh create_subscriptions.sh',
-#      cwd => "/opt/servioticy-indices",
-#      path =>  "/usr/local/bin/:/bin/:/usr/bin/",          
-#} 
 
 elasticsearch::plugin{ 'mobz/elasticsearch-head':
   module_dir => 'head',

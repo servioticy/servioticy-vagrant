@@ -13,11 +13,10 @@ file { '/data/couchbase':
   require => Package['couchbase-server']
 }
 
-file { '/opt/apache-storm-0.9.2-incubating':
+file { '/opt/apache-storm-0.9.5':
           ensure => 'directory',
           owner => 'vagrant',
           group => 'vagrant',
-#          before => Exec['run_storm']
 } 
 
 group { "tomcat7":

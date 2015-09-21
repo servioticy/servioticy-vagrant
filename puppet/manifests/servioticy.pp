@@ -10,7 +10,7 @@ vcsrepo { "/usr/src/servioticy":
   group    => 'vagrant',
   require  => [ Package["git"] ],
   source   => "https://github.com/servioticy/servioticy.git",
-  revision => 'security',
+  revision => 'kafka-security',
 } ->
 class { "maven::maven":
   version => "3.2.2", # version to install
@@ -38,43 +38,3 @@ exec { "build_servioticy":
    timeout => 0
 } 
 
-#exec{ 'prepare_map_demo':
-#    user    => 'vagrant',
-#    group    => 'vagrant',
-#    cwd => "/data/demo/map/utils",
-#    path => "/bin:/usr/bin/",
-#    command => "sh create_all.sh",
-#    require => [ Package['python-pip'], File['/data/demo'], Package['couchbase-server'],  Package['couchbase'], Exec['create-xdcr'], Exec['wait for api'], Exec['run_kestrel'], Exec['run_storm'] ],
-#}
-
-
-#exec{ 'stop_all':
-#    user    => 'vagrant',
-#    group    => 'vagrant',
-#    cwd => "/opt/servioticy_scripts",
-#    path => "/bin:/usr/bin/:/opt/servioticy_scripts",
-#    command => "sh stopAll.sh; sh stopAll.sh",
-#    require => [ Exec['build-uaa'] ],
-#}
-
-#file_line { 'motd0':
-#   path => '/etc/motd.tail',
-#   line => '*********************************************************',
-#} ->
-#file_line { 'motd1':
-#   path => '/etc/motd.tail',
-#   line => 'Welcome to servIoTicy Virtual Appliance',
-#} ->
-#file_line { 'motd2':
-#   path => '/etc/motd.tail',
-#   line => " * You can run 'start-servioticy' and 'stop-servioticy' to start and stop all the services",
-#} ->
-#file_line { 'motd3':
-#   path => '/etc/motd.tail',
-#   line => "Enjoy!",
-#}->
-#file_line { 'motd4':
-#   path => '/etc/motd.tail',
-#   line => '*********************************************************',
-##   before => Exec['stop_all']
-#}
