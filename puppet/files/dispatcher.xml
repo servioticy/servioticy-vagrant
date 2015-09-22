@@ -3,27 +3,27 @@
     <servioticyAPI>http://localhost:8080/</servioticyAPI>
     <benchmark>false</benchmark>
     <benchResultsDir>~</benchResultsDir>
+    <updatesFeedback>
+        <address>localhost:9092</address>
+    </updatesFeedback>
     <spouts>
         <updates>
-            <name>services</name>
+            <name>updates</name>
             <addresses>
-                <address>localhost</address>
+                <address>localhost:2181</address>
             </addresses>
-            <port>2229</port>
         </updates>
         <actions>
             <name>actions</name>
             <addresses>
-                <address>localhost</address>
+                <address>localhost:2181</address>
             </addresses>
-            <port>2229</port>
         </actions>
         <reputation>
             <name>reputation</name>
             <addresses>
-                <address>localhost</address>
+                <address>localhost:2181</address>
             </addresses>
-            <port>2229</port>
         </reputation>
     </spouts>
 	<publishers>
@@ -54,7 +54,7 @@
 	</publishers>
     <storage>
         <addresses>
-            <address>http://localhost:8091/pools</address>
+            <address>localhost</address>
         </addresses>
         <buckets>
             <reputation>reputation</reputation>
