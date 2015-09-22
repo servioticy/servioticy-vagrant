@@ -40,9 +40,9 @@ then
 	$SCRIPTS/wait_for_couchbase.sh 
 	$SCRIPTS/create_buckets.sh &> /dev/null
 	$SCRIPTS/wait_for_couchbase_up.sh
-	$SCRIPTS/create_views.sh
 	$SCRIPTS/create_xdcr.sh &> /dev/null
 else
+	$SCRIPTS/create_views.sh
 	$SCRIPTS/wait_for_couchbase_up.sh
 fi
 
