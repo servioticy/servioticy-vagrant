@@ -42,7 +42,6 @@ vcsrepo { "/opt/servioticy-indices":
 } 
 
 elasticsearch::plugin{ 'mobz/elasticsearch-head':
-  module_dir => 'head',
   instances  => 'serviolastic',
   require  => [ Package["git"], Package['oracle-java7-installer']],
 }
