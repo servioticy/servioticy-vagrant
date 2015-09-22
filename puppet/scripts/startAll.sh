@@ -41,13 +41,14 @@ then
 	$SCRIPTS/wait_for_couchbase_up.sh
 	$SCRIPTS/create_views.sh &> /dev/null
 	$SCRIPTS/create_xdcr.sh &> /dev/null
+else
+	$SCRIPTS/wait_for_couchbase_up.sh
 fi
-$SCRIPTS/wait_for_couchbase_up.sh
 
-sudo /etc/init.d/zookeper start &> /dev/null
+sudo /etc/init.d/zookeeper start &> /dev/null
 #$SCRIPTS/wait_for_zookeeper_up.sh
 
-$KAFKA_HOME/bin/kafka-server-start.sh -daemon $KAFKA_HOME/config/server.properties &> /
+$KAFKA_HOME/bin/kafka-server-start.sh -daemon $KAFKA_HOME/config/server.properties &> /dev/null
 if [ ! -f /var/log/servioticy_initialized ];
 then
 	$SCRIPTS/wait_for_kafka_up.sh
