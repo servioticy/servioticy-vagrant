@@ -13,11 +13,6 @@ file { '/data/couchbase':
   require => Package['couchbase-server']
 }
 
-file { '/opt/apache-storm-0.9.5':
-          ensure => 'directory',
-          owner => 'vagrant',
-          group => 'vagrant',
-} 
 
 group { "tomcat7":
       ensure => present,
@@ -40,6 +35,13 @@ file { '/etc/tomcat7/server.xml':
           source => "/vagrant/puppet/files/server.xml",
 }
 
+file { '/opt/apache-storm-0.9.5/logback/cluster.xml':
+          ensure => present,
+          replace => true,
+          owner    => 'vagrant',
+          group    => 'vagrant',          
+          source => "/vagrant/puppet/files/cluster.xml",
+}
 
 
 file { '/home/vagrant/LICENSE.txt':

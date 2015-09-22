@@ -12,8 +12,8 @@ echo
 sudo rm -f $ELASTICSEARCH_LOG_FILE
 sudo rm -rf $API_LOG_FOLDER/*
 sudo rm -f $BROKER_LOG_FILE
+sudo rm -f $KAFKA_LOG_FILE
 rm -f $STORM_LOG_FILE
-rm -f $KESTREL_STATUS_FILE
 sleep 5
 
 if [ ! -f /var/log/servioticy_initialized ];
@@ -44,6 +44,16 @@ then
 fi
 $SCRIPTS/wait_for_couchbase_up.sh
 
+sudo /etc/init.d/zookeper start &> /dev/null
+#$SCRIPTS/wait_for_zookeeper_up.sh
+
+$KAFKA_HOME/bin/kafka-server-start.sh -daemon $KAFKA_HOME/config/server.properties &> /
+if [ ! -f /var/log/servioticy_initialized ];
+then
+	$SCRIPTS/wait_for_kafka_up.sh
+	$SCRIPTS/create_topics.sh
+fi
+
 sudo service mysql start &> /dev/null
 $SCRIPTS/wait_for_mysql_up.sh
 $SCRIPTS/create_database.sh &> /dev/null
@@ -62,10 +72,6 @@ $SCRIPTS/wait_for_api.sh
 
 sudo $SERVIBROKER_HOME/bin/apollo-broker run &> /dev/null &
 $SCRIPTS/wait_for_broker.sh 
-
-cd $KESTREL_HOME
-$JAVA_HOME/bin/java -server -Xmx1024m -Dstage=servioticy_queues -jar kestrel_2.9.2-2.4.1.jar &> /dev/null &
-$SCRIPTS/wait_for_kestrel.sh 
 
 cd $STORM_HOME
 bin/storm jar $DISPATCHER_HOME/dispatcher-0.4.3-security-SNAPSHOT-jar-with-dependencies.jar com.servioticy.dispatcher.DispatcherTopology -f $DISPATCHER_HOME/dispatcher.xml -d &> $STORM_LOG_FILE &

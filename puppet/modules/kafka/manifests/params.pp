@@ -22,8 +22,8 @@ class kafka::params {
   $broker_config_defaults = {
     'broker.id'                                     => '0',
     'log.dirs'                                      => '/tmp/kafka-logs',
-    'port'                                          => '6667',
-    'zookeeper.connect'                             => '',
+    'port'                                          => '9092',
+    'zookeeper.connect'                             => 'localhost:2181',
     'message.max.bytes'                             => '1000000',
     'num.network.threads'                           => '3',
     'num.io.threads'                                => '8',
@@ -59,7 +59,7 @@ class kafka::params {
     'log.flush.interval.ms'                         => '',
     'log.delete.delay.ms'                           => '60000',
     'log.flush.offset.checkpoint.interval.ms'       => '60000',
-    'auto.create.topics.enable'                     => true,
+    'auto.create.topics.enable'                     => false,
     'controller.socket.timeout.ms'                  => '30000',
     'controller.message.queue.size'                 => '10',
     'default.replication.factor'                    => '1',
@@ -83,7 +83,7 @@ class kafka::params {
     'auto.leader.rebalance.enable'                  => true,
     'leader.imbalance.per.broker.percentage'        => '10',
     'leader.imbalance.check.interval.seconds'       => '300',
-    'offset.metadata.max.bytes'                     => '1024'
+    'offset.metadata.max.bytes'                     => '1024',
   }
 
   #http://kafka.apache.org/documentation.html#consumerconfigs

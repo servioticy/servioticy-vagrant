@@ -15,6 +15,7 @@ export DISPATCHER_HOME=$ROOT/servioticy-dispatcher
 export API_HOME=$ROOT/jetty
 export USERDB_HOME=$DATA/userDB
 export ELASTICSEARCH_HOME=$ROOT/elasticsearch
+export KAFKA_HOME=$ROOT/kafka
 export IDM_HOME=/opt/compose-idm
 export DEMO_HOME=$DATA/demo/map
 
@@ -25,6 +26,7 @@ export BROKER_LOG_FILE=$SERVIBROKER_HOME/log/apollo.log
 export API_LOG_FOLDER=$API_HOME/logs
 export USERDB_STATUS_FILE=/tmp/userdb.status
 export ELASTICSEARCH_LOG_FILE=/var/log/elasticsearch/serviolastic/serviolastic.log
+export KAFKA_LOG_FILE=$KAFKA_HOME/logs/server.log
 
 
 #export PATH=$JAVA_HOME/bin:$PATH

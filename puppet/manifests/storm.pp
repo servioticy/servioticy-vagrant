@@ -6,5 +6,10 @@ archive { 'apache-storm-0.9.5':
   target => '/opt',
   src_target => '/home/vagrant/downloads',
   require  => [ Package["curl"], File['/home/vagrant/downloads/'] ],
+} ->
+file { '/opt/apache-storm-0.9.5':
+  owner    => 'vagrant',
+  group    => 'vagrant',
+
 }
 

@@ -9,14 +9,3 @@ class { 'kafka::broker':
 	scala_version => '2.10',
 }
 
-#file { '/opt/kafka-0.8.2.1':
-#	owner => 'vagrant',
-#        group => 'vagrant',
-#	require  => Class['kafka::broker'],
-#}
-
-#file { '/opt/kafka':
-#	owner => 'vagrant',
-#        group => 'vagrant',
-#	require  => Class['kafka::broker'],
-#}
