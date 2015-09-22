@@ -13,7 +13,8 @@ sudo rm -f $ELASTICSEARCH_LOG_FILE
 sudo rm -rf $API_LOG_FOLDER/*
 sudo rm -f $BROKER_LOG_FILE
 sudo rm -f $KAFKA_LOG_FILE
-rm -f $STORM_LOG_FILE
+sudo rm -f $IDM_LOG_FILE 
+sudo rm -f $STORM_LOG_FILE
 sleep 5
 
 if [ ! -f /var/log/servioticy_initialized ];
@@ -39,7 +40,7 @@ then
 	$SCRIPTS/wait_for_couchbase.sh 
 	$SCRIPTS/create_buckets.sh &> /dev/null
 	$SCRIPTS/wait_for_couchbase_up.sh
-	$SCRIPTS/create_views.sh &> /dev/null
+	$SCRIPTS/create_views.sh
 	$SCRIPTS/create_xdcr.sh &> /dev/null
 else
 	$SCRIPTS/wait_for_couchbase_up.sh
@@ -64,7 +65,7 @@ sudo env JAVA_HOME=$JAVA_HOME /etc/init.d/tomcat7 start &> /dev/null
 $SCRIPTS/wait_for_tomcat_up.sh
 
 cd $IDM_HOME
-$JAVA_HOME/bin/java -jar COMPOSEIdentityManagement-0.8.0.jar &> /dev/null &
+$JAVA_HOME/bin/java -jar COMPOSEIdentityManagement-0.8.0.jar &> $IDM_LOG_FILE &
 $SCRIPTS/wait_for_IDM_up.sh
 $SCRIPTS/register_user.sh
 

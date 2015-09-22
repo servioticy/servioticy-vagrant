@@ -26,6 +26,7 @@ export API_LOG_FOLDER=$API_HOME/logs
 export USERDB_STATUS_FILE=/tmp/userdb.status
 export ELASTICSEARCH_LOG_FILE=/var/log/elasticsearch/serviolastic/serviolastic.log
 export KAFKA_LOG_FILE=$KAFKA_HOME/logs/server.log
+export IDM_LOG_FILE=/tmp/IDM.log
 
 
 #export PATH=$JAVA_HOME/bin:$PATH

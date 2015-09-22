@@ -1,5 +1,5 @@
 
-rm /tmp/userinfo.txt
+rm  -f /tmp/userinfo.txt
 
 response=$(curl --digest -u "composecontroller:composecontrollerpassword" \
      -H "Content-Type: application/json;charset=UTF-8" \
@@ -11,8 +11,8 @@ response=$(curl --digest -u "composecontroller:composecontrollerpassword" \
 
   if [ $response != 201 ];
      then
-                echo -n "Error registering IDM user...  -> "
-		cat /tmp/userinfo.txt
+                echo -n "Error registering IDM user...  -> "HTTP Code: $response" "
+		if [ -f /tmp/userinfo.txt ]; then cat /tmp/userinfo.txt; fi
 		echo
      else
 
