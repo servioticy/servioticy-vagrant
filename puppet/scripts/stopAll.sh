@@ -43,5 +43,6 @@ sudo rm -f $SERVIBROKER_HOME/log/*
 sudo rm -f /var/log/tomcat7/*
 sudo rm -rf /var/lib/tomcat7/webapps/uaa
 sudo rm -rf $KAFKA_HOME/logs
+sudo rm -rf /tmp/kafka-logs
 
 echo Done.
