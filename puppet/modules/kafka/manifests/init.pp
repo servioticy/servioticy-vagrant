@@ -69,45 +69,37 @@ class kafka (
 
   ensure_resource('package','wget', {'ensure' => 'present'})
 
-  group { 'kafka':
-    ensure => present
-  }
-
-  user { 'kafka':
-    ensure  => present,
-    shell   => '/bin/bash',
-    require => Group['kafka']
-  }
-
   file { $package_dir:
     ensure => 'directory',
-    owner  => 'kafka',
-    group  => 'kafka'
+    owner  => 'vagrant',
+    group  => 'vagrant'
   }
 
   file { $install_directory:
     ensure => directory,
-    owner  => 'kafka',
-    group  => 'kafka',
+    owner  => 'vagrant',
+    group  => 'vagrant',
     alias  => 'kafka-app-dir'
   }
 
   file { '/opt/kafka':
     ensure => link,
+    owner   => 'vagrant',
+    group   => 'vagrant',
     target => $install_directory
   }
 
   file { '/opt/kafka/config':
     ensure  => directory,
-    owner   => 'kafka',
-    group   => 'kafka',
+    owner   => 'vagrant',
+    group   => 'vagrant',
     require => File['/opt/kafka']
   }
 
   file { '/var/log/kafka':
     ensure => directory,
-    owner  => 'kafka',
-    group  => 'kafka'
+    owner  => 'vagrant',
+    group  => 'vagrant'
   }
 
   exec { 'download-kafka-package':
@@ -122,7 +114,7 @@ class kafka (
     creates => "${install_directory}/LICENSE",
     alias   => 'untar-kafka',
     require => [ Exec['download-kafka-package'], File['kafka-app-dir'] ],
-    user    => 'kafka',
+    user    => 'vagrant',
     path    => ['/bin', '/usr/bin', '/usr/sbin']
   }
 }
