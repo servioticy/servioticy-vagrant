@@ -66,6 +66,7 @@ $SCRIPTS/wait_for_tomcat_up.sh
 cd $IDM_HOME
 $JAVA_HOME/bin/java -jar COMPOSEIdentityManagement-0.8.0.jar &> /dev/null &
 $SCRIPTS/wait_for_IDM_up.sh
+$SCRIPTS/register_user.sh
 
 echo "Starting API (Jetty) service..."
 sudo /etc/init.d/jetty start &> /dev/null
