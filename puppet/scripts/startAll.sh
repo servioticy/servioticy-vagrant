@@ -49,7 +49,7 @@ fi
 sudo /etc/init.d/zookeeper start &> /dev/null
 #$SCRIPTS/wait_for_zookeeper_up.sh
 
-$KAFKA_HOME/bin/kafka-server-start.sh -daemon $KAFKA_HOME/config/server.properties &> /dev/null
+sudo /etc/init.d/kafka start &> /dev/null
 $SCRIPTS/wait_for_kafka_up.sh
 
 if [ ! -f /var/log/servioticy_initialized ];
