@@ -30,7 +30,7 @@
 		<external>
 			<name>servioticy</name>
 			<address>tcp://localhost</address>
-			<port>1833</port>
+			<port>1883</port>
 			<username>compose</username>
 			<password>shines</password>
 			<class>com.servioticy.dispatcher.publishers.MQTTPublisher</class>
@@ -38,7 +38,7 @@
 		<internal>
 			<name>servioticy</name>
 			<address>tcp://localhost</address>
-			<port>1833</port>
+			<port>1883</port>
 			<username>compose</username>
 			<password>shines</password>
 			<class>com.servioticy.dispatcher.publishers.MQTTPublisher</class>
@@ -46,7 +46,7 @@
         <actions>
             <name>servioticy</name>
             <address>tcp://localhost</address>
-            <port>1833</port>
+            <port>1883</port>
             <username>compose</username>
             <password>shines</password>
             <class>com.servioticy.dispatcher.publishers.MQTTPublisher</class>
