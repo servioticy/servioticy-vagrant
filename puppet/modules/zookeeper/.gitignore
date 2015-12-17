@@ -1,0 +1,10 @@
+*.log
+*~
+.DS_Store
+*.tmp
+.librarian
+pkg/*
+Gemfile.lock
+spec/fixtures/modules/*
+.vagrant
+Puppetfile.lock

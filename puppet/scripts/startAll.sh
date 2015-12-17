@@ -19,12 +19,12 @@ sleep 5
 
 if [ ! -f /var/log/servioticy_initialized ];
 then
-	echo
-	echo "**********************************************"
-	echo "***** FIRST TIME THAT YOU RUN SERVIOTICY *****"
-	echo "*****      INTIALIZING COMPONENTS        *****"
-	echo "**********************************************"
-	echo
+        echo
+        echo "**********************************************"
+        echo "***** FIRST TIME THAT YOU RUN SERVIOTICY *****"
+        echo "*****      INTIALIZING COMPONENTS        *****"
+        echo "**********************************************"
+        echo
 fi
 
 
@@ -32,37 +32,43 @@ sudo /etc/init.d/elasticsearch-serviolastic start &> /dev/null
 $SCRIPTS/wait_for_elasticsearch_up.sh
 if [ ! -f /var/log/servioticy_initialized ];
 then
-	$SCRIPTS/create_index.sh &> /dev/null
+        $SCRIPTS/create_index.sh &> /dev/null
 fi
 
 sudo /etc/init.d/couchbase-server start &> /dev/null
 if [ ! -f /var/log/servioticy_initialized ];
 then
-	$SCRIPTS/wait_for_couchbase.sh 
-	$SCRIPTS/create_buckets.sh &> /dev/null
-	$SCRIPTS/wait_for_couchbase_up.sh
-	$SCRIPTS/create_views.sh &> /dev/null
-	$SCRIPTS/create_xdcr.sh &> /dev/null
+        $SCRIPTS/wait_for_couchbase.sh 
+        $SCRIPTS/create_buckets.sh &> /dev/null
+        $SCRIPTS/wait_for_couchbase_up.sh
+        $SCRIPTS/create_views.sh &> /dev/null
+        $SCRIPTS/create_xdcr.sh &> /dev/null
 fi
 $SCRIPTS/wait_for_couchbase_up.sh
 
+echo "Starting Zookeeper..."
+sudo service zookeeper start &> /dev/null
+#$SCRIPTS/wait_for_zookeeper_up.sh
+echo "Zookeeper running..."
 
 cd $USERDB_HOME
 python userDB.py &> /dev/null &
 $SCRIPTS/wait_for_userDB.sh
 
+sudo service kafka start &> /dev/null
+$SCRIPTS/wait_for_kafka_up.sh
+
+if [ ! -f /var/log/servioticy_initialized ];
+then
+        $SCRIPTS/create_topics.sh
+fi
 
 echo "Starting API (Jetty) service..."
 sudo /etc/init.d/jetty start &> /dev/null
 $SCRIPTS/wait_for_api.sh 
 
-
 sudo $SERVIBROKER_HOME/bin/apollo-broker run &> /dev/null &
 $SCRIPTS/wait_for_broker.sh 
-
-cd $KESTREL_HOME
-$JAVA_HOME/bin/java -server -Xmx1024m -Dstage=servioticy_queues -jar kestrel_2.9.2-2.4.1.jar &> /dev/null &
-$SCRIPTS/wait_for_kestrel.sh 
 
 cd $STORM_HOME
 bin/storm jar $DISPATCHER_HOME/dispatcher-0.4.3-SNAPSHOT-jar-with-dependencies.jar com.servioticy.dispatcher.DispatcherTopology -f $DISPATCHER_HOME/dispatcher.xml -d &> $STORM_LOG_FILE &
@@ -73,18 +79,18 @@ echo Starting MQTT-REST Bridge...
 forever start -a -l /tmp/forever.log -o /tmp/bridge.js.out.log -e /tmp/bridge.js.err.log mqtt-and-stomp-bridge.js &> /dev/null
 echo MQTT-REST Bridge running
 
-cd $COMPOSER_HOME
-echo Starting COMPOSER...
-forever start -a -l /tmp/forever_red.log -o /tmp/nodered.js.out.log -e /tmp/nodered.js.err.log red.js &> /dev/null
-echo COMPOSER running
+#cd $COMPOSER_HOME
+#echo Starting COMPOSER...
+#forever start -a -l /tmp/forever_red.log -o /tmp/nodered.js.out.log -e /tmp/nodered.js.err.log red.js &> /dev/null
+#echo COMPOSER running
 
-if [ ! -f /var/log/servioticy_initialized ];
-then
-	cd $DEMO_HOME/utils
-	sh create_all.sh &> /dev/null
-	python generate_fake_data.py &> /dev/null
-	cd $START_FOLDER
-fi
+#if [ ! -f /var/log/servioticy_initialized ];
+#then
+#        cd $DEMO_HOME/utils
+#        sh create_all.sh &> /dev/null
+#        python generate_fake_data.py &> /dev/null
+#        cd $START_FOLDER
+#fi
 
 echo Starting DEMO...
 sudo /etc/init.d/nginx start &> /dev/null
@@ -92,27 +98,27 @@ echo DEMO running
 
 if [ ! -f /var/log/servioticy_initialized ];
 then
-	sudo touch /var/log/servioticy_initialized
+        sudo touch /var/log/servioticy_initialized
 
-	echo
-	echo "*********************************"
-	echo    sevIoTicy is now initialized
-	echo      but needs to be restarted
-	echo      to get all changes applied
-	echo 
-	echo Please run 'stop-servioticy' and 
-	echo  then 'start-servioticy' again
-	echo "*********************************"
-	echo
-	
-	nohup stop-servioticy &> /dev/null &
+        echo
+        echo "*********************************"
+        echo    sevIoTicy is now initialized
+        echo      but needs to be restarted
+        echo      to get all changes applied
+        echo 
+        echo Please run 'stop-servioticy' and 
+        echo  then 'start-servioticy' again
+        echo "*********************************"
+        echo
+
+        nohup stop-servioticy &> /dev/null &
 
 else
 
-	echo
-	echo "*******************************"
-	echo sevIoTicy is now running.
-	echo "*******************************"
-	echo
+        echo
+        echo "*******************************"
+        echo sevIoTicy is now running.
+        echo "*******************************"
+        echo
 
 fi

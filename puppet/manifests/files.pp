@@ -13,12 +13,13 @@ file { '/data/couchbase':
   require => Package['couchbase-server']
 }
 
-file { '/opt/apache-storm-0.9.2-incubating':
-          ensure => 'directory',
-          owner => 'vagrant',
-          group => 'vagrant',
-#          before => Exec['run_storm']
-} 
+file { '/opt/apache-storm-0.9.6/logback/cluster.xml':
+         ensure => present,
+         replace => true,
+         owner    => 'vagrant',
+         group    => 'vagrant',          
+         source => "/vagrant/puppet/files/cluster.xml",
+}
 
 file { '/home/vagrant/LICENSE.txt':
           ensure => present,
@@ -126,3 +127,9 @@ file { '/home/vagrant/.bash_aliases':
    ensure => 'link',
    target => '/vagrant/puppet/scripts/env.sh',
 }
+
+file { '/tmp/mysql-server.response':
+         ensure => present,
+         source => "/vagrant/puppet/files/mysql-server.response",
+}
+

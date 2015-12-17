@@ -91,6 +91,11 @@
 #   For http,https and ftp downloads you can set howlong the exec resource may take.
 #   Defaults to: 600 seconds
 #
+# [*proxy_url*]
+#   For http and https downloads you can set a proxy server to use
+#   Format: proto://[user:pass@]server[:port]/ 
+#   Defaults to: undef (proxy disabled)
+#
 # [*elasticsearch_user*]
 #   The user Elasticsearch should run as. This also sets the file rights.
 #
@@ -163,6 +168,12 @@
 #   Enable Hiera's merging function for the plugins
 #   Defaults to: false
 #
+# [*package_pin*]
+#   Enables package version pinning.
+#   This pins the package version to the set version number and avoids
+#   package upgrades.
+#   Defaults to: true
+#
 # The default values for the parameters are set in elasticsearch::params. Have
 # a look at the corresponding <tt>params.pp</tt> manifest file if you need more
 # technical information about them.
@@ -197,8 +208,10 @@ class elasticsearch(
   $package_url           = undef,
   $package_dir           = $elasticsearch::params::package_dir,
   $package_name          = $elasticsearch::params::package,
+  $package_pin           = true,
   $purge_package_dir     = $elasticsearch::params::purge_package_dir,
   $package_dl_timeout    = $elasticsearch::params::package_dl_timeout,
+  $proxy_url             = undef,
   $elasticsearch_user    = $elasticsearch::params::elasticsearch_user,
   $elasticsearch_group   = $elasticsearch::params::elasticsearch_group,
   $configdir             = $elasticsearch::params::configdir,
@@ -214,7 +227,7 @@ class elasticsearch(
   $java_install          = false,
   $java_package          = undef,
   $manage_repo           = false,
-  $repo_version          = false,
+  $repo_version          = undef,
   $logging_file          = undef,
   $logging_config        = undef,
   $logging_template      = undef,
@@ -227,7 +240,6 @@ class elasticsearch(
 ) inherits elasticsearch::params {
 
   anchor {'elasticsearch::begin': }
-  anchor {'elasticsearch::end': }
 
 
   #### Validate parameters
@@ -286,6 +298,21 @@ class elasticsearch(
     }
   }
 
+  if ($version != false) {
+    case $::osfamily {
+      'RedHat', 'Linux', 'Suse': {
+        if ($version =~ /.+-\d/) {
+          $real_version = $version
+        } else {
+          $real_version = "${version}-1"
+        }
+      }
+      default: {
+        $real_version = $version
+      }
+    }
+  }
+
   #### Manage actions
 
   # package(s)
@@ -327,10 +354,10 @@ class elasticsearch(
     # Install java
     class { '::java':
       package      => $java_package,
-      distribution => 'jre'
+      distribution => 'jre',
     }
 
-    # ensure we first java java and then manage the service
+    # ensure we first install java, the package and then the rest
     Anchor['elasticsearch::begin']
     -> Class['::java']
     -> Class['elasticsearch::package']
@@ -358,7 +385,7 @@ class elasticsearch(
       }
 
       class { 'elasticsearch::repo':
-        stage => $repo_stage
+        stage => $repo_stage,
       }
     }
   }
@@ -373,10 +400,12 @@ class elasticsearch(
     -> Class['elasticsearch::config']
     -> Elasticsearch::Instance <| |>
     -> Elasticsearch::Template <| |>
+
   } else {
 
     # make sure all services are getting stopped before software removal
-    Elasticsearch::Instance <| |>
+    Anchor['elasticsearch::begin']
+    -> Elasticsearch::Instance <| |>
     -> Class['elasticsearch::config']
     -> Class['elasticsearch::package']
 

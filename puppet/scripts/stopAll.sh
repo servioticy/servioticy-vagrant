@@ -5,6 +5,8 @@
 echo Stopping servIoTicy services...
 #Stop ALL
 sudo /etc/init.d/couchbase-server stop &> /dev/null
+sudo /etc/init.d/kafka stop &> /dev/null
+sudo /etc/init.d/zookeeper stop &> /dev/null
 sudo /etc/init.d/jetty stop &> /dev/null
 sudo /etc/init.d/elasticsearch-serviolastic stop &> /dev/null
 sudo /etc/init.d/nginx stop &> /dev/null

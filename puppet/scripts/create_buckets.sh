@@ -28,13 +28,6 @@ echo "--------------------------------------------------------"
     --bucket-type=couchbase \
     --bucket-ramsize=200 \
     --bucket-replica=1 \
-    --bucket=privatebucket \
-     -c localhost --user=admin --password=password 
-
-/opt/couchbase/bin/couchbase-cli bucket-create \
-    --bucket-type=couchbase \
-    --bucket-ramsize=200 \
-    --bucket-replica=1 \
     --bucket=actuations \
      -c localhost --user=admin --password=password 
 
@@ -52,5 +45,11 @@ echo "--------------------------------------------------------"
     --bucket=subscriptions \
      -c localhost --user=admin --password=password 
      
+/opt/couchbase/bin/couchbase-cli bucket-create \
+    --bucket-type=couchbase \
+    --bucket-ramsize=200 \
+    --bucket-replica=1 \
+    --bucket=reputation \
+     -c localhost --user=admin --password=password 
      
 exit 0

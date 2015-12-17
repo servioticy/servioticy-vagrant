@@ -75,4 +75,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #https://0.0.0.0:61681/
   config.vm.network :forwarded_port, guest: 61681, host: 61681
 
+  #zookeeper
+  config.vm.network :forwarded_port, guest: 9092, host: 9092
+  #kafka
+  config.vm.network :forwarded_port, guest: 2229, host: 2229
 end

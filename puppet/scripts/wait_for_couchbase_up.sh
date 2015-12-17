@@ -10,7 +10,7 @@ done
 rm -f $CB_STATUS_FILE
 echo CouchBase service running
 
-for bucket in `echo serviceobjects soupdates actuations subscriptions privatebucket`
+for bucket in `echo serviceobjects soupdates actuations subscriptions reputation`
 do
 	echo "....Checking $bucket bucket status"
 	status=`grep -s healthy $CB_STATUS_FILE | sed 's/ //g' | tail -1`
@@ -23,3 +23,4 @@ do
 	rm -f $CB_STATUS_FILE
 	echo "    $bucket bucket healthy"
 done
+
