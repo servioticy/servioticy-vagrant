@@ -27,7 +27,7 @@ then
         echo
 fi
 
-
+cd $SCRIPTS
 sudo /etc/init.d/elasticsearch-serviolastic start &> /dev/null
 $SCRIPTS/wait_for_elasticsearch_up.sh
 if [ ! -f /var/log/servioticy_initialized ];
@@ -36,19 +36,21 @@ then
 fi
 
 sudo /etc/init.d/couchbase-server start &> /dev/null
+$SCRIPTS/wait_for_couchbase.sh 
 if [ ! -f /var/log/servioticy_initialized ];
 then
-        $SCRIPTS/wait_for_couchbase.sh 
         $SCRIPTS/create_buckets.sh &> /dev/null
         $SCRIPTS/wait_for_couchbase_up.sh
-        $SCRIPTS/create_views.sh &> /dev/null
         $SCRIPTS/create_xdcr.sh &> /dev/null
+else
+        $SCRIPTS/create_views.sh &> /dev/null
 fi
 $SCRIPTS/wait_for_couchbase_up.sh
 
 echo "Starting Zookeeper..."
 sudo service zookeeper start &> /dev/null
 #$SCRIPTS/wait_for_zookeeper_up.sh
+sleep 5
 echo "Zookeeper running..."
 
 cd $USERDB_HOME
@@ -58,10 +60,7 @@ $SCRIPTS/wait_for_userDB.sh
 sudo service kafka start &> /dev/null
 $SCRIPTS/wait_for_kafka_up.sh
 
-if [ ! -f /var/log/servioticy_initialized ];
-then
-        $SCRIPTS/create_topics.sh
-fi
+$SCRIPTS/create_topics.sh
 
 echo "Starting API (Jetty) service..."
 sudo /etc/init.d/jetty start &> /dev/null

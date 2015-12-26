@@ -22,7 +22,8 @@ export KESTREL_STATUS_FILE=/tmp/kestrel.log
 export STORM_LOG_FILE=/tmp/storm.log
 export BROKER_LOG_FILE=$SERVIBROKER_HOME/log/apollo.log
 export API_LOG_FOLDER=$API_HOME/logs
-export KAFKA_LOG_FILE=/var/log/kafka/server.log
+export KAFKA_LOG_FILE=/var/log/kafka/server.out
+export ZOOKEEPER_LOG_FILE=/var/log/zookeeper/zookeeper.log
 export USERDB_STATUS_FILE=/tmp/userdb.status
 export ELASTICSEARCH_LOG_FILE=/var/log/elasticsearch/serviolastic/serviolastic.log
 
