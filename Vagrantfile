@@ -12,8 +12,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "hashicorp/precise64"
-  #config.puppet_install.puppet_version = :latest
+  config.vm.box = "ubuntu/trusty64"
   
   # required by maven
   config.ssh.shell = "export JAVA_HOME=/usr/lib/jvm/java-7-oracle"
@@ -21,7 +20,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # required by couchbase-cli
   config.ssh.shell = "export LC_ALL=\"en_US.UTF-8\""
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-  #config.vm.provision "shell", path: "provision.sh"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -30,13 +28,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider :virtualbox do |vb|
     #vb.gui = true
     vb.customize ["modifyvm", :id, "--memory", "4096"]
-    #unless File.exist?("./datadisk.vdi")        
-    #  vb.customize ['createhd', '--filename', './datadisk.vdi', '--size', 2 * 1024]
-    #  vb.customize ['storageattach', :id, '--storagectl', "SATA Controller", '--port', 1, '--device', 0, '--type', 'hdd', '--medium', './datadisk.vdi' ]
-    #end
   end
   
-  #config.vm.provision :shell, :inline => "sudo apt-get update && sudo apt-get install puppet -y"
   config.vm.provision :shell, :path => "install_puppet.sh"
   
   #puppet config
@@ -44,7 +37,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppet.module_path = "puppet/modules"
     puppet.manifests_path = "puppet/manifests"
     puppet.manifest_file = "."
-    puppet.options = "--environment dev --graph --graphdir /vagrant/puppet/dependency_graph"
   end
   
   # jetty

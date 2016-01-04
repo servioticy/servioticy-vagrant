@@ -1,0 +1,13 @@
+{
+  "Gemfile": "fbca1bd2053a01b48f314047dfce1bad",
+  "README.md": "2025c1d9801a738f3c14ae25e258172a",
+  "Rakefile": "dce4cb3c0dec75f073da6e09414cc798",
+  "manifests/init.pp": "d809ba73ecefae633fdddb4119a78e4b",
+  "manifests/params.pp": "bcd3a37d5b82f8f856c38f98b29c40a5",
+  "metadata.json": "27cde02692ee33e27afefbbb56addbac",
+  "spec/classes/motd_spec.rb": "4dcc01db41921b83f53cece6015c4b6b",
+  "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
+  "spec/spec_helper.rb": "ad117d0734b10efef708e05b5dadd0cd",
+  "templates/motd.erb": "0556a6221848fc86359552021a391572",
+  "tests/init.pp": "5086992bfbe4109aef08a6dc91736250"
+}

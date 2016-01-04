@@ -36,8 +36,10 @@ class motd(
   $ensure = 'present',
   $config_file = $motd::params::config_file,
   $template = $motd::params::template,
-  $inline_template = undef
+  $inline_template = ''
 ) inherits motd::params {
+
+  validate_absolute_path($config_file)
 
   if $ensure == 'present' {
     $ensure_real = 'file'
@@ -45,14 +47,16 @@ class motd(
     $ensure_real = 'absent'
   }
 
+  $file_content = $inline_template ? {
+    ''      => template($template),
+    default => inline_template("${inline_template}\n"),
+  }
+
   file { $config_file:
     ensure  => $ensure_real,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => $inline_template ? {
-      '' => template($template),
-      default => inline_template("${inline_template}\n"),
-    }
+    content => $file_content,
   }
 }
