@@ -128,8 +128,8 @@ file { '/home/vagrant/.bash_aliases':
    target => '/vagrant/puppet/scripts/env.sh',
 }
 
-file { '/tmp/mysql-server.response':
-         ensure => present,
-         source => "/vagrant/puppet/files/mysql-server.response",
-}
+#file { '/tmp/mysql-server.response':
+#         ensure => present,
+#         source => "/vagrant/puppet/files/mysql-server.response",
+#}
 
